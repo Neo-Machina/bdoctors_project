@@ -16,11 +16,23 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 
+        'email', 
+        'password',
+        'address',
+        'slug',
+        'phone_number',
+        'service',
+        'curriculum',
+        'photo'
     ];
 
     public function specializations() {
         return $this->belongsToMany('App\Specialization');
+    }
+
+    public function bundles() {
+        return $this->belongsToMany('App\Bundle');
     }
 
     /**
