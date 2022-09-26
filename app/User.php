@@ -19,6 +19,10 @@ class User extends Authenticatable
         'name', 'email', 'password',
     ];
 
+    public function specializations() {
+        return $this->belongsToMany('App\Specialization');
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -36,4 +40,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    
 }
