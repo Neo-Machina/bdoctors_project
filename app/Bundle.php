@@ -4,11 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Specialization extends Model
+class Bundle extends Model
 {
     protected $fillable = [
         'name', 
-        'slug'
+        'duration',
+        'price',
+        'code'
     ];
 
     public function users() {
