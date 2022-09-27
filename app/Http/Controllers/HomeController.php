@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Specialization;
 use App\Bundle;
-use Illuminate\Database\Eloquent\Pivot;
 
 class HomeController extends Controller
 {

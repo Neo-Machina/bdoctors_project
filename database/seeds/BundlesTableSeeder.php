@@ -3,7 +3,6 @@
 use Illuminate\Database\Seeder;
 use App\Bundle;
 use Faker\Generator as Faker;
-use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class BundlesTableSeeder extends Seeder
 {
@@ -23,7 +22,6 @@ class BundlesTableSeeder extends Seeder
         foreach ($bundles as $key => $price) {
             $new_bundle = new Bundle();
 
-            $x = $new_bundle->withPivot(['expired_date']);
             $new_bundle->price = $price;
             $new_bundle->name = $key;
             $new_bundle->code = $faker->ean13();

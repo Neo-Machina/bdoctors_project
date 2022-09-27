@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use App\Specialization;
+use Carbon\Carbon;
 
 class UsersTableSeeder extends Seeder
 {
@@ -42,6 +43,23 @@ class UsersTableSeeder extends Seeder
             }
 
             $new_user->specializations()->sync($specialization_ids);
+
+            $bundle_ids= [];
+            $bundle_expired_dates = [];
+
+            for($z = 1; $z <= rand(1, 10); $z++) {
+                $id_bundle_random = rand(1, 3);
+                $id_expired_date = new Carbon($faker->dateTimeBetween('-4 months', '-1 hour'));
+
+                $bundle_ids[] = $id_bundle_random;
+                
+
+                array_push($bundle_expired_dates, ['expired_date' => $id_expired_date]);
+            }
+
+            $bundle_expire_array = array_combine($bundle_ids, $bundle_expired_dates);
+
+            $new_user->bundles()->sync($bundle_expire_array);
         }
     }
 
