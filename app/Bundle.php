@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class Bundle extends Model
 {
@@ -15,7 +14,6 @@ class Bundle extends Model
     ];
 
     public function users() {
-        return $this->belongsToMany('App\User')
-        ->using('App\UserBundle')->withPivot(['expired_date']);
+        return $this->belongsToMany('App\User', 'user_bundle');
     }
 }

@@ -5,7 +5,6 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class User extends Authenticatable
 {
@@ -33,8 +32,7 @@ class User extends Authenticatable
     }
 
     public function bundles() {
-        return $this->belongsToMany('App\Bundle')
-        ->using('App\UserBundle')->withPivot(['expired_date']);
+        return $this->belongsToMany('App\Bundle', 'user_bundle');
     }
 
     public function messages() {
