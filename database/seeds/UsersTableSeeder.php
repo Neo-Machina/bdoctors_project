@@ -20,6 +20,7 @@ class UsersTableSeeder extends Seeder
         for($i = 0; $i < 150; $i++) {
             $new_user = new User();
 
+<<<<<<< HEAD
             $new_user->name = $faker->name($gender = 'male'|'female'); 
             $new_user->address = $faker->streetAddress(); 
             $new_user->phone_number = $faker->e164PhoneNumber();
@@ -30,6 +31,29 @@ class UsersTableSeeder extends Seeder
             $new_user->password = 'password123';
             $new_user->service = implode(', ', $faker->words(rand(5,15)));
             $new_user->save();
+=======
+            $new_user->name = $faker->firstNameMale(); 
+            $new_user->address = $faker->streetAddress(); 
+            $new_user->phone_number = $faker->e164PhoneNumber();
+            $new_user->email = $faker->email();
+            $new_user->curriculum = $faker->paragraphs(4, true);
+            $new_user->photo = 'https://s3-eu-west-1.amazonaws.com/miodottore.it/doctor/b26aee/b26aee7167aa5d475a7761d55f2e6bbd_large.jpg';
+            $new_user->slug = $this->getFreeSlugFromTitle($new_user->name);
+            $new_user->password = 'password123';
+            $new_user->service = $faker->words(rand(5, 15), true);
+            $new_user->save();
+
+            // $specialization_ids = []; 
+            // $specializations_array = Specialization::all();
+
+            // for($i=1; $i < rand(1, 3); $i++) { 
+            //     $id_random = rand(1, count($specializations_array));
+
+            //     if(!in_array( $id_random, $specialization_ids)) {
+            //         $specialization_ids[] = $id_random;
+            //     } 
+            // }
+>>>>>>> 3e60f1a705e935579d980a1dc632f5596befd572
 
             $specialization_ids = []; 
 
@@ -43,6 +67,7 @@ class UsersTableSeeder extends Seeder
 
             $new_user->specializations()->sync($specialization_ids);
         }
+<<<<<<< HEAD
 
 
 
@@ -60,6 +85,8 @@ class UsersTableSeeder extends Seeder
         // ])->each(function($user) {
         //     $user->specializations()->saveMany(factory(App\Specialization::class, rand(1,3))->create());
         // });
+=======
+>>>>>>> 3e60f1a705e935579d980a1dc632f5596befd572
     }
 
     protected function getFreeSlugFromTitle($name) {
@@ -83,4 +110,4 @@ class UsersTableSeeder extends Seeder
 
         return $slug_to_save;
     }
-}
+
