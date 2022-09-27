@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Bundle;
 use Faker\Generator as Faker;
-use Illuminate\Database\Eloquent\Pivot;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class BundlesTableSeeder extends Seeder
 {
