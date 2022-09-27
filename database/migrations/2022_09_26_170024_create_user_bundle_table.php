@@ -20,7 +20,7 @@ class CreateUserBundleTable extends Migration
             $table->unsignedBigInteger('bundle_id');
             $table->foreign('bundle_id')->references('id')->on('bundles');
 
-            $table->date('expired_date');
+            $table->timestamp('expired_date');
         });
     }
 
