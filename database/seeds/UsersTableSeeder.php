@@ -1,0 +1,113 @@
+<?php
+
+use Illuminate\Database\Seeder;
+use Faker\Generator as Faker;
+use App\User;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+use App\Specialization;
+
+class UsersTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run(Faker $faker)
+    {
+
+        for($i = 0; $i < 150; $i++) {
+            $new_user = new User();
+
+<<<<<<< HEAD
+            $new_user->name = $faker->name($gender = 'male'|'female'); 
+            $new_user->address = $faker->streetAddress(); 
+            $new_user->phone_number = $faker->e164PhoneNumber();
+            $new_user->email = $faker->email();
+            $new_user->curriculum = $faker->text(3000);
+            $new_user->photo = 'https://s3-eu-west-1.amazonaws.com/miodottore.it/doctor/b26aee/b26aee7167aa5d475a7761d55f2e6bbd_large.jpg';
+            $new_user->slug = $this->getFreeSlugFromTitle($new_user->name);
+            $new_user->password = 'password123';
+            $new_user->service = implode(', ', $faker->words(rand(5,15)));
+            $new_user->save();
+=======
+            $new_user->name = $faker->firstNameMale(); 
+            $new_user->address = $faker->streetAddress(); 
+            $new_user->phone_number = $faker->e164PhoneNumber();
+            $new_user->email = $faker->email();
+            $new_user->curriculum = $faker->paragraphs(4, true);
+            $new_user->photo = 'https://s3-eu-west-1.amazonaws.com/miodottore.it/doctor/b26aee/b26aee7167aa5d475a7761d55f2e6bbd_large.jpg';
+            $new_user->slug = $this->getFreeSlugFromTitle($new_user->name);
+            $new_user->password = 'password123';
+            $new_user->service = $faker->words(rand(5, 15), true);
+            $new_user->save();
+
+            // $specialization_ids = []; 
+            // $specializations_array = Specialization::all();
+
+            // for($i=1; $i < rand(1, 3); $i++) { 
+            //     $id_random = rand(1, count($specializations_array));
+
+            //     if(!in_array( $id_random, $specialization_ids)) {
+            //         $specialization_ids[] = $id_random;
+            //     } 
+            // }
+>>>>>>> 3e60f1a705e935579d980a1dc632f5596befd572
+
+            $specialization_ids = []; 
+
+            for($j = 1; $j <= rand(1, 3); $j++) { 
+                $id_random = rand(1, 8);
+
+                if(!in_array( $id_random, $specialization_ids)) {
+                    $specialization_ids[] = $id_random;
+                } 
+            }
+
+            $new_user->specializations()->sync($specialization_ids);
+        }
+<<<<<<< HEAD
+
+
+
+
+        // factory(App\User::class, 150)->create([
+        //     'name' => $faker->name(),
+        //     'address' => $faker->address(),
+        //     'phone_number' => $faker->e164PhoneNumber(),
+        //     'email' => $faker->email(),
+        //     'curriculum' => $faker->paragraphs(4, true),
+        //     'photo' => 'https://s3-eu-west-1.amazonaws.com/miodottore.it/doctor/b26aee/b26aee7167aa5d475a7761d55f2e6bbd_large.jpg',
+        //     'slug' => $this->getFreeSlugFromTitle($user->name),
+        //     'password' => 'password123',
+        //     'service' => $faker->words(rand(5, 15), true)
+        // ])->each(function($user) {
+        //     $user->specializations()->saveMany(factory(App\Specialization::class, rand(1,3))->create());
+        // });
+=======
+>>>>>>> 3e60f1a705e935579d980a1dc632f5596befd572
+    }
+
+    protected function getFreeSlugFromTitle($name) {
+        // Assegnare lo slag
+        $slug_to_save = Str::slug($name, '-');
+        $slug_base = $slug_to_save;
+        // Verificare se lo slag esiste nel database
+        $existing_slug_post = User::where('slug', '=', $slug_to_save)->first();
+
+        // Finchè non si trova uno slag libero, si appende un numero allo slag base -1, -2, ecc...
+        $counter = 1;
+        while($existing_slug_post) {
+            // Si crea un nuovo slag con $counter
+            $slug_to_save = $slug_base . '-' . $counter;
+
+            // Verificare se lo slag esiste nel database
+            $existing_slug_post = User::where('slug', '=', $slug_to_save)->first();
+
+            $counter++;
+        }
+
+        return $slug_to_save;
+    }
+
