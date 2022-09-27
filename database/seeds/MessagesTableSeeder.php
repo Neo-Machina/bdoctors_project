@@ -15,15 +15,19 @@ class MessagesTableSeeder extends Seeder
      * @return void
      */
     public function run(Faker $faker)
-    {
-        for($i=0; $i<9; $i++){
-            $new_message= new Message();
-            $new_message->name = $faker->name($gender = 'male'|'female');
-            $new_message->email = $faker->email();
-            $new_message->content = $faker->paragraphs(rand(6,12),true);
-            $new_message->created_at=$faker->dateTime();
-            $new_message->user_id = $new_message->user->id;
-            $new_message->save();
+    {   
+        $users = User::all();
+
+        foreach ($users as $user) {
+            for($i = 0; $i < rand(3, 6); $i++){
+                $new_message = new Message();
+                $new_message->name = $faker->name($gender = 'male'|'female');
+                $new_message->email = $faker->email();
+                $new_message->content = $faker->text(300);
+                $new_message->created_at = $faker->dateTime();
+                $new_message->user_id = $user->id;
+                $new_message->save();
+            }
         }
     }
 }

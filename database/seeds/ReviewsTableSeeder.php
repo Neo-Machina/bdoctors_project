@@ -17,11 +17,11 @@ class ReviewsTableSeeder extends Seeder
         $users = User::all();
 
         foreach($users as $user) {
-            for ($i=0; $i < $faker->numberBetween(0, 15); $i++) {
-                $new_reviews = new Reviews();
+            for ($i=0; $i < rand(4, 15); $i++) {
+                $new_reviews = new Review();
 
                 $new_reviews->name = $faker->name($gender = 'male'|'female');
-                $new_reviews->text = $faker->paragraph(5);
+                $new_reviews->text = $faker->text(300);
                 $new_reviews->vote = $faker->numberBetween(0, 5);
                 $new_reviews->user_id = $user->id;
                 $new_reviews->save();

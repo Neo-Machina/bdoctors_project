@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Specialization;
+use App\Bundle;
+use Illuminate\Database\Eloquent\Pivot;
 
 class HomeController extends Controller
 {
@@ -24,21 +26,12 @@ class HomeController extends Controller
      */
     public function index()
     {   
-        $specialization_ids = []; 
-            $specializations_array = Specialization::all();
+        $new_bundle = new Bundle();
 
-            for($i=1; $i <= rand(1, 3); $i++) { 
-                // $id_random = rand(1, count($specializations_array));
-                $id_random = rand(1, 8);
+        $x = $new_bundle->withPivot(['expired_date']);
+       
 
-                if(!in_array( $id_random, $specialization_ids)) {
-                    $specialization_ids[] = $id_random;
-                } 
-
-                // dd($specialization_ids);
-            }
-        // dd($id_random);
-        dd($specialization_ids);
+        dd($x);
         return view('home');
     }
 }
