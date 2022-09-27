@@ -32,18 +32,29 @@ class UsersTableSeeder extends Seeder
             $new_user->service = $faker->words(rand(5, 15), true);
             $new_user->save();
 
-            $specialization_ids = []; 
-            $specializations_array = Specialization::all();
+            // $specialization_ids = []; 
+            // $specializations_array = Specialization::all();
 
-            for($i=1; $i < rand(1, 3); $i++) { 
-                $id_random = rand(1, count($specializations_array));
+            // for($i=1; $i < rand(1, 3); $i++) { 
+            //     $id_random = rand(1, count($specializations_array));
+
+            //     if(!in_array( $id_random, $specialization_ids)) {
+            //         $specialization_ids[] = $id_random;
+            //     } 
+            // }
+
+            $specialization_ids = []; 
+
+            for($i=1; $i <= rand(1, 3); $i++) { 
+                $id_random = rand(1, 8);
 
                 if(!in_array( $id_random, $specialization_ids)) {
                     $specialization_ids[] = $id_random;
                 } 
+
             }
 
-            $new_user->specializations()->sync([$specialization_ids]);
+            $new_user->specializations()->sync($specialization_ids);
         }
     }
 

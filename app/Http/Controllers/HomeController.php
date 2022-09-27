@@ -27,16 +27,18 @@ class HomeController extends Controller
         $specialization_ids = []; 
             $specializations_array = Specialization::all();
 
-            for($i=1; $i < rand(1, 3); $i++) { 
-                $id_random = rand(1, count($specializations_array));
+            for($i=1; $i <= rand(1, 3); $i++) { 
+                // $id_random = rand(1, count($specializations_array));
+                $id_random = rand(1, 8);
 
                 if(!in_array( $id_random, $specialization_ids)) {
                     $specialization_ids[] = $id_random;
                 } 
 
-                dd($specialization_ids);
+                // dd($specialization_ids);
             }
-        // dd($specialization_ids);
+        // dd($id_random);
+        dd($specialization_ids);
         return view('home');
     }
 }
