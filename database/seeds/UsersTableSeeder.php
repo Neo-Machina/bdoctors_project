@@ -43,17 +43,20 @@ class UsersTableSeeder extends Seeder
             }
 
             $new_user->specializations()->sync($specialization_ids);
+            
 
-            $bundle_ids= [];
+            // ***********************************************************
+            // USER_BUNDLE SEEDER
+            // ***********************************************************
+            $bundle_ids = [];
             $bundle_expired_dates = [];
 
             for($z = 1; $z <= rand(1, 10); $z++) {
                 $id_bundle_random = rand(1, 3);
-                $id_expired_date = new Carbon($faker->dateTimeBetween('-4 months', '-1 hour'));
+                $id_expired_date = new Carbon($faker->dateTimeBetween('-45 days', '+7 days'));
 
                 $bundle_ids[] = $id_bundle_random;
                 
-
                 array_push($bundle_expired_dates, ['expired_date' => $id_expired_date]);
             }
 

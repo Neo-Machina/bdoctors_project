@@ -24,6 +24,7 @@ class ReviewsTableSeeder extends Seeder
                 $new_reviews->text = $faker->text(300);
                 $new_reviews->vote = $faker->numberBetween(0, 5);
                 $new_reviews->user_id = $user->id;
+                $new_reviews->created_at = $faker->dateTimeThisYear();
                 $new_reviews->save();
             }
         }

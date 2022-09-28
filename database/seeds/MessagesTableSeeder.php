@@ -24,7 +24,7 @@ class MessagesTableSeeder extends Seeder
                 $new_message->name = $faker->name($gender = 'male'|'female');
                 $new_message->email = $faker->email();
                 $new_message->content = $faker->text(300);
-                $new_message->created_at = $faker->dateTime();
+                $new_message->created_at = $faker->dateTimeThisYear();
                 $new_message->user_id = $user->id;
                 $new_message->save();
             }
