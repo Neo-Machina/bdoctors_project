@@ -27,9 +27,9 @@ Auth::routes();
 //      return view('guest.home');
 //  })->where('any', '.*');
 
-
 //
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Route::get('/debug', 'HomeController@index');
+
 
