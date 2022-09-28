@@ -19,8 +19,8 @@ Route::middleware('auth')
      ->name('admin.')
      ->prefix('admin')
      ->group(function() {
-        Route::get('/', 'HomeController@index')->name('home');
-        //Route::resource('users', 'UserController');
+        Route::get('/', 'HomeController@index')->name('show');
+        Route::resource('users', 'UserController');
     });
 
 Route::get('{any?}', function () {

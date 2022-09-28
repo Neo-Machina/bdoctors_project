@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    public function index() {
+    public function index(Request $request) {
+        $user_id = $request->user();
+
         $user = Auth::user();
 
         $data = [
