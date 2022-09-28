@@ -8,8 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    public function index(Request $request) {
-        $user_id = $request->user();
+    public function index() {
 
         $user = Auth::user();
 
@@ -17,6 +16,6 @@ class HomeController extends Controller
             'user' => $user
         ];
 
-        return view('admin.home', $data);
+        return view('home', $data);
     }
 }
