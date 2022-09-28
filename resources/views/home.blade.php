@@ -53,6 +53,7 @@
     @endif
 
     {{-- Curriculum --}}
+    <h5><strong>Curriculum</strong></h5>
     <p class="user-content">{{ $user->curriculum }}</p>
 
     {{-- Modify --}}

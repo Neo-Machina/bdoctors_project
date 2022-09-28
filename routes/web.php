@@ -23,6 +23,11 @@ Route::middleware('auth')
         Route::resource('users', 'UserController');
     });
 
+// DEBUG
+Route::get('/debug', 'HomeController@debug')->name('debug');
+
 Route::get('{any?}', function () {
     return view('guest.home');
 })->where('any', '.*');
+
+

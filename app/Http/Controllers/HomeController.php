@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class HomeController extends Controller
 {
@@ -24,5 +25,13 @@ class HomeController extends Controller
     public function index()
     {   
         return view('show');
+    }
+
+    public function debug()
+    {   
+        $response = Http::get('https://randomuser.me/api/');
+            $apiResponse = $response->json();
+            dd($apiResponse);
+        // return view('show');
     }
 }
