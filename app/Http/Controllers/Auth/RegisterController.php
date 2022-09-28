@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -51,6 +52,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -64,10 +66,40 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
+        $new_user = new User();
+
         return User::create([
             'name' => $data['name'],
+            'address' => $data['address'],
             'email' => $data['email'],
+            'slug' => $this->getFreeSlug($new_user->name),
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    public function getFreeSlug($name) {
+        // assegno lo slug
+        $slug_to_save = Str::slug($name, '-');
+
+        //salvo lo slug base senza $counter
+        $slug_base = $slug_to_save;
+
+        //verifico se lo slug_to_save è già esistente nel db
+        $existing_slug = User::where('slug', '=', $slug_to_save)->first();
+
+        //appendo un numero allo slug_base finché non ne trovo uno libero
+        $counter = 1;
+        while($existing_slug) {
+            //proviamo a creare un nuovo slug con -$counter
+            $slug_to_save = $slug_base . '-' . $counter;
+
+            //verifico nuovamente se lo slug è già esistente nel db
+            $existing_slug = User::where('slug', '=', $slug_to_save)->first();
+
+            $counter++;
+        }
+
+        return $slug_to_save;
     }
 }
