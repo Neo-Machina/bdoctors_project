@@ -19,7 +19,7 @@ Route::middleware('auth')
      ->name('admin.')
      ->prefix('admin')
      ->group(function() {
-        Route::get('/', 'HomeController@index')->name('show');
+        Route::get('/', 'HomeController@index')->name('home');
         Route::resource('users', 'UserController');
     });
 

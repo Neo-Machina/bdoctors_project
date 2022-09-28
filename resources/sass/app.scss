@@ -6,3 +6,10 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+// Commons
+@import 'commons';
+
+// Partials Admin
+@import './partials/users/_show';
+@import './partials/users/_edit';
