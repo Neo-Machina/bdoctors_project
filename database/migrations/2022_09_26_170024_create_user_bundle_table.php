@@ -15,10 +15,10 @@ class CreateUserBundleTable extends Migration
     {
         Schema::create('user_bundle', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->unsignedBigInteger('bundle_id');
-            $table->foreign('bundle_id')->references('id')->on('bundles');
+            $table->foreign('bundle_id')->references('id')->on('bundles')->onDelete('cascade');
 
             $table->timestamp('expired_date');
         });

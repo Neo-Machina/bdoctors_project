@@ -102,6 +102,13 @@
             <input class="form-control" type="text" id="service" name="service"  value="{{ old('service', $user->service) }}">
         </div>
 
-        <input type="submit" value="Modica profilo" class="btn-primary">
+        <input type="submit" value="Modica profilo" class="btn btn-primary">
+
+        <form class="form-btn-elimina" action="{{ route('admin.users.destroy', ['user' => $user->id]) }}" method="post">
+            @csrf
+            @method('DELETE')
+    
+            <input type="submit" value="Elimina Profilo" class="btn btn-danger" onClick="return confirm('Sei sicuro di voler eliminare l'utente'?');">
+        </form>
     </form>
 @endsection

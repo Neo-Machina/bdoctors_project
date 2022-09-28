@@ -127,7 +127,7 @@ class UserController extends Controller
             $user_to_update->specializations()->sync([]);
         }
 
-        return redirect()->route('admin', ['user' => $user_to_update->id]);
+        return redirect()->route('admin.home', ['user' => $user_to_update->id]);
     }
 
     /**
@@ -147,7 +147,7 @@ class UserController extends Controller
         $user_to_delete->specializations()->sync([]);
         $user_to_delete->delete();
 
-        return redirect()->route('/');
+        return redirect()->route('guest');
     }
 
     // VALIDATIONS
@@ -157,7 +157,7 @@ class UserController extends Controller
             'email' => 'required|max:50',
             'curriculum' => 'required|max:3000',
             'address' => 'required|max:60',
-            'specialization' => 'nullable|exists:specializations,id',
+            'specializations' => 'required|exists:specializations,id',
             'photo' => 'mimes:jpg,jpeg,png,gif,webp,svg|max:1024|nullable',
             'phone_number' => 'nullable|max:30',
             'service' => 'required|max:500'
