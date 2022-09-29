@@ -77,5 +77,8 @@
             </main>
         </div>
     </div>
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/back.js') }}" defer></script>
 </body>
 </html>
