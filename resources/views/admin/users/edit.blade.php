@@ -20,12 +20,12 @@
         {{-- NOME E COGNOME--}}
         <div class="mb-3">
             <label for="name" class="form-label"><strong>Nome e cognome *</strong></label>
-            <input class="form-control" type="text" id="name" name="name" value="{{ old('name', $user->name) }}" required>
+            <input class="form-control" type="text" id="name" name="name" value="{{ old('name', $user->name) }}" >
         </div>
         {{-- EMAIL --}}
         <div class="mb-3">
             <label for="email" class="form-label"><strong>Email *</strong></label>
-            <input class="form-control" type="text" id="email" name="email" value="{{ old('email', $user->email) }}" required>
+            <input class="form-control" type="text" id="email" name="email" value="{{ old('email', $user->email) }}" >
         </div>
         {{-- CURRICULUM VITAE --}}
         <div class="mb-3">
@@ -33,19 +33,23 @@
             <textarea class="form-control" id="floatingTextarea" name="curriculum" rows="30" cols="20">{{ old('curriculum', $user->curriculum) }}</textarea>
         </div>
         {{-- SPECIALIZZAZIONI --}}
+        <div id="my-checkbox-error" class="alert alert-danger d-none" role="alert">
+            A simple danger alert—check it out!
+        </div>
+
         <div class="mb-3">
             <div><strong>Specializzazioni *</strong></div>
 
             @foreach ($specializations as $specialization)
                 @if ($errors->any())
                     <div class="form-check">
-                        <input class="form-check-input" 
+                        <input class="form-check-input my-check-input" 
                                 type="checkbox" 
                                 value="{{ $specialization->id }}" 
                                 id="specialization-{{ $specialization->id }}" 
                                 name="specializations[]"
                                 {{ in_array($specialization->id,old('specializations', [])) ? 'checked' : ''}}
-                                required>
+                                >
                         <label class="form-check-label" for="specialization-{{ $specialization->id }}">
                             {{ $specialization->name }}
                         </label>
@@ -53,13 +57,13 @@
 
                 @else
                     <div class="form-check">
-                        <input class="form-check-input" 
+                        <input class="form-check-input my-check-input" 
                                 type="checkbox" 
                                 value="{{ $specialization->id }}" 
                                 id="specialization-{{ $specialization->id }}" 
                                 name="specializations[]"
                                 {{ $user->specializations->contains($specialization) ? 'checked' : ''}}
-                                required>
+                            >
                         <label class="form-check-label" for="specialization-{{ $specialization->id }}">
                             {{ $specialization->name }}
                         </label>
@@ -67,6 +71,7 @@
                 @endif
             @endforeach
         </div>
+
         {{-- FOTOGRAFIA --}}
         <div class="mb-3">
             <label for="image" class="form-label"><strong>Fotografia</strong></label>
@@ -91,7 +96,7 @@
         {{-- INDIRIZZO --}}
         <div class="mb-3">
             <label for="address" class="form-label"><strong>Indirizzo *</strong></label>
-            <input class="form-control" type="text" id="address" name="address" value="{{ old('address', $user->address) }}" required>
+            <input class="form-control" type="text" id="address" name="address" value="{{ old('address', $user->address) }}" >
         </div>
         {{-- TELEFONO --}}
         <div class="mb-3">
@@ -104,7 +109,9 @@
             <input class="form-control" type="text" id="service" name="service"  value="{{ old('service', $user->service) }}">
         </div>
 
-        <input type="submit" value="Modica profilo" class="btn btn-primary">
+        <input type="submit" value="Modica profilo" class="btn btn-primary" id="btn-debug">
+
+        {{-- <button id="btn-debug" class="btn btn-secondary">button debug</button> --}}
     </form>
 
     <form class="form-btn-elimina" action="{{ route('admin.users.destroy', ['user' => $user->id]) }}" method="post">

@@ -155,12 +155,12 @@ class UserController extends Controller
         return [
             'name' => 'required|max:50',
             'email' => 'required|max:50',
-            'curriculum' => 'required|max:3000',
+            'curriculum' => 'nullable|max:3000',
             'address' => 'required|max:60',
             'specializations' => 'required|exists:specializations,id',
             'photo' => 'mimes:jpg,jpeg,png,gif,webp,svg|max:1024|nullable',
             'phone_number' => 'nullable|max:30',
-            'service' => 'required|max:500'
+            'service' => 'nullable|max:500'
         ];
     }
 

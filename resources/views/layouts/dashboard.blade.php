@@ -8,6 +8,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <!-- Scripts -->
+    <script src="{{ asset('js/back.js') }}" defer></script>
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
@@ -77,8 +80,5 @@
             </main>
         </div>
     </div>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/back.js') }}" defer></script>
 </body>
 </html>
