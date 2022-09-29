@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\Specialization;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -59,6 +60,24 @@ class RegisterController extends Controller
     }
 
     /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showRegistrationForm()
+    {   
+        $specializations_array = collect([]);
+        $specializations = Specialization::all();
+
+        $data = [
+            'specializations_array' => $specializations_array,
+            'specializations' => $specializations
+        ];
+
+        return view('auth.register', $data);
+    }
+
+    /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
@@ -66,16 +85,23 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
         $new_user = new User();
 
-        return User::create([
+        $user_created = User::create([
             'name' => $data['name'],
             'address' => $data['address'],
             'email' => $data['email'],
             'slug' => $this->getFreeSlug($new_user->name),
             'password' => Hash::make($data['password']),
         ]);
+
+        if(isset($data['specializations'])) {
+            $user_created->specializations()->sync($data['specializations']);
+        } else {
+            $user_created->specializations()->sync([]);
+        }
+
+        return $user_created;
     }
 
     public function getFreeSlug($name) {

@@ -23,7 +23,7 @@ class UsersTableSeeder extends Seeder
 
         for($i = 0; $i < 150; $i++) {
             // Chiamata api RANDOM USER GENERATOR per picture profile
-            $response = Http::get('https://randomuser.me/api/');
+            $response = Http::withoutVerifying()->get('https://randomuser.me/api/');
             $apiResponse = $response->json();
 
             // Creazione nuovo utente

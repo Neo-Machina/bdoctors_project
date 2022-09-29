@@ -72,7 +72,7 @@
 
             @if ($user->photo)
                 <div class="mt-2">Immagine corrente:</div>
-                <img class="w-25 mt-3" src="{{ asset('storage/' . $user->photo) }}" alt="{{ $user->name }}">
+                <img class="w-25 mt-3" src="{{ $user->photo }}" alt="{{ $user->name }}">
             @endif
         </div>
 
@@ -103,12 +103,12 @@
         </div>
 
         <input type="submit" value="Modica profilo" class="btn btn-primary">
+    </form>
 
-        <form class="form-btn-elimina" action="{{ route('admin.users.destroy', ['user' => $user->id]) }}" method="post">
-            @csrf
-            @method('DELETE')
-    
-            <input type="submit" value="Elimina Profilo" class="btn btn-danger" onClick="return confirm('Sei sicuro di voler eliminare l'utente'?');">
-        </form>
+    <form class="form-btn-elimina" action="{{ route('admin.users.destroy', ['user' => $user->id]) }}" method="post">
+        @csrf
+        @method('DELETE')
+
+        <input type="submit" value="Elimina Profilo" class="btn btn-danger" onClick="return confirm('Sei sicuro di voler eliminare l'utente'?');">
     </form>
 @endsection

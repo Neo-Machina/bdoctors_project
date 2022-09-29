@@ -99,7 +99,7 @@ class UserController extends Controller
             // faccio l'upload del nuovo file $img_path
             $img_path = Storage::put('users_photo', $form_data['image']);
             // popolo $form_data con l'immagine
-            $form_data['photo'] = $img_path;
+            $form_data['photo'] = Storage::url($img_path);
         }
 
         // Condizioni per lo slug
