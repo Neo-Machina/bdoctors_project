@@ -19,13 +19,13 @@
 
         {{-- NOME E COGNOME--}}
         <div class="mb-3">
-            <label for="name" class="form-label"><strong>Nome e cognome</strong></label>
-            <input class="form-control" type="text" id="name" name="name" value="{{ old('name', $user->name) }}">
+            <label for="name" class="form-label"><strong>Nome e cognome *</strong></label>
+            <input class="form-control" type="text" id="name" name="name" value="{{ old('name', $user->name) }}" required>
         </div>
         {{-- EMAIL --}}
         <div class="mb-3">
-            <label for="email" class="form-label"><strong>Email</strong></label>
-            <input class="form-control" type="text" id="email" name="email" value="{{ old('email', $user->email) }}">
+            <label for="email" class="form-label"><strong>Email *</strong></label>
+            <input class="form-control" type="text" id="email" name="email" value="{{ old('email', $user->email) }}" required>
         </div>
         {{-- CURRICULUM VITAE --}}
         <div class="mb-3">
@@ -34,7 +34,7 @@
         </div>
         {{-- SPECIALIZZAZIONI --}}
         <div class="mb-3">
-            <div><strong>Specializzazioni</strong></div>
+            <div><strong>Specializzazioni *</strong></div>
 
             @foreach ($specializations as $specialization)
                 @if ($errors->any())
@@ -44,7 +44,8 @@
                                 value="{{ $specialization->id }}" 
                                 id="specialization-{{ $specialization->id }}" 
                                 name="specializations[]"
-                                {{ in_array($specialization->id,old('specializations', [])) ? 'checked' : ''}}>
+                                {{ in_array($specialization->id,old('specializations', [])) ? 'checked' : ''}}
+                                required>
                         <label class="form-check-label" for="specialization-{{ $specialization->id }}">
                             {{ $specialization->name }}
                         </label>
@@ -57,7 +58,8 @@
                                 value="{{ $specialization->id }}" 
                                 id="specialization-{{ $specialization->id }}" 
                                 name="specializations[]"
-                                {{ $user->specializations->contains($specialization) ? 'checked' : ''}}>
+                                {{ $user->specializations->contains($specialization) ? 'checked' : ''}}
+                                required>
                         <label class="form-check-label" for="specialization-{{ $specialization->id }}">
                             {{ $specialization->name }}
                         </label>
@@ -88,8 +90,8 @@
         </div>
         {{-- INDIRIZZO --}}
         <div class="mb-3">
-            <label for="address" class="form-label"><strong>Indirizzo</strong></label>
-            <input class="form-control" type="text" id="address" name="address" value="{{ old('address', $user->address) }}">
+            <label for="address" class="form-label"><strong>Indirizzo *</strong></label>
+            <input class="form-control" type="text" id="address" name="address" value="{{ old('address', $user->address) }}" required>
         </div>
         {{-- TELEFONO --}}
         <div class="mb-3">
@@ -109,6 +111,6 @@
         @csrf
         @method('DELETE')
 
-        <input type="submit" value="Elimina Profilo" class="btn btn-danger" onClick="return confirm('Sei sicuro di voler eliminare l'utente'?');">
+        <input type="submit" value="Elimina Profilo" class="btn btn-danger" onClick="return confirm('Sei sicuro di voler eliminare il profilo ?');">
     </form>
 @endsection

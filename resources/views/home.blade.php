@@ -45,7 +45,7 @@
         @else
             <p class="user-content">Nessuna</p>
         @endif
-        
+
         <h5><strong>Profilo creato il:</strong> {{ $user->created_at->format('l, j F Y') }}</h5>
         <h5><strong>Profilo aggiornato il:</strong> {{ $user->created_at->format('l, j F Y') }}</h5>
         {{-- <h5><strong>Profilo aggiornato il:</strong> {{ $user->updated_at->format('l, j F Y')}} - {{ $how_long_ago_updated }}</h5> --}}
@@ -53,16 +53,18 @@
     </div>
 
     {{-- Curriculum --}}
-    <h5><strong>Curriculum</strong></h5>
-    <p class="user-content">{{ $user->curriculum }}</p>
+    @if($user->curriculum) 
+        <h5><strong>Curriculum</strong></h5>
+        <p class="user-content">{{ $user->curriculum }}</p>
+        @else 
+        <h5><strong>Curriculum</strong> non caricato</h5>
+    @endif
 
-    {{-- Modify --}}
-    <a href="{{ route('admin.users.edit', ['user' => $user->id]) }}" class="btn btn-primary">Modifica il profilo</a>
     {{-- Delete --}}
     <form class="form-btn-elimina" action="{{ route('admin.users.destroy', ['user' => $user->id]) }}" method="post">
         @csrf
         @method('DELETE')
 
-        <input type="submit" value="Elimina Profilo" class="btn btn-danger" onClick="return confirm('Sei sicuro di voler eliminare l'utente'?');">
+        <input type="submit" value="Elimina Profilo" class="btn btn-danger" onClick="return confirm('Sei sicuro di voler eliminare il profilo ?');">
     </form>
 @endsection
