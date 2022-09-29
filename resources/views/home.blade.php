@@ -24,14 +24,10 @@
 
     {{-- Meta Data --}}
     <div class="meta-data my-4">
-        <h5><strong>Nome:</strong> {{ $user->name }}</h5>
+        <h5><strong>Nome e cognome:</strong> {{ $user->name }}</h5>
         <h5><strong>E-mail:</strong> {{ $user->email }}</h5>
         <h5><strong>Indirizzo:</strong> {{ $user->address }}</h5>
         <h5><strong>Telefono:</strong> {{ $user->phone_number }}</h5>
-        <h5><strong>Profilo creato il:</strong> {{ $user->created_at->format('l, j F Y') }}</h5>
-        <h5><strong>Profilo aggiornato il:</strong> {{ $user->created_at->format('l, j F Y') }}</h5>
-        {{-- <h5><strong>Profilo aggiornato il:</strong> {{ $user->updated_at->format('l, j F Y')}} - {{ $how_long_ago_updated }}</h5> --}}
-        {{-- <h5><strong>Profilo aggiornato il:</strong> {{ $user->updated_at->format('l, j F Y')}} - {{ $how_long_ago_updated }}</h5> --}}
         <h5>
             <strong>Specializzazioni:</strong> 
             @if ($user->specializations->isNotEmpty()) 
@@ -42,15 +38,19 @@
                 Nessuna
             @endif
         </h5>
+        {{-- Service --}}
+        <h5><strong>Prestazioni:</strong></h5>
+        @if ($user->service)
+            <p class="user-content">{{ $user->service }}</p>
+        @else
+            <p class="user-content">Nessuna</p>
+        @endif
+        
+        <h5><strong>Profilo creato il:</strong> {{ $user->created_at->format('l, j F Y') }}</h5>
+        <h5><strong>Profilo aggiornato il:</strong> {{ $user->created_at->format('l, j F Y') }}</h5>
+        {{-- <h5><strong>Profilo aggiornato il:</strong> {{ $user->updated_at->format('l, j F Y')}} - {{ $how_long_ago_updated }}</h5> --}}
+        {{-- <h5><strong>Profilo aggiornato il:</strong> {{ $user->updated_at->format('l, j F Y')}} - {{ $how_long_ago_updated }}</h5> --}}
     </div>
-
-    {{-- Service --}}
-    <h5><strong>Prestazioni:</strong></h5>
-    @if ($user->service)
-        <p class="user-content">{{ $user->service }}</p>
-    @else
-        <p class="user-content">Nessuna</p>
-    @endif
 
     {{-- Curriculum --}}
     <h5><strong>Curriculum</strong></h5>

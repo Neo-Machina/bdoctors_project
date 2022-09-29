@@ -19,7 +19,7 @@
 
         {{-- NOME E COGNOME--}}
         <div class="mb-3">
-            <label for="name" class="form-label"><strong>Nome</strong></label>
+            <label for="name" class="form-label"><strong>Nome e cognome</strong></label>
             <input class="form-control" type="text" id="name" name="name" value="{{ old('name', $user->name) }}">
         </div>
         {{-- EMAIL --}}
