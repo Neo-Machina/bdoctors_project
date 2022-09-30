@@ -109,11 +109,13 @@ for (var i = 0; i < checkbox.length; i++) {
 // altrimenti se la variabile è true , riabilita il tasto modifica e nascondi l'elemento messaggio 
 
 
-var msg_error_cbx = document.getElementById("my-checkbox-error"); // se nessuna checkbox è spuntata
+var msg_error_cbx = document.getElementById("my-checkbox-error");
+var my_form_edit = document.getElementById("my-form-edit"); // se nessuna checkbox è spuntata
 
 if (checked_cbx === false) {
   msg_error_cbx.classList.replace('d-none', 'd-block');
-  WebSocket.close(); // my_edit_button.disabled = true;
+  my_form_edit.action = "/admin";
+  my_form_edit.method = "get";
 } // console.log(checkbox);
 
 
@@ -132,7 +134,7 @@ console.log('checked_cbx', checked_cbx); // my_button.addEventListener("click", 
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Andrei\boolean_projects_class_66\laravel-projects\bdoctors_project\resources\js\back.js */"./resources/js/back.js");
+module.exports = __webpack_require__(/*! C:\Users\Dogana\Boolean Project\laravel-projects\bdoctors_project\resources\js\back.js */"./resources/js/back.js");
 
 
 /***/ })

@@ -19,11 +19,14 @@ for (let i = 0; i < checkbox.length; i++) {
 // altrimenti se la variabile è true , riabilita il tasto modifica e nascondi l'elemento messaggio 
 let msg_error_cbx = document.getElementById("my-checkbox-error");
 
+let my_form_edit = document.getElementById("my-form-edit");
+
 // se nessuna checkbox è spuntata
 if(checked_cbx === false) {
     msg_error_cbx.classList.replace('d-none', 'd-block');
-    WebSocket.close(); 
-    // my_edit_button.disabled = true;
+     
+    my_form_edit.action = "/admin";
+    my_form_edit.method = "get";
 }
 
 // console.log(checkbox);

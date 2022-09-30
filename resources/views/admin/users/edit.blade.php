@@ -3,7 +3,7 @@
 @section('content')
     <h1>Modifica il tuo profilo</h1>
 
-    <form action="{{ route('admin.users.update', ['user' => $user->id]) }}" method="POST" enctype="multipart/form-data">
+    <form id="my-form-edit" action="{{ route('admin.users.update', ['user' => $user->id]) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -20,12 +20,12 @@
         {{-- NOME E COGNOME--}}
         <div class="mb-3">
             <label for="name" class="form-label"><strong>Nome e cognome *</strong></label>
-            <input class="form-control" type="text" id="name" name="name" value="{{ old('name', $user->name) }}" >
+            <input class="form-control" type="text" id="name" name="name" value="{{ old('name', $user->name) }}" required>
         </div>
         {{-- EMAIL --}}
         <div class="mb-3">
             <label for="email" class="form-label"><strong>Email *</strong></label>
-            <input class="form-control" type="text" id="email" name="email" value="{{ old('email', $user->email) }}" >
+            <input class="form-control" type="text" id="email" name="email" value="{{ old('email', $user->email) }}" required>
         </div>
         {{-- CURRICULUM VITAE --}}
         <div class="mb-3">
@@ -96,7 +96,7 @@
         {{-- INDIRIZZO --}}
         <div class="mb-3">
             <label for="address" class="form-label"><strong>Indirizzo *</strong></label>
-            <input class="form-control" type="text" id="address" name="address" value="{{ old('address', $user->address) }}" >
+            <input class="form-control" type="text" id="address" name="address" value="{{ old('address', $user->address) }}" required>
         </div>
         {{-- TELEFONO --}}
         <div class="mb-3">
@@ -109,15 +109,16 @@
             <input class="form-control" type="text" id="service" name="service"  value="{{ old('service', $user->service) }}">
         </div>
 
-        <input type="submit" value="Modica profilo" class="btn btn-primary" id="btn-debug">
+        {{-- Button Submit --}}
+        <input type="submit" value="Conferma Modifiche" class="btn btn-primary" id="btn-debug">
 
-        {{-- <button id="btn-debug" class="btn btn-secondary">button debug</button> --}}
+        {{-- Button Elimina Profilo Utente --}}
+        <form class="form-btn-elimina" action="{{ route('admin.users.destroy', ['user' => $user->id]) }}" method="post">
+            @csrf
+            @method('DELETE')
+    
+            <input type="submit" value="Elimina Profilo" class="btn btn-danger" onClick="return confirm('Sei sicuro di voler eliminare il profilo ?');">
+        </form>
     </form>
 
-    <form class="form-btn-elimina" action="{{ route('admin.users.destroy', ['user' => $user->id]) }}" method="post">
-        @csrf
-        @method('DELETE')
-
-        <input type="submit" value="Elimina Profilo" class="btn btn-danger" onClick="return confirm('Sei sicuro di voler eliminare il profilo ?');">
-    </form>
 @endsection
