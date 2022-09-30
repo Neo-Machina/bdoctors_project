@@ -38,3 +38,11 @@ console.log('checked_cbx', checked_cbx);
 //     // checked_cbx === true ? alert('checkbox spuntata') : alert('NO');
 //     console.log('ciaone');
 // }
+
+// Modale conferma eliminazione profilo user
+const myModal = document.getElementById('myModal')
+const myInput = document.getElementById('myInput')
+
+myModal.addEventListener('click', () => {
+    myInput.classList.replace('d-none','d-block');
+});

@@ -122,6 +122,13 @@ console.log('checked_cbx', checked_cbx); // my_button.addEventListener("click", 
 //     // checked_cbx === true ? alert('checkbox spuntata') : alert('NO');
 //     console.log('ciaone');
 // }
+// Modale conferma eliminazione profilo user
+
+var myModal = document.getElementById('myModal');
+var myInput = document.getElementById('myInput');
+myModal.addEventListener('click', function () {
+  myInput.classList.replace('d-none', 'd-block');
+});
 
 /***/ }),
 
@@ -132,7 +139,7 @@ console.log('checked_cbx', checked_cbx); // my_button.addEventListener("click", 
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Andrei\boolean_projects_class_66\laravel-projects\bdoctors_project\resources\js\back.js */"./resources/js/back.js");
+module.exports = __webpack_require__(/*! C:\Users\Dogana\Boolean Project\laravel-projects\bdoctors_project\resources\js\back.js */"./resources/js/back.js");
 
 
 /***/ })

@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- TODO -->
- <!-- Modal -->
+ <!-- Modale conferma eliminazione profilo user -->
  <div class="d-none modal" tabindex="-1" id="myInput">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -135,18 +135,7 @@
         {{-- Button Submit --}}
         <input type="submit" value="Conferma Modifiche" class="btn btn-primary" id="btn-debug">
     </form>
+
     <!-- TODO -->
-    <a  href="#" class="btn btn-danger"  id="myModal">Elimina</a>
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-@endsection
-
-    {{-- Button Elimina Profilo Utente --}}
-    <form class="form-btn-elimina" action="{{ route('admin.users.destroy', ['user' => $user->id]) }}" method="post">
-        @csrf
-        @method('DELETE')
-
-        <input type="submit" value="Elimina Profilo" class="btn btn-danger" onClick="return confirm('Sei sicuro di voler eliminare il profilo ?');">
-    </form>
-
+    <a  href="#" class="btn btn-danger"  id="myModal">Elimina Profilo</a>
 @endsection

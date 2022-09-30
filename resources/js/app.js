@@ -38,9 +38,3 @@ const app = new Vue({
     render: h => h(App),
     router
 });
-const myModal = document.getElementById('myModal')
-const myInput = document.getElementById('myInput')
-
-myModal.addEventListener('click', () => {
-    myInput.classList.replace('d-none','d-block');
-})
