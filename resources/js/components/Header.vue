@@ -26,8 +26,12 @@ export default {
         return {
             menuLinks: [
                 {
+                    name: 'homepage',
+                    label: 'Homepage'
+                },
+                {
                     name: 'advanced-search',
-                    label: 'Search'
+                    label: 'Cerca'
                 }
             ]
         }
