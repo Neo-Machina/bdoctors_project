@@ -92,13 +92,15 @@
                             A simple danger alert—check it out!
                         </div>
 
-                        <div class="mb-3">
-                            <div>Specializzazioni *</div>
+                        
+                        <div class="form-group row">
+                            <div class="col-md-4 col-form-label text-md-right">Specializzazioni *</div>
 
-                            @foreach ($specializations as $specialization)
-                                @if ($errors->any())
-                                    <div class="form-check">
-                                        <input class="form-check-input my-check-input" 
+                            <div class="col-md-6 mt-1">
+                                @foreach ($specializations as $specialization)
+                                    @if ($errors->any())
+                                        <div class="form-check">
+                                            <input class="form-check-input my-check-input" 
                                                 type="checkbox" 
                                                 value="{{ $specialization->id }}" 
                                                 id="specialization-{{ $specialization->id }}" 
@@ -117,12 +119,13 @@
                                                 id="specialization-{{ $specialization->id }}" 
                                                 name="specializations[]"
                                                 {{ $specializations_array->contains($specialization) ? 'checked' : ''}}>
-                                        <label class="form-check-label" for="specialization-{{ $specialization->id }}">
-                                            {{ $specialization->name }}
-                                        </label>
-                                    </div>
-                                @endif
-                            @endforeach
+                                            <label class="form-check-label" for="specialization-{{ $specialization->id }}">
+                                                {{ $specialization->name }}
+                                            </label>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
                         </div>
 
                         <div class="form-group row mb-0">

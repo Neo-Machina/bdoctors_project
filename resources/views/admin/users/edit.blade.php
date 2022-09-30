@@ -1,6 +1,29 @@
 @extends('layouts.dashboard')
 
 @section('content')
+<!-- TODO -->
+ <!-- Modal -->
+ <div class="d-none modal" tabindex="-1" id="myInput">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Conferma eliminazaione</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Confermi di voler eliminare il tuo profilo, sei davvero sicuro?</p>
+        </div>
+        <div class="modal-footer">
+            <a class="btn btn-primary" href=" {{route('admin.home')}}">NO</a>
+            <form class="form-btn-elimina" action="{{ route('admin.users.destroy', ['user' => $user->id]) }}" method="post">
+                @csrf
+                @method('DELETE')
+                <input type="submit" value="SI" class="btn btn-danger">
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
     <h1>Modifica il tuo profilo</h1>
 
     <form id="my-form-edit" action="{{ route('admin.users.update', ['user' => $user->id]) }}" method="POST" enctype="multipart/form-data">
@@ -112,6 +135,11 @@
         {{-- Button Submit --}}
         <input type="submit" value="Conferma Modifiche" class="btn btn-primary" id="btn-debug">
     </form>
+    <!-- TODO -->
+    <a  href="#" class="btn btn-danger"  id="myModal">Elimina</a>
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+@endsection
 
     {{-- Button Elimina Profilo Utente --}}
     <form class="form-btn-elimina" action="{{ route('admin.users.destroy', ['user' => $user->id]) }}" method="post">
