@@ -6,14 +6,16 @@ let my_edit_button = document.getElementById("btn-debug");
 
 let checked_cbx = false;
 
+
 for (let i = 0; i < checkbox.length; i++) {
+
     if(checkbox[i].checked === true) {
         checked_cbx = true;
         break;
     } else {
         checked_cbx = false;
     }
-}
+}    
 
 // se la variabile checked_cbx è false allora mostra l'elemento messaggio e disabilita il tasto modifica
 // altrimenti se la variabile è true , riabilita il tasto modifica e nascondi l'elemento messaggio 
@@ -21,7 +23,7 @@ let msg_error_cbx = document.getElementById("my-checkbox-error");
 
 let my_form_edit = document.getElementById("my-form-edit");
 
-// se nessuna checkbox è spuntata
+// se nessuna checkbox è spuntata mostra il messaggio di errore
 if(checked_cbx === false) {
     msg_error_cbx.classList.replace('d-none', 'd-block');
 }

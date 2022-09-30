@@ -111,14 +111,14 @@
 
         {{-- Button Submit --}}
         <input type="submit" value="Conferma Modifiche" class="btn btn-primary" id="btn-debug">
+    </form>
 
-        {{-- Button Elimina Profilo Utente --}}
-        <form class="form-btn-elimina" action="{{ route('admin.users.destroy', ['user' => $user->id]) }}" method="post">
-            @csrf
-            @method('DELETE')
-    
-            <input type="submit" value="Elimina Profilo" class="btn btn-danger" onClick="return confirm('Sei sicuro di voler eliminare il profilo ?');">
-        </form>
+    {{-- Button Elimina Profilo Utente --}}
+    <form class="form-btn-elimina" action="{{ route('admin.users.destroy', ['user' => $user->id]) }}" method="post">
+        @csrf
+        @method('DELETE')
+
+        <input type="submit" value="Elimina Profilo" class="btn btn-danger" onClick="return confirm('Sei sicuro di voler eliminare il profilo ?');">
     </form>
 
 @endsection

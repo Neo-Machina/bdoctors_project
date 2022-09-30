@@ -110,7 +110,7 @@ for (var i = 0; i < checkbox.length; i++) {
 
 
 var msg_error_cbx = document.getElementById("my-checkbox-error");
-var my_form_edit = document.getElementById("my-form-edit"); // se nessuna checkbox è spuntata
+var my_form_edit = document.getElementById("my-form-edit"); // se nessuna checkbox è spuntata mostra il messaggio di errore
 
 if (checked_cbx === false) {
   msg_error_cbx.classList.replace('d-none', 'd-block');
