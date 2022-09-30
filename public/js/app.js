@@ -1947,7 +1947,33 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'HomePage'
+  name: 'HomePage',
+  data: function data() {
+    return {
+      pageTitle: 'Risultato ricerca',
+      users: [],
+      currentPage: null,
+      lastPage: null
+    };
+  },
+  methods: {
+    getUsers: function getUsers(pageNumber) {
+      var _this = this;
+
+      axios.get('/api/users', {
+        params: {
+          page: pageNumber
+        }
+      }).then(function (response) {
+        _this.posts = response.data.results.data;
+        _this.currentPage = response.data.results.current_page;
+        _this.lastPage = response.data.results.last_page;
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getUsers(1);
+  }
 });
 
 /***/ }),
@@ -53378,8 +53404,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Medico\VSBoolean\laravel-projects\bdoctors_project\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Medico\VSBoolean\laravel-projects\bdoctors_project\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Dogana\Boolean Project\laravel-projects\bdoctors_project\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Dogana\Boolean Project\laravel-projects\bdoctors_project\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
