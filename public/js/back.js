@@ -114,8 +114,6 @@ var my_form_edit = document.getElementById("my-form-edit"); // se nessuna checkb
 
 if (checked_cbx === false) {
   msg_error_cbx.classList.replace('d-none', 'd-block');
-  my_form_edit.action = "/admin";
-  my_form_edit.method = "get";
 } // console.log(checkbox);
 
 
