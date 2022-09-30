@@ -3,22 +3,27 @@
 @section('content')
 <!-- TODO -->
  <!-- Modal -->
- <div class="d-none"  id="myInput">
-     <div class="text-center">
-        <form class="form-btn-elimina" action="{{ route('admin.users.destroy', ['user' => $user->id]) }}" method="post">
-            @csrf
-            @method('DELETE')
-            <input type="submit" value="SI" class="btn btn-danger">
-            <!-- <input type="submit" value="Elimina Profilo" class="btn btn-danger" onClick="return confirm('Sei sicuro di voler eliminare il profilo ?');"> -->
-        </form>
-        <a class="btn btn-primary" href=" {{route('admin.home')}}">NO</a>
-
-     </div>
-    
+ <div class="d-none modal" tabindex="-1" id="myInput">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Conferma eliminzaione</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Confermi di voler eliminare il tuo profilo, sei davvero sicuro?</p>
+        </div>
+        <div class="modal-footer">
+            <a class="btn btn-primary" href=" {{route('admin.home')}}">NO</a>
+            <form class="form-btn-elimina" action="{{ route('admin.users.destroy', ['user' => $user->id]) }}" method="post">
+                @csrf
+                @method('DELETE')
+                <input type="submit" value="SI" class="btn btn-danger">
+            </form>
+        </div>
+      </div>
+    </div>
   </div>
-
-   
-
     <h1>Modifica il tuo profilo</h1>
 
     <form action="{{ route('admin.users.update', ['user' => $user->id]) }}" method="POST" enctype="multipart/form-data">
@@ -121,29 +126,10 @@
             <label for="service" class="form-label"><strong>Prestazioni</strong></label>
             <input class="form-control" type="text" id="service" name="service"  value="{{ old('service', $user->service) }}">
         </div>
-
         <input type="submit" value="Modica profilo" class="btn btn-primary">
     </form>
-
-    <form class="form-btn-elimina" action="{{ route('admin.users.destroy', ['user' => $user->id]) }}" method="post">
-        @csrf
-        @method('DELETE')
-
-        <!--<input type="submit" value="Elimina Profilo" class="btn btn-danger" onClick="return confirm('Sei sicuro di voler eliminare il profilo ?');">-->
-    </form>
-    <a  href="#" class="btn btn-danger"  id="myModal">
-        Elimina
-     </button>
-   <!-- Modal -->
-   <div class="d-none"  id="myInput">
-     <form class="form-btn-elimina" action="{{ route('admin.users.destroy', ['user' => $user->id]) }}" method="post">
-         @csrf
-         @method('DELETE')
-         <input type="submit" value="SI" class="btn btn-danger">
-         <!-- <input type="submit" value="Elimina Profilo" class="btn btn-danger" onClick="return confirm('Sei sicuro di voler eliminare il profilo ?');"> -->
-     </form>
-     <a class="btn btn-primary" href=" {{route('admin.home')}}">no</a>
-   </div>
+    <!-- TODO -->
+    <a  href="#" class="btn btn-danger"  id="myModal">Elimina</a>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 @endsection
