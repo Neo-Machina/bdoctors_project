@@ -1,9 +1,16 @@
 <template>
-    <h1>Advanced Search</h1>
+    <div class="container">
+        <Profiles/>
+    </div>
 </template>
 
 <script>
+import Profiles from '../components/Profiles.vue';
+
 export default {
-    name: 'AdvancedSearch'
+    name: 'AdvancedSearch',
+    components: {
+        Profiles
+    }
 }
 </script>
