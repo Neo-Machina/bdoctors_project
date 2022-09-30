@@ -23,7 +23,7 @@ export default {
                 }
             })
             .then((response) => {
-                this.posts = response.data.results.data;
+                this.users = response.data.results.data;
                 this.currentPage = response.data.results.current_page;
                 this.lastPage = response.data.results.last_page;
             });

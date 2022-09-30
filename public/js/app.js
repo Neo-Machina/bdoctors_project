@@ -1965,7 +1965,7 @@ __webpack_require__.r(__webpack_exports__);
           page: pageNumber
         }
       }).then(function (response) {
-        _this.posts = response.data.results.data;
+        _this.users = response.data.results.data;
         _this.currentPage = response.data.results.current_page;
         _this.lastPage = response.data.results.last_page;
       });
