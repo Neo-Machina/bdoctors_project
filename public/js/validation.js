@@ -81,65 +81,76 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/back.js":
-/*!******************************!*\
-  !*** ./resources/js/back.js ***!
-  \******************************/
+/***/ "./resources/js/validation.js":
+/*!************************************!*\
+  !*** ./resources/js/validation.js ***!
+  \************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var checkbox = document.querySelectorAll(".my-check-input");
-var my_edit_button = document.getElementById("btn-debug"); // my_button.addEventListener("click", myFunction);
+window.addEventListener('load', function () {
+  // password
+  var password = document.getElementById('password'); // conferma-password
 
-var checked_cbx = false;
+  var confirm_password = document.getElementById('password-confirm'); // checkbox
 
-for (var i = 0; i < checkbox.length; i++) {
-  if (checkbox[i].checked === true) {
-    checked_cbx = true;
-    break;
-  } else {
-    checked_cbx = false;
+  var markedCheckbox = document.querySelectorAll('input[type="checkbox"]'); // VALIDAZIONE PASSWORD
+
+  function validatePassword() {
+    if (password.value.length < 8) {
+      password.setCustomValidity("La password deve essere lunga almeno 8 caratteri");
+    } else {
+      password.setCustomValidity('');
+    }
+
+    if (password.value != confirm_password.value) {
+      confirm_password.setCustomValidity("La password di conferma non corrisponde");
+    } else {
+      confirm_password.setCustomValidity('');
+    }
   }
-} // se la variabile checked_cbx è false allora mostra l'elemento messaggio e disabilita il tasto modifica
-// altrimenti se la variabile è true , riabilita il tasto modifica e nascondi l'elemento messaggio 
 
+  ;
+  password.onchange = validatePassword;
+  confirm_password.onkeyup = validatePassword; // validazione checkbox
 
-var msg_error_cbx = document.getElementById("my-checkbox-error");
-var my_form_edit = document.getElementById("my-form-edit"); // se nessuna checkbox è spuntata mostra il messaggio di errore
+  var markedCheckbox_value = document.querySelectorAll('input[type="checkbox"]:checked');
 
-if (checked_cbx === false) {
-  msg_error_cbx.classList.replace('d-none', 'd-block');
-} // console.log(checkbox);
+  if (markedCheckbox_value.length == 0) {
+    markedCheckbox[0].setCustomValidity('Seleziona almeno una specializzazione');
+  } else {
+    markedCheckbox[0].setCustomValidity('');
+  }
 
+  markedCheckbox.forEach(function (item) {
+    item.addEventListener('change', function (event) {
+      // valore checked checkbox 
+      markedCheckbox_value = document.querySelectorAll('input[type="checkbox"]:checked');
 
-console.log('checked_cbx', checked_cbx); // my_button.addEventListener("click", myFunction);
-// function myFunction() {
-//     // checked_cbx === true ? alert('checkbox spuntata') : alert('NO');
-//     console.log('ciaone');
-// }
-// Modale conferma eliminazione profilo user
-
-var myModal = document.getElementById('myModal');
-var myInput = document.getElementById('myInput');
-myModal.addEventListener('click', function () {
-  myInput.classList.replace('d-none', 'd-block');
+      if (markedCheckbox_value.length == 0) {
+        markedCheckbox[0].setCustomValidity('Seleziona almeno una specializzazione');
+      } else {
+        markedCheckbox[0].setCustomValidity('');
+      }
+    });
+  });
 });
 
 /***/ }),
 
-/***/ 1:
-/*!************************************!*\
-  !*** multi ./resources/js/back.js ***!
-  \************************************/
+/***/ 3:
+/*!******************************************!*\
+  !*** multi ./resources/js/validation.js ***!
+  \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Andrei\boolean_projects_class_66\laravel-projects\bdoctors_project\resources\js\back.js */"./resources/js/back.js");
+module.exports = __webpack_require__(/*! C:\Users\Andrei\boolean_projects_class_66\laravel-projects\bdoctors_project\resources\js\validation.js */"./resources/js/validation.js");
 
 
 /***/ })
