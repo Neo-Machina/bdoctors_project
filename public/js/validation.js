@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -99,7 +99,7 @@ window.addEventListener('load', function () {
 
   var confirm_password = document.getElementById('password-confirm'); // checkbox
 
-  var markedCheckbox = document.querySelectorAll('input[type="checkbox"]'); // VALIDAZIONE PASSWORD
+  var registerCheckbox = document.querySelectorAll('input[type="checkbox"]'); // VALIDAZIONE PASSWORD
 
   function validatePassword() {
     if (password.value.length < 8) {
@@ -123,21 +123,21 @@ window.addEventListener('load', function () {
 
   var markedCheckbox_value = document.querySelectorAll('input[type="checkbox"]:checked');
 
-  if (markedCheckbox_value.length == 0 && markedCheckbox.length > 1) {
-    markedCheckbox[0].setCustomValidity('Seleziona almeno una specializzazione');
+  if (markedCheckbox_value.length == 0 && registerCheckbox.length > 1) {
+    registerCheckbox[0].setCustomValidity('Seleziona almeno una specializzazione');
   } else {
-    markedCheckbox[0].setCustomValidity('');
+    registerCheckbox[0].setCustomValidity('');
   }
 
-  markedCheckbox.forEach(function (item) {
+  registerCheckbox.forEach(function (item) {
     item.addEventListener('change', function (event) {
       // valore checked checkbox 
       markedCheckbox_value = document.querySelectorAll('input[type="checkbox"]:checked');
 
-      if (markedCheckbox_value.length == 0 && markedCheckbox.length > 1) {
-        markedCheckbox[0].setCustomValidity('Seleziona almeno una specializzazione');
+      if (markedCheckbox_value.length == 0 && registerCheckbox.length > 1) {
+        registerCheckbox[0].setCustomValidity('Seleziona almeno una specializzazione');
       } else {
-        markedCheckbox[0].setCustomValidity('');
+        registerCheckbox[0].setCustomValidity('');
       }
     });
   });
@@ -145,7 +145,7 @@ window.addEventListener('load', function () {
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!******************************************!*\
   !*** multi ./resources/js/validation.js ***!
   \******************************************/

@@ -4,7 +4,7 @@ window.addEventListener('load', function() {
     // conferma-password
     let confirm_password = document.getElementById('password-confirm');
     // checkbox
-    let markedCheckbox = document.querySelectorAll('input[type="checkbox"]');
+    let registerCheckbox = document.querySelectorAll('input[type="checkbox"]');
 
     // VALIDAZIONE PASSWORD
     function validatePassword(){
@@ -28,22 +28,22 @@ window.addEventListener('load', function() {
 
     // validazione checkbox
     let markedCheckbox_value = document.querySelectorAll('input[type="checkbox"]:checked');
-    if(markedCheckbox_value.length == 0 && markedCheckbox.length > 1) {
-        markedCheckbox[0].setCustomValidity('Seleziona almeno una specializzazione');
+    if(markedCheckbox_value.length == 0 && registerCheckbox.length > 1) {
+        registerCheckbox[0].setCustomValidity('Seleziona almeno una specializzazione');
     }
     else{
-        markedCheckbox[0].setCustomValidity('');
+        registerCheckbox[0].setCustomValidity('');
     }
 
-    markedCheckbox.forEach(item => {
+    registerCheckbox.forEach(item => {
         item.addEventListener('change', function(event) {
             // valore checked checkbox 
             markedCheckbox_value = document.querySelectorAll('input[type="checkbox"]:checked');
-            if(markedCheckbox_value.length == 0 && markedCheckbox.length > 1) {
-                markedCheckbox[0].setCustomValidity('Seleziona almeno una specializzazione');
+            if(markedCheckbox_value.length == 0 && registerCheckbox.length > 1) {
+                registerCheckbox[0].setCustomValidity('Seleziona almeno una specializzazione');
             }
             else{
-                markedCheckbox[0].setCustomValidity('');
+                registerCheckbox[0].setCustomValidity('');
             }
         });
     });
