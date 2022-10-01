@@ -88,10 +88,6 @@
                         </div>
 
                         {{-- SPECIALIZZAZIONI --}}
-                        <div id="my-checkbox-error" class="alert alert-danger d-none" role="alert">
-                            A simple danger alert—check it out!
-                        </div>
-
                         <div class="form-group row">
                             <div class="col-md-4 col-form-label text-md-right">Specializzazioni *</div>
 
@@ -99,7 +95,7 @@
                                 @foreach ($specializations as $specialization)
                                     @if ($errors->any())
                                         <div class="form-check">
-                                            <input class="form-check-input my-check-input" 
+                                            <input class="form-check-input" 
                                                 type="checkbox" 
                                                 value="{{ $specialization->id }}" 
                                                 id="specialization-{{ $specialization->id }}" 
@@ -112,7 +108,7 @@
 
                                 @else
                                     <div class="form-check">
-                                        <input class="form-check-input my-check-input" 
+                                        <input class="form-check-input" 
                                                 type="checkbox" 
                                                 value="{{ $specialization->id }}" 
                                                 id="specialization-{{ $specialization->id }}" 

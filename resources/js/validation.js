@@ -13,19 +13,22 @@ window.addEventListener('load', function() {
         } else {
             password.setCustomValidity('');
         }
-        if(password.value != confirm_password.value) {
-          confirm_password.setCustomValidity("La password di conferma non corrisponde");
-        } else {
-          confirm_password.setCustomValidity('');
+        if(password && confirm_password) {
+            if(password.value != confirm_password.value) {
+            confirm_password.setCustomValidity("La password di conferma non corrisponde");
+            } else {
+            confirm_password.setCustomValidity('');
+            }
         }
+
     };
 
-    password.onchange = validatePassword;
-    confirm_password.onkeyup = validatePassword;
+    password.onkeyup = validatePassword;
+    if(confirm_password) confirm_password.onkeyup = validatePassword;
 
     // validazione checkbox
     let markedCheckbox_value = document.querySelectorAll('input[type="checkbox"]:checked');
-    if(markedCheckbox_value.length == 0) {
+    if(markedCheckbox_value.length == 0 && markedCheckbox.length > 1) {
         markedCheckbox[0].setCustomValidity('Seleziona almeno una specializzazione');
     }
     else{
@@ -36,7 +39,7 @@ window.addEventListener('load', function() {
         item.addEventListener('change', function(event) {
             // valore checked checkbox 
             markedCheckbox_value = document.querySelectorAll('input[type="checkbox"]:checked');
-            if(markedCheckbox_value.length == 0) {
+            if(markedCheckbox_value.length == 0 && markedCheckbox.length > 1) {
                 markedCheckbox[0].setCustomValidity('Seleziona almeno una specializzazione');
             }
             else{
