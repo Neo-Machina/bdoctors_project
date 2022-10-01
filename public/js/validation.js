@@ -81,30 +81,63 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/back.js":
-/*!******************************!*\
-  !*** ./resources/js/back.js ***!
-  \******************************/
+/***/ "./resources/js/validation.js":
+/*!************************************!*\
+  !*** ./resources/js/validation.js ***!
+  \************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
 window.addEventListener('load', function () {
-  var checkbox = document.querySelectorAll('input[type="checkbox"]'); // validazione checkbox
+  // password
+  var password = document.getElementById('password'); // conferma-password
 
-  checkbox.forEach(function (item) {
+  var confirm_password = document.getElementById('password-confirm'); // checkbox
+
+  var registerCheckbox = document.querySelectorAll('input[type="checkbox"]'); // VALIDAZIONE PASSWORD
+
+  function validatePassword() {
+    if (password.value.length < 8) {
+      password.setCustomValidity("La password deve essere lunga almeno 8 caratteri");
+    } else {
+      password.setCustomValidity('');
+    }
+
+    if (password && confirm_password) {
+      if (password.value != confirm_password.value) {
+        confirm_password.setCustomValidity("La password di conferma non corrisponde");
+      } else {
+        confirm_password.setCustomValidity('');
+      }
+    }
+  }
+
+  ;
+  password.onkeyup = validatePassword;
+  if (confirm_password) confirm_password.onkeyup = validatePassword; // validazione checkbox
+
+  var markedCheckbox_value = document.querySelectorAll('input[type="checkbox"]:checked');
+
+  if (markedCheckbox_value.length == 0 && registerCheckbox.length > 1) {
+    registerCheckbox[0].setCustomValidity('Seleziona almeno una specializzazione');
+  } else {
+    registerCheckbox[0].setCustomValidity('');
+  }
+
+  registerCheckbox.forEach(function (item) {
     item.addEventListener('change', function (event) {
       // valore checked checkbox 
       markedCheckbox_value = document.querySelectorAll('input[type="checkbox"]:checked');
 
-      if (markedCheckbox_value.length == 0 && checkbox.length > 1) {
-        checkbox[0].setCustomValidity('Seleziona almeno una specializzazione');
+      if (markedCheckbox_value.length == 0 && registerCheckbox.length > 1) {
+        registerCheckbox[0].setCustomValidity('Seleziona almeno una specializzazione');
       } else {
-        checkbox[0].setCustomValidity('');
+        registerCheckbox[0].setCustomValidity('');
       }
     });
   });
@@ -112,14 +145,14 @@ window.addEventListener('load', function () {
 
 /***/ }),
 
-/***/ 1:
-/*!************************************!*\
-  !*** multi ./resources/js/back.js ***!
-  \************************************/
+/***/ 4:
+/*!******************************************!*\
+  !*** multi ./resources/js/validation.js ***!
+  \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Andrei\boolean_projects_class_66\laravel-projects\bdoctors_project\resources\js\back.js */"./resources/js/back.js");
+module.exports = __webpack_require__(/*! C:\Users\Andrei\boolean_projects_class_66\laravel-projects\bdoctors_project\resources\js\validation.js */"./resources/js/validation.js");
 
 
 /***/ })

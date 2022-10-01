@@ -60,11 +60,6 @@
         <h5><strong>Curriculum</strong> non caricato</h5>
     @endif
 
-    {{-- Delete --}}
-    <form class="form-btn-elimina" action="{{ route('admin.users.destroy', ['user' => $user->id]) }}" method="post">
-        @csrf
-        @method('DELETE')
-
-        <input type="submit" value="Elimina Profilo" class="btn btn-danger" onClick="return confirm('Sei sicuro di voler eliminare il profilo ?');">
-    </form>
+    {{-- Button Submit --}}
+    <a href="{{ route('admin.users.edit', ['user' => $user->id]) }}" class="btn btn-primary">Modifica profilo</a>
 @endsection

@@ -28,4 +28,4 @@ Route::get('/debug', 'HomeController@debug')->name('debug');
 
 Route::get('{any?}', function () {
     return view('guest.home');
-})->where('any', '.*');
+})->where('any', '.*')->name('guest');
