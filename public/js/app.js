@@ -2001,8 +2001,48 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'AdvancedSearch',
+<<<<<<< HEAD
   components: {
     Profiles: _components_Profiles_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+=======
+  data: function data() {
+    return {
+      users: []
+    };
+  },
+  methods: {
+    getUsersBySpecialization: function getUsersBySpecialization(pageNumber) {
+      var _this = this;
+
+      axios.get('/api/users-by-specialization/' + this.$route.params.specialization_slug, {
+        params: {
+          page: pageNumber
+        }
+      }).then(function (response) {
+        _this.users = response.data.results.data;
+        _this.currentPage = response.data.results.current_page;
+        _this.lastPage = response.data.results.last_page;
+      });
+    },
+    getUsersBySpecAndAvgVote: function getUsersBySpecAndAvgVote(pageNumber, filter_avg_vote) {
+      var _this2 = this;
+
+      console.log(filter_avg_vote);
+      axios.get('/api/users-by-specialization-and-average-vote/' + this.$route.params.specialization_slug + '/' + filter_avg_vote, {
+        params: {
+          page: pageNumber
+        }
+      }).then(function (response) {
+        _this2.users = response.data.results.data;
+        _this2.currentPage = response.data.results.current_page;
+        _this2.lastPage = response.data.results.last_page;
+      });
+    }
+  },
+  mounted: function mounted() {
+    // setTimeout(function(){ this.getUsersBySpecialization(this.$route.params.specialization_slug, 1) }, 500);
+    this.getUsersBySpecialization(1);
+>>>>>>> api-call-to-get-data-search
   }
 });
 
@@ -2028,27 +2068,27 @@ __webpack_require__.r(__webpack_exports__);
     return {
       pageTitle: 'Risultato ricerca',
       users: [],
+      varTest: 'Hello',
       currentPage: null,
       lastPage: null
     };
   },
   methods: {
-    getUsers: function getUsers(pageNumber) {
+    getSponsoredUsers: function getSponsoredUsers() {
       var _this = this;
 
-      axios.get('/api/users', {
-        params: {
-          page: pageNumber
-        }
+      axios.get('/api/sponsored-users', {// params: {
+        //     page: pageNumber
+        // }
       }).then(function (response) {
-        _this.users = response.data.results.data;
-        _this.currentPage = response.data.results.current_page;
-        _this.lastPage = response.data.results.last_page;
+        _this.users = response.data.results; // this.currentPage = response.data.results.current_page;
+        // this.lastPage = response.data.results.last_page;
       });
     }
   },
   mounted: function mounted() {
-    this.getUsers(1);
+    this.getSponsoredUsers();
+    console.log(this.users);
   }
 });
 
@@ -2373,7 +2413,29 @@ var render = function render() {
 
   return _c("div", {
     staticClass: "container"
+<<<<<<< HEAD
   }, [_c("Profiles")], 1);
+=======
+  }, [_c("h1", [_vm._v("Advanced Search")]), _vm._v(" "), _vm._l(_vm.users, function (user, index) {
+    return _c("div", {
+      key: "A" + index
+    }, [_c("div", [_vm._v(_vm._s(user.user_name))]), _vm._v(" "), _c("div", [_vm._v("Fine Sponsorizzazione: " + _vm._s(user.expired_date))]), _vm._v(" "), _c("div", [_vm._v(_vm._s(user.specialization_name))]), _vm._v(" "), _c("hr")]);
+  }), _vm._v(" "), _vm._l(6, function (number, index) {
+    return _c("div", {
+      key: "B" + index
+    }, [_c("div", {
+      staticStyle: {
+        cursor: "pointer"
+      },
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          return _vm.getUsersBySpecAndAvgVote(1, index);
+        }
+      }
+    }, [_vm._v("\n            Media Voto: " + _vm._s(index) + "\n        ")])]);
+  })], 2);
+>>>>>>> api-call-to-get-data-search
 };
 
 var staticRenderFns = [];
@@ -2397,7 +2459,29 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
+<<<<<<< HEAD
   return _c("section", [_vm._m(0), _vm._v(" "), _c("Footer")], 1);
+=======
+  return _c("div", [_vm._l(_vm.users, function (user, index) {
+    return _c("div", {
+      key: index
+    }, [_vm._v("\n        " + _vm._s(user.user_name) + " - " + _vm._s(user.specialization_name) + " - " + _vm._s(user.expired_date) + "\n    ")]);
+  }), _vm._v(" "), _vm._l(_vm.users, function (user, index) {
+    return _c("div", {
+      key: index
+    }, [_c("router-link", {
+      staticClass: "btn btn-primary m-2",
+      attrs: {
+        to: {
+          name: "advanced-search",
+          params: {
+            specialization_slug: user.specialization_slug
+          }
+        }
+      }
+    }, [_vm._v("\n                " + _vm._s(user.specialization_name) + "\n        ")])], 1);
+  })], 2);
+>>>>>>> api-call-to-get-data-search
 };
 
 var staticRenderFns = [function () {
@@ -53919,7 +54003,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     name: 'homepage',
     component: _pages_HomePage_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
   }, {
-    path: '/advanced-search',
+    path: '/advanced-search/:specialization_slug',
     name: 'advanced-search',
     component: _pages_AdvancedSearch_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   }, {

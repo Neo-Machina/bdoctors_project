@@ -21,7 +21,7 @@ class MessagesTableSeeder extends Seeder
         foreach ($users as $user) {
             for($i = 0; $i < rand(3, 6); $i++){
                 $new_message = new Message();
-                $new_message->name = $faker->name($gender = 'male'|'female');
+                $new_message->author = $faker->name($gender = 'male'|'female');
                 $new_message->email = $faker->email();
                 $new_message->content = $faker->text(300);
                 $new_message->created_at = $faker->dateTimeThisYear();
