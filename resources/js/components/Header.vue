@@ -7,12 +7,25 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNavAltMarkup">
 
-                    <div v-for="link, index in menuLinks" :key="index" class="navbar-nav">
-                        <router-link :to="{name: link.name}" class="nav-link">{{link.label}}</router-link>
+                    <div class="d-flex">
+                        <div v-for="link, index in menuLinks" :key="index" class="navbar-nav">
+                            <router-link :to="{name: link.name}" class="nav-link">{{link.label}}</router-link>
+                        </div>
                     </div>
 
+                    <div class="navbar-nav">
+                        <ul class="list-unstyled d-flex">
+                            <li class="p-3">
+                                <a href="/login">Accedi</a>
+                            </li>
+
+                            <li class="p-3">
+                                <a href="/register">Registrati</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -32,7 +45,8 @@ export default {
                 {
                     name: 'advanced-search',
                     label: 'Cerca'
-                }
+                },
+
             ]
         }
     }

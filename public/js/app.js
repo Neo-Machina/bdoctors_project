@@ -1899,6 +1899,21 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Footer.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Footer.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'Footer'
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Header.vue?vue&type=script&lang=js&":
 /*!*****************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Header.vue?vue&type=script&lang=js& ***!
@@ -1998,9 +2013,44 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/HomePage.vue?vue&type=script&lang=js& ***!
   \**************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\Users\\Andrei\\boolean_projects_class_66\\laravel-projects\\bdoctors_project\\resources\\js\\pages\\HomePage.vue: Unexpected token (6:0)\n\n\u001b[0m \u001b[90m 4 |\u001b[39m \u001b[36mexport\u001b[39m \u001b[36mdefault\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m 5 |\u001b[39m     name\u001b[33m:\u001b[39m \u001b[32m'HomePage'\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 6 |\u001b[39m \u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m   |\u001b[39m \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 7 |\u001b[39m     components\u001b[33m:\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m 8 |\u001b[39m         \u001b[33mFooter\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 9 |\u001b[39m \u001b[33m===\u001b[39m\u001b[33m===\u001b[39m\u001b[33m=\u001b[39m\u001b[0m\n    at instantiate (C:\\Users\\Andrei\\boolean_projects_class_66\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:72:32)\n    at constructor (C:\\Users\\Andrei\\boolean_projects_class_66\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:367:12)\n    at Parser.raise (C:\\Users\\Andrei\\boolean_projects_class_66\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:3684:19)\n    at Parser.unexpected (C:\\Users\\Andrei\\boolean_projects_class_66\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:3722:16)\n    at Parser.parsePropertyName (C:\\Users\\Andrei\\boolean_projects_class_66\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:14054:24)\n    at Parser.parsePropertyDefinition (C:\\Users\\Andrei\\boolean_projects_class_66\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:13886:22)\n    at Parser.parseObjectLike (C:\\Users\\Andrei\\boolean_projects_class_66\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:13806:21)\n    at Parser.parseExprAtom (C:\\Users\\Andrei\\boolean_projects_class_66\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:13198:23)\n    at Parser.parseExprSubscripts (C:\\Users\\Andrei\\boolean_projects_class_66\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:12848:23)\n    at Parser.parseUpdate (C:\\Users\\Andrei\\boolean_projects_class_66\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:12827:21)\n    at Parser.parseMaybeUnary (C:\\Users\\Andrei\\boolean_projects_class_66\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:12797:23)\n    at Parser.parseMaybeUnaryOrPrivate (C:\\Users\\Andrei\\boolean_projects_class_66\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:12588:61)\n    at Parser.parseExprOps (C:\\Users\\Andrei\\boolean_projects_class_66\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:12595:23)\n    at Parser.parseMaybeConditional (C:\\Users\\Andrei\\boolean_projects_class_66\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:12565:23)\n    at Parser.parseMaybeAssign (C:\\Users\\Andrei\\boolean_projects_class_66\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:12517:21)\n    at C:\\Users\\Andrei\\boolean_projects_class_66\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:12475:39\n    at Parser.allowInAnd (C:\\Users\\Andrei\\boolean_projects_class_66\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:14543:16)\n    at Parser.parseMaybeAssignAllowIn (C:\\Users\\Andrei\\boolean_projects_class_66\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:12475:17)\n    at Parser.parseExportDefaultExpression (C:\\Users\\Andrei\\boolean_projects_class_66\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:16230:22)\n    at Parser.parseExport (C:\\Users\\Andrei\\boolean_projects_class_66\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:16118:31)\n    at Parser.parseStatementContent (C:\\Users\\Andrei\\boolean_projects_class_66\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:14956:27)\n    at Parser.parseStatement (C:\\Users\\Andrei\\boolean_projects_class_66\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:14840:17)\n    at Parser.parseBlockOrModuleBlockBody (C:\\Users\\Andrei\\boolean_projects_class_66\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:15499:25)\n    at Parser.parseBlockBody (C:\\Users\\Andrei\\boolean_projects_class_66\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:15490:10)\n    at Parser.parseProgram (C:\\Users\\Andrei\\boolean_projects_class_66\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:14758:10)\n    at Parser.parseTopLevel (C:\\Users\\Andrei\\boolean_projects_class_66\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:14745:25)\n    at Parser.parse (C:\\Users\\Andrei\\boolean_projects_class_66\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:16768:10)\n    at parse (C:\\Users\\Andrei\\boolean_projects_class_66\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:16820:38)\n    at parser (C:\\Users\\Andrei\\boolean_projects_class_66\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\core\\lib\\parser\\index.js:52:34)\n    at parser.next (<anonymous>)\n    at normalizeFile (C:\\Users\\Andrei\\boolean_projects_class_66\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\core\\lib\\transformation\\normalize-file.js:87:38)\n    at normalizeFile.next (<anonymous>)\n    at run (C:\\Users\\Andrei\\boolean_projects_class_66\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\core\\lib\\transformation\\index.js:31:50)\n    at run.next (<anonymous>)\n    at transform (C:\\Users\\Andrei\\boolean_projects_class_66\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\core\\lib\\transform.js:29:41)\n    at transform.next (<anonymous>)\n    at step (C:\\Users\\Andrei\\boolean_projects_class_66\\laravel-projects\\bdoctors_project\\node_modules\\gensync\\index.js:261:32)\n    at C:\\Users\\Andrei\\boolean_projects_class_66\\laravel-projects\\bdoctors_project\\node_modules\\gensync\\index.js:273:13\n    at async.call.result.err.err (C:\\Users\\Andrei\\boolean_projects_class_66\\laravel-projects\\bdoctors_project\\node_modules\\gensync\\index.js:223:11)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_Footer_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/Footer.vue */ "./resources/js/components/Footer.vue");
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'HomePage',
+  components: {
+    Footer: _components_Footer_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      pageTitle: 'Risultato ricerca',
+      users: [],
+      currentPage: null,
+      lastPage: null
+    };
+  },
+  methods: {
+    getUsers: function getUsers(pageNumber) {
+      var _this = this;
+
+      axios.get('/api/users', {
+        params: {
+          page: pageNumber
+        }
+      }).then(function (response) {
+        _this.users = response.data.results.data;
+        _this.currentPage = response.data.results.current_page;
+        _this.lastPage = response.data.results.last_page;
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getUsers(1);
+  }
+});
 
 /***/ }),
 
@@ -2041,6 +2091,119 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Footer.vue?vue&type=template&id=61a7c374&scoped=true&":
+/*!***************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Footer.vue?vue&type=template&id=61a7c374&scoped=true& ***!
+  \***************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function render() {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _vm._m(0);
+};
+
+var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("footer", {
+    staticClass: "bg-info text-light py-3"
+  }, [_c("div", {
+    staticClass: "container"
+  }, [_c("div", {
+    staticClass: "row align-items-center"
+  }, [_c("div", {
+    staticClass: "col-3"
+  }, [_c("div", [_vm._v("\n                    via giulio cesare\n                ")]), _vm._v(" "), _c("div", [_vm._v("\n                    3693583475\n                ")]), _vm._v(" "), _c("div", [_vm._v("\n                    0823 657894\n                ")])]), _vm._v(" "), _c("div", {
+    staticClass: "col-9"
+  }, [_c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col"
+  }, [_c("ul", {
+    staticClass: "list-unstyled"
+  }, [_c("li", [_c("a", {
+    staticClass: "link-light text-light border-bottom-0",
+    attrs: {
+      href: "#"
+    }
+  }, [_vm._v("specializzazioni")])]), _vm._v(" "), _c("li", [_c("a", {
+    staticClass: "link-light text-light border-bottom-0",
+    attrs: {
+      href: "#"
+    }
+  }, [_vm._v("chi siamo")])]), _vm._v(" "), _c("li", [_c("a", {
+    staticClass: "link-light text-light border-bottom-0",
+    attrs: {
+      href: "#"
+    }
+  }, [_vm._v("contatti")])]), _vm._v(" "), _c("li", [_c("a", {
+    staticClass: "link-light text-light border-bottom-0",
+    attrs: {
+      href: "#"
+    }
+  }, [_vm._v("privacy e condizioni")])])])]), _vm._v(" "), _c("div", {
+    staticClass: "col"
+  }, [_c("ul", {
+    staticClass: "list-unstyled"
+  }, [_c("li", [_c("a", {
+    staticClass: "link-light text-light border-bottom-0",
+    attrs: {
+      href: "#"
+    }
+  }, [_vm._v("specializzazioni")])]), _vm._v(" "), _c("li", [_c("a", {
+    staticClass: "link-light text-light border-bottom-0",
+    attrs: {
+      href: "#"
+    }
+  }, [_vm._v("chi siamo")])]), _vm._v(" "), _c("li", [_c("a", {
+    staticClass: "link-light text-light border-bottom-0",
+    attrs: {
+      href: "#"
+    }
+  }, [_vm._v("contatti")])]), _vm._v(" "), _c("li", [_c("a", {
+    staticClass: "link-light text-light border-bottom-0",
+    attrs: {
+      href: "#"
+    }
+  }, [_vm._v("privacy e condizioni")])])])]), _vm._v(" "), _c("div", {
+    staticClass: "col"
+  }, [_c("ul", {
+    staticClass: "list-unstyled"
+  }, [_c("li", [_c("a", {
+    staticClass: "link-light text-light border-bottom-0",
+    attrs: {
+      href: "#"
+    }
+  }, [_vm._v("specializzazioni")])]), _vm._v(" "), _c("li", [_c("a", {
+    staticClass: "link-light text-light border-bottom-0",
+    attrs: {
+      href: "#"
+    }
+  }, [_vm._v("chi siamo")])]), _vm._v(" "), _c("li", [_c("a", {
+    staticClass: "link-light text-light border-bottom-0",
+    attrs: {
+      href: "#"
+    }
+  }, [_vm._v("contatti")])]), _vm._v(" "), _c("li", [_c("a", {
+    staticClass: "link-light text-light border-bottom-0",
+    attrs: {
+      href: "#"
+    }
+  }, [_vm._v("privacy e condizioni")])])])])])])])])]);
+}];
+render._withStripped = true;
+
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Header.vue?vue&type=template&id=1f42fb90&":
 /*!***************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Header.vue?vue&type=template&id=1f42fb90& ***!
@@ -2061,10 +2224,12 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "container-fluid"
   }, [_vm._m(0), _vm._v(" "), _c("div", {
-    staticClass: "collapse navbar-collapse",
+    staticClass: "collapse navbar-collapse d-flex justify-content-between",
     attrs: {
       id: "navbarNavAltMarkup"
     }
+  }, [_c("div", {
+    staticClass: "d-flex"
   }, _vm._l(_vm.menuLinks, function (link, index) {
     return _c("div", {
       key: index,
@@ -2077,7 +2242,7 @@ var render = function render() {
         }
       }
     }, [_vm._v(_vm._s(link.label))])], 1);
-  }), 0)])])]);
+  }), 0), _vm._v(" "), _vm._m(1)])])])]);
 };
 
 var staticRenderFns = [function () {
@@ -2097,6 +2262,27 @@ var staticRenderFns = [function () {
   }, [_c("span", {
     staticClass: "navbar-toggler-icon"
   })]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "navbar-nav"
+  }, [_c("ul", {
+    staticClass: "list-unstyled d-flex"
+  }, [_c("li", {
+    staticClass: "p-3"
+  }, [_c("a", {
+    attrs: {
+      href: "/login"
+    }
+  }, [_vm._v("Accedi")])]), _vm._v(" "), _c("li", {
+    staticClass: "p-3"
+  }, [_c("a", {
+    attrs: {
+      href: "/register"
+    }
+  }, [_vm._v("Registrati")])])])]);
 }];
 render._withStripped = true;
 
@@ -53221,6 +53407,75 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/js/components/Footer.vue":
+/*!********************************************!*\
+  !*** ./resources/js/components/Footer.vue ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Footer_vue_vue_type_template_id_61a7c374_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Footer.vue?vue&type=template&id=61a7c374&scoped=true& */ "./resources/js/components/Footer.vue?vue&type=template&id=61a7c374&scoped=true&");
+/* harmony import */ var _Footer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Footer.vue?vue&type=script&lang=js& */ "./resources/js/components/Footer.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Footer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Footer_vue_vue_type_template_id_61a7c374_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Footer_vue_vue_type_template_id_61a7c374_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "61a7c374",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Footer.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Footer.vue?vue&type=script&lang=js&":
+/*!*********************************************************************!*\
+  !*** ./resources/js/components/Footer.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Footer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Footer.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Footer.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Footer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Footer.vue?vue&type=template&id=61a7c374&scoped=true&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/Footer.vue?vue&type=template&id=61a7c374&scoped=true& ***!
+  \***************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_Footer_vue_vue_type_template_id_61a7c374_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!../../../node_modules/vue-loader/lib??vue-loader-options!./Footer.vue?vue&type=template&id=61a7c374&scoped=true& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Footer.vue?vue&type=template&id=61a7c374&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_Footer_vue_vue_type_template_id_61a7c374_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_Footer_vue_vue_type_template_id_61a7c374_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Header.vue":
 /*!********************************************!*\
   !*** ./resources/js/components/Header.vue ***!
@@ -53764,8 +54019,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Andrei\boolean_projects_class_66\laravel-projects\bdoctors_project\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Andrei\boolean_projects_class_66\laravel-projects\bdoctors_project\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Medico\VSBoolean\laravel-projects\bdoctors_project\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Medico\VSBoolean\laravel-projects\bdoctors_project\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
