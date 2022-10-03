@@ -26,10 +26,10 @@
                 </div>
 
                 <!-- Link Specializzazioni -->
-                <div v-for="(user, index) in users" :key="'B' + index">
+                <div v-for="(specialization, index) in specializations" :key="'B' + index">
                     <router-link class="btn btn-primary m-2" 
-                        :to="{name:'advanced-search', params:{specialization_slug: user.specialization_slug} }">
-                            {{user.specialization_name}}
+                        :to="{name:'advanced-search', params:{specialization_slug: specialization.slug} }">
+                            {{specialization.name}}
                     </router-link>
                 </div>
             </div>
@@ -121,6 +121,7 @@ export default {
         return {
             pageTitle: 'Risultato ricerca',
             users: [],
+            specializations: [],
             varTest: 'Hello',
             currentPage: null,
             lastPage: null
@@ -134,7 +135,8 @@ export default {
                 // }
             })
             .then((response) => {
-                this.users = response.data.results;
+                this.users = response.data.results.users;
+                this.specializations = response.data.results.specializations;
                 // this.currentPage = response.data.results.current_page;
                 // this.lastPage = response.data.results.last_page;
             });

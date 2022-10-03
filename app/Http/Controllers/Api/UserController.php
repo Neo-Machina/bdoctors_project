@@ -29,13 +29,16 @@ class UserController extends Controller
                        ->join('user_bundle', 'users.id', '=', 'user_bundle.user_id')
                        ->join('bundles', 'bundles.id', '=', 'bundle_id')->where('user_bundle.expired_date', '>=', $today ) 
                        ->orderByRaw('RAND()')->get();
-
+        $specializations = Specialization::all();
 // dump($users->toArray());
 
         if (isset($users)) {
             $data = [
                 'success' => true,
-                'results' => $users
+                'results' => [
+                    'users' => $users,
+                    'specializations' => $specializations,
+                ]
             ];
        } else {
             $data = [

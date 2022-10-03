@@ -2001,10 +2001,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'AdvancedSearch',
-<<<<<<< HEAD
   components: {
     Profiles: _components_Profiles_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
-=======
+  },
   data: function data() {
     return {
       users: []
@@ -2042,7 +2041,6 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     // setTimeout(function(){ this.getUsersBySpecialization(this.$route.params.specialization_slug, 1) }, 500);
     this.getUsersBySpecialization(1);
->>>>>>> api-call-to-get-data-search
   }
 });
 
@@ -2068,6 +2066,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       pageTitle: 'Risultato ricerca',
       users: [],
+      specializations: [],
       varTest: 'Hello',
       currentPage: null,
       lastPage: null
@@ -2081,7 +2080,8 @@ __webpack_require__.r(__webpack_exports__);
         //     page: pageNumber
         // }
       }).then(function (response) {
-        _this.users = response.data.results; // this.currentPage = response.data.results.current_page;
+        _this.users = response.data.results.users;
+        _this.specializations = response.data.results.specializations; // this.currentPage = response.data.results.current_page;
         // this.lastPage = response.data.results.last_page;
       });
     }
@@ -2413,10 +2413,7 @@ var render = function render() {
 
   return _c("div", {
     staticClass: "container"
-<<<<<<< HEAD
-  }, [_c("Profiles")], 1);
-=======
-  }, [_c("h1", [_vm._v("Advanced Search")]), _vm._v(" "), _vm._l(_vm.users, function (user, index) {
+  }, [_c("Profiles"), _vm._v(" "), _c("h1", [_vm._v("Advanced Search")]), _vm._v(" "), _vm._l(_vm.users, function (user, index) {
     return _c("div", {
       key: "A" + index
     }, [_c("div", [_vm._v(_vm._s(user.user_name))]), _vm._v(" "), _c("div", [_vm._v("Fine Sponsorizzazione: " + _vm._s(user.expired_date))]), _vm._v(" "), _c("div", [_vm._v(_vm._s(user.specialization_name))]), _vm._v(" "), _c("hr")]);
@@ -2435,7 +2432,6 @@ var render = function render() {
       }
     }, [_vm._v("\n            Media Voto: " + _vm._s(index) + "\n        ")])]);
   })], 2);
->>>>>>> api-call-to-get-data-search
 };
 
 var staticRenderFns = [];
@@ -2459,44 +2455,45 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-<<<<<<< HEAD
-  return _c("section", [_vm._m(0), _vm._v(" "), _c("Footer")], 1);
-=======
-  return _c("div", [_vm._l(_vm.users, function (user, index) {
+  return _c("section", [_c("section", {
+    staticClass: "main-content"
+  }, [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _c("div", [_vm._l(_vm.users, function (user, index) {
     return _c("div", {
-      key: index
-    }, [_vm._v("\n        " + _vm._s(user.user_name) + " - " + _vm._s(user.specialization_name) + " - " + _vm._s(user.expired_date) + "\n    ")]);
-  }), _vm._v(" "), _vm._l(_vm.users, function (user, index) {
+      key: "A" + index
+    }, [_vm._v("\n                " + _vm._s(user.user_name) + " - " + _vm._s(user.specialization_name) + " - " + _vm._s(user.expired_date) + "\n            ")]);
+  }), _vm._v(" "), _vm._l(_vm.specializations, function (specialization, index) {
     return _c("div", {
-      key: index
+      key: "B" + index
     }, [_c("router-link", {
       staticClass: "btn btn-primary m-2",
       attrs: {
         to: {
           name: "advanced-search",
           params: {
-            specialization_slug: user.specialization_slug
+            specialization_slug: specialization.slug
           }
         }
       }
-    }, [_vm._v("\n                " + _vm._s(user.specialization_name) + "\n        ")])], 1);
-  })], 2);
->>>>>>> api-call-to-get-data-search
+    }, [_vm._v("\n                        " + _vm._s(specialization.name) + "\n                ")])], 1);
+  })], 2), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3)]), _vm._v(" "), _c("Footer")], 1);
 };
 
 var staticRenderFns = [function () {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("section", {
-    staticClass: "main-content"
-  }, [_c("div", {
+  return _c("div", {
     staticClass: "text-center"
   }, [_c("h2", {
     staticClass: "mt-3 text-primary"
   }, [_vm._v("Benvenuti su BDoctors")]), _vm._v(" "), _c("p", {
     staticClass: "mt-3"
-  }, [_vm._v("\n            Benvenuto nel sito BDoctors, dove puoi trovare la miglior scelta per la tua esigenza.\n        ")])]), _vm._v(" "), _c("section", {
+  }, [_vm._v("\n                Benvenuto nel sito BDoctors, dove puoi trovare la miglior scelta per la tua esigenza.\n            ")])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("section", {
     staticClass: "progress",
     staticStyle: {
       height: "200px"
@@ -2526,7 +2523,12 @@ var staticRenderFns = [function () {
       src: "https://www.optimahealth.com/_assets/images/group-of-doctors-card.jpg",
       alt: ""
     }
-  })]), _vm._v(" "), _c("section", {
+  })]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("section", {
     staticClass: "bg-info my-5"
   }, [_c("h5", {
     staticClass: "text-center py-3 text-light"
@@ -2588,7 +2590,12 @@ var staticRenderFns = [function () {
     attrs: {
       href: "#"
     }
-  }, [_vm._v(" Proctologia")])])])]), _vm._v(" "), _c("section", {
+  }, [_vm._v(" Proctologia")])])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("section", {
     staticClass: "about-us my-5"
   }, [_c("div", {
     staticClass: "container"
@@ -2608,7 +2615,7 @@ var staticRenderFns = [function () {
     staticClass: "col col-sm-12 col-md-5"
   }, [_c("h3", {
     staticClass: "text-primary"
-  }, [_vm._v("\n                        Dicono di noi \n                    ")]), _vm._v(" "), _c("h5", [_vm._v("\n                        Oltre il 90% di pazienti soddisfatti.\n                    ")]), _vm._v(" "), _c("p", [_vm._v("\n                        BDoctors è un nuovo sito in Italia di prenotazioni di visite mediche ed esami diagnostici, online dal 2022.\n                        Crediamo nell'importanza dell'informazione e della trasparenza per aiutare i pazienti a scegliere il medico giusto tra gli oltre 9.000 presenti su BDoctors.\n                        Per questo su BDoctors, solo i pazienti che hanno prenotato attraverso il sito e svolto la prestazione possono rilasciare un feedback sul medico: una garanzia dell'affidabilità delle 13.553 recensioni che leggi.\n                    ")])])])])])]);
+  }, [_vm._v("\n                            Dicono di noi \n                        ")]), _vm._v(" "), _c("h5", [_vm._v("\n                            Oltre il 90% di pazienti soddisfatti.\n                        ")]), _vm._v(" "), _c("p", [_vm._v("\n                            BDoctors è un nuovo sito in Italia di prenotazioni di visite mediche ed esami diagnostici, online dal 2022.\n                            Crediamo nell'importanza dell'informazione e della trasparenza per aiutare i pazienti a scegliere il medico giusto tra gli oltre 9.000 presenti su BDoctors.\n                            Per questo su BDoctors, solo i pazienti che hanno prenotato attraverso il sito e svolto la prestazione possono rilasciare un feedback sul medico: una garanzia dell'affidabilità delle 13.553 recensioni che leggi.\n                        ")])])])])]);
 }];
 render._withStripped = true;
 
@@ -54103,8 +54110,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Medico\VSBoolean\laravel-projects\bdoctors_project\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Medico\VSBoolean\laravel-projects\bdoctors_project\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Dogana\Boolean Project\laravel-projects\bdoctors_project\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Dogana\Boolean Project\laravel-projects\bdoctors_project\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
