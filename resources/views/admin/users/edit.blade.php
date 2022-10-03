@@ -3,18 +3,20 @@
 @section('content')
 <!-- TODO -->
  <!-- Modale conferma eliminazione profilo user -->
- <div class="d-none modal" tabindex="-1" id="myInput">
+ <div class=" modal" tabindex="-1" role="dialog" id="deleteModal">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Conferma eliminazaione</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
         <div class="modal-body">
           <p>Confermi di voler eliminare il tuo profilo, sei davvero sicuro?</p>
         </div>
         <div class="modal-footer">
-            <a class="btn btn-primary" href=" {{route('admin.home')}}">NO</a>
+            <button class="btn btn-primary" type="button" data-dismiss="modal">NO</button>
             <form class="form-btn-elimina" action="{{ route('admin.users.destroy', ['user' => $user->id]) }}" method="post">
                 @csrf
                 @method('DELETE')
@@ -48,25 +50,21 @@
         {{-- EMAIL --}}
         <div class="mb-3">
             <label for="email" class="form-label"><strong>Email *</strong></label>
-            <input class="form-control" type="text" id="email" name="email" value="{{ old('email', $user->email) }}" required>
+            <input class="form-control" type="email" id="email" name="email" value="{{ old('email', $user->email) }}" required>
         </div>
         {{-- CURRICULUM VITAE --}}
         <div class="mb-3">
             <label for="curriculum" class="form-label"><strong>Curriculum Vitae</strong></label>
-            <textarea class="form-control" id="floatingTextarea" name="curriculum" rows="30" cols="20">{{ old('curriculum', $user->curriculum) }}</textarea>
+            <textarea class="form-control" id="floatingTextarea" name="curriculum" rows="12">{{ old('curriculum', $user->curriculum) }}</textarea>
         </div>
         {{-- SPECIALIZZAZIONI --}}
-        <div id="my-checkbox-error" class="alert alert-danger d-none" role="alert">
-            A simple danger alert—check it out!
-        </div>
-
         <div class="mb-3">
             <div><strong>Specializzazioni *</strong></div>
 
             @foreach ($specializations as $specialization)
                 @if ($errors->any())
                     <div class="form-check">
-                        <input class="form-check-input my-check-input" 
+                        <input class="form-check-input" 
                                 type="checkbox" 
                                 value="{{ $specialization->id }}" 
                                 id="specialization-{{ $specialization->id }}" 
@@ -80,7 +78,7 @@
 
                 @else
                     <div class="form-check">
-                        <input class="form-check-input my-check-input" 
+                        <input class="form-check-input" 
                                 type="checkbox" 
                                 value="{{ $specialization->id }}" 
                                 id="specialization-{{ $specialization->id }}" 
@@ -134,8 +132,8 @@
 
         {{-- Button Submit --}}
         <input type="submit" value="Conferma Modifiche" class="btn btn-primary" id="btn-debug">
-    </form>
 
-    <!-- TODO -->
-    <a  href="#" class="btn btn-danger"  id="myModal">Elimina Profilo</a>
+        <!-- TODO -->
+        <button  class="btn btn-danger" type="button" data-target="#deleteModal" data-toggle="modal">Elimina Profilo</button>
+    </form>
 @endsection
