@@ -21,12 +21,12 @@
             <!-- specializations -->
             <div>
                 <!-- User Sponsorizzati -->
-                <div v-for="(user, index) in users" :key="index">
+                <div v-for="(user, index) in users" :key="'A' + index">
                     {{user.user_name}} - {{user.specialization_name}} - {{user.expired_date}}
                 </div>
 
                 <!-- Link Specializzazioni -->
-                <div v-for="(user, index) in users" :key="index">
+                <div v-for="(user, index) in users" :key="'B' + index">
                     <router-link class="btn btn-primary m-2" 
                         :to="{name:'advanced-search', params:{specialization_slug: user.specialization_slug} }">
                             {{user.specialization_name}}
