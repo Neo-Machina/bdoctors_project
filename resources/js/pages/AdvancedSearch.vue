@@ -16,10 +16,10 @@
                         <p>{{truncateText(user.user_curriculum)}}</p>
 
                         <router-link class="btn btn-primary" 
-                        :to="{
-                            name: 'single-post', 
-                            params: {slug: user.slug}
-                        }">
+                            :to="{
+                                name: 'single-profile', 
+                                params: {slug: user.user_slug}
+                            }">
                             Scopri di più
                         </router-link>
                     </div>
