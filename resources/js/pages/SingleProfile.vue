@@ -118,7 +118,7 @@ export default {
     },
     methods: {
         getUserProfile() {
-            axios.get('/api/users/' + this.$route.params.user_slug, {})
+            axios.get('/api/users/' + this.$route.params.user_slug)
             .then((response) => {
                 this.user = response.data.results;
             })
