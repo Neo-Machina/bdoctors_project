@@ -1,6 +1,7 @@
 <template>
     <section>
         <section class="main-content">
+            <!-- page title -->
             <div class="text-center">
                 <h2 class="mt-3 text-primary">Benvenuti su BDoctors</h2>
 
@@ -18,61 +19,44 @@
                 <img  src="https://www.optimahealth.com/_assets/images/group-of-doctors-card.jpg" alt="">   
             </section>
 
-            <!-- specializations -->
-            <div>
-                <!-- User Sponsorizzati -->
-                <div v-for="(user, index) in users" :key="'A' + index">
-                    {{user.user_name}} - {{user.specialization_name}} - {{user.expired_date}}
-                </div>
-
-                <!-- Link Specializzazioni -->
-                <div v-for="(specialization, index) in specializations" :key="'B' + index">
-                    <router-link class="btn btn-primary m-2" 
-                        :to="{name:'advanced-search', params:{specialization_slug: specialization.slug} }">
-                            {{specialization.name}}
-                    </router-link>
-                </div>
-            </div>
-
+            <!-- ricerca avanzata per specializzazioni -->
             <section class="bg-info my-5">
-                
                 <h5 class="text-center py-3 text-light">Ricerca qui medici per specializzazione</h5>
 
                 <!-- lista specializzazioni -->
                 <ul class="list-unstyled d-flex justify-content-center pb-3">
-                    <li class="mr-5">
-                    <a class="text-light" href="#"> Cardiologia</a>
-                    </li>
-
-                    <li class="mr-5">
-                        <a class="text-light" href="#"> Neurologia</a>
-                    </li>
-
-                    <li class="mr-5">
-                        <a class="text-light" href="#"> Ortopedia</a>
-                    </li>
-
-                    <li class="mr-5">
-                        <a class="text-light" href="#"> Andrologia</a>
-                    </li>
-
-                    <li class="mr-5">
-                        <a class="text-light" href="#"> Urologia</a>
-                    </li>
-
-                    <li class="mr-5">
-                        <a class="text-light" href="#"> Dermatologia</a>
-                    </li>
-
-                    <li class="mr-5">
-                        <a class="text-light" href="#"> Oculistica</a>
-                    </li>
-
-                    <li class="mr-5">
-                        <a class="text-light" href="#"> Proctologia</a>
+                    <li class="mr-5" v-for="(specialization, index) in specializations" :key="'B' + index">
+                        <router-link class="text-light" 
+                            :to="{name:'advanced-search', params:{specialization_slug: specialization.slug} }">
+                                {{specialization.name}}
+                        </router-link>
                     </li>
                 </ul>
             </section>
+
+            <!-- utenti Sponsorizzati -->
+            <div class="carousel d-flex">
+                <div v-for="(user, index) in users" :key="'A' + index">
+                    <div class="card" style="width: 12rem;">
+                        <img :src="user.user_photo" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{user.user_name}}</h5>
+                            <p class="card-text">{{user.specialization_name}}</p>
+                            <div class="card-text mb-3">{{user.user_email}}</div>
+                            <div>{{user.bundle_name}}</div>
+                            <div>{{user.expired_date}}</div>
+
+                            <router-link class="btn btn-primary" 
+                            :to="{
+                                name: 'single-post', 
+                                params: {slug: user.slug}
+                            }">
+                                Scopri di più
+                            </router-link>
+                        </div>
+                    </div>
+                </div>  
+            </div>
 
             <!-- about us -->
             <section class="about-us my-5">
@@ -111,11 +95,14 @@
 
 <script>
 import Footer from '../components/Footer.vue';
+import { Carousel, Slide } from 'vue-carousel';
 
 export default {
     name: 'HomePage',
     components: {
-        Footer
+        Footer,
+        Carousel,
+        Slide
     },
     data() {
         return {
@@ -124,7 +111,7 @@ export default {
             specializations: [],
             varTest: 'Hello',
             currentPage: null,
-            lastPage: null
+            lastPage: null,
         }
     },
     methods: {
@@ -150,5 +137,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.carousel {
+    overflow-y: auto;
+    
+    .card {
+        margin-inline: 1rem;
+    }
+}
 </style>
