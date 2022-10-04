@@ -60,13 +60,6 @@ export default {
                 this.currentPage = response.data.results.current_page;
                 this.lastPage = response.data.results.last_page;
             });
-        },
-        // DA PASSARE IN SINGLE-PROFILE PAGE
-        getSingleProfile(pageNumber) {
-            axios.get('/api/users/' + 'destiney-johns')
-            .then((response) => {
-                this.singleProfile = response.data.results;
-            });
         }
     },
     mounted() {

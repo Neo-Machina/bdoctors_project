@@ -2037,14 +2037,6 @@ __webpack_require__.r(__webpack_exports__);
         _this2.currentPage = response.data.results.current_page;
         _this2.lastPage = response.data.results.last_page;
       });
-    },
-    // DA PASSARE IN SINGLE-PROFILE PAGE
-    getSingleProfile: function getSingleProfile(pageNumber) {
-      var _this3 = this;
-
-      axios.get('/api/users/' + 'destiney-johns').then(function (response) {
-        _this3.singleProfile = response.data.results;
-      });
     }
   },
   mounted: function mounted() {
@@ -2114,7 +2106,26 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'SingleProfile'
+  name: 'SingleProfile',
+  data: function data() {
+    return {
+      user: {} // reviews: []
+
+    };
+  },
+  methods: {
+    getSingleProfile: function getSingleProfile() {
+      var _this = this;
+
+      // axios.get('/api/users/' + 'destiney-johns')
+      axios.get('/api/users/' + this.$route.params.slug).then(function (response) {
+        _this.user = response.data.results;
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getSingleProfile();
+  }
 });
 
 /***/ }),
@@ -2647,7 +2658,13 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("h1", [_vm._v("Single Profile")]);
+  return _c("div", {
+    staticClass: "container"
+  }, [_c("h1", [_vm._v("Single Profile")]), _vm._v(" "), _c("ul", [_c("li", [_vm._v("Nome: " + _vm._s(_vm.user.name))]), _vm._v(" "), _c("li", [_vm._v("Email: " + _vm._s(_vm.user.email))]), _vm._v(" "), _c("li", [_vm._v("Indirizzo: " + _vm._s(_vm.user.address))]), _vm._v(" "), _c("li", [_vm._v("Numero di recensioni: " + _vm._s(_vm.user.count_reviews))]), _vm._v(" "), _c("li", [_vm._v("Media voto: " + _vm._s(_vm.user.avg_reviews))])]), _vm._v(" "), _vm._l(_vm.user.reviews, function (review, index) {
+    return _c("div", {
+      key: index
+    }, [_c("div", [_vm._v("Autore: " + _vm._s(review.author))]), _vm._v(" "), _c("div", [_vm._v("Voto: " + _vm._s(review.vote))]), _vm._v(" "), _c("div", [_vm._v("Recensione: " + _vm._s(review.content))]), _vm._v(" "), _c("hr")]);
+  })], 2);
 };
 
 var staticRenderFns = [];
