@@ -17,7 +17,7 @@ class CreateReviewsTable extends Migration
             $table->id();
             $table->string('author', 255);
             $table->text('content');
-            $table->tinyInteger('vote')->default(0);
+            $table->tinyInteger('vote')->default(1);
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')
