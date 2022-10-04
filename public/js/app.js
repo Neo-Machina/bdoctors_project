@@ -2006,8 +2006,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      users: [],
-      singleProfile: []
+      users: []
     };
   },
   methods: {
@@ -2042,7 +2041,6 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     // setTimeout(function(){ this.getUsersBySpecialization(this.$route.params.specialization_slug, 1) }, 500);
     this.getUsersBySpecialization(1);
-    this.getSingleProfile();
   }
 });
 
@@ -2438,7 +2436,7 @@ var render = function render() {
     return _c("div", {
       key: "A" + index
     }, [_c("div", [_vm._v(_vm._s(user.user_name))]), _vm._v(" "), _c("div", [_vm._v("Fine Sponsorizzazione: " + _vm._s(user.expired_date))]), _vm._v(" "), _c("div", [_vm._v(_vm._s(user.specialization_name))]), _vm._v(" "), _c("hr")]);
-  }), _vm._v(" "), _vm._l(6, function (number, index) {
+  }), _vm._v(" "), _vm._l(5, function (number, index) {
     return _c("div", {
       key: "B" + index
     }, [_c("div", {
@@ -2451,7 +2449,7 @@ var render = function render() {
           return _vm.getUsersBySpecAndAvgVote(1, index);
         }
       }
-    }, [_vm._v("\n            Media Voto: " + _vm._s(index) + "\n        ")])]);
+    }, [_vm._v("\n            Media Voto: " + _vm._s(number) + "\n        ")])]);
   })], 2);
 };
 

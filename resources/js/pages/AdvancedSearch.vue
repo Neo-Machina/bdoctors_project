@@ -11,10 +11,10 @@
                 <hr>
         </div>
 
-        <!-- FILTRO MEDIA VOTO DA 0 A 5 -->
-        <div v-for="(number, index) in 6" :key="'B' + index">
+        <!-- FILTRO MEDIA VOTO DA 1 A 5 -->
+        <div v-for="(number, index) in 5" :key="'B' + index">
             <div @click.prevent="getUsersBySpecAndAvgVote(1, index)" style="cursor: pointer;">
-                Media Voto: {{ index }}
+                Media Voto: {{ number }}
             </div>
         </div>
 
@@ -32,7 +32,6 @@ export default {
     data() {
         return {
             users: [],
-            singleProfile: []
         }
     },
     methods: {
@@ -65,7 +64,6 @@ export default {
     mounted() {
         // setTimeout(function(){ this.getUsersBySpecialization(this.$route.params.specialization_slug, 1) }, 500);
         this.getUsersBySpecialization(1);
-        this.getSingleProfile();
     }
 }
 </script>
