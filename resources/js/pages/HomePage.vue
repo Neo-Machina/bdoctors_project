@@ -33,10 +33,11 @@
                     </li>
                 </ul>
             </section>
-
             <!-- utenti Sponsorizzati -->
             <div class="carousel d-flex">
-                <div v-for="(user, index) in users" :key="'A' + index">
+                <!--Imposto l'azione del click(indietro)-->
+                <div @click="showPrevElement" class="prev"></div>
+                <div v-for="(user, index) in users" :key="'A' + index">    
                     <div class="card" style="width: 12rem;">
                         <img :src="user.user_photo" class="card-img-top" alt="...">
                         <div class="card-body">
@@ -56,8 +57,9 @@
                         </div>
                     </div>
                 </div>  
+                 <!--Imposto l'azione del click(avanti)-->
+                <div @click="showNextElement" class="next"></div>
             </div>
-
             <!-- about us -->
             <section class="about-us my-5">
                 <div class="container">
@@ -112,6 +114,8 @@ export default {
             varTest: 'Hello',
             currentPage: null,
             lastPage: null,
+            //Imposto la mia variabile flag
+            currentActiveElement:0,
         }
     },
     methods: {
@@ -127,7 +131,26 @@ export default {
                 // this.currentPage = response.data.results.current_page;
                 // this.lastPage = response.data.results.last_page;
             });
-        }
+        },
+        showPrevElement(){
+                //Imposto le condizioni
+                if(this.currentActiveElement > 0){
+                    this.currentActiveElement--;
+                }else{
+                    this.currentActiveElement = this.users.length - 1;
+                }
+
+            },
+            //Imposto la funzione per andare avanti
+            showNextElement(){
+                 //Imposto le condizioni
+                if(this.currentActiveElement < this.users.length - 1){
+                    this.currentActiveElement++;
+                }else{
+                    this.currentActiveElement = 0;
+                }
+
+            },
     },
     mounted() {
         this.getSponsoredUsers();
@@ -137,11 +160,51 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+
 .carousel {
     overflow-y: auto;
+    position: relative;
     
     .card {
         margin-inline: 1rem;
+    }
+    .prev, .next {
+        width: 20px;
+        height: 20px;
+        margin: 10px 0;
+        border-radius: 50%;
+        background: #ccc;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%);
+        cursor: pointer;
+        z-index: 999;
+    }
+    .prev::after {
+        content: '';
+        width: 10px;
+        height: 10px;
+        border-top: 1px solid black;
+        border-right: 1px solid black;
+        display: block;
+        position: absolute;
+        top: 35%;
+        left: 100%;
+        transform: translate(-50%) rotate(-45deg);
+    }
+
+    .next::before {
+        content: '';
+        width: 10px;
+        height: 10px;
+        border-top: 1px solid black;
+        border-right: 1px solid black;
+        display: block;
+        position: absolute;
+        bottom: 35%;
+        left: 0%;
+        transform: translate(-50%) rotate(135deg);
     }
 }
 </style>
