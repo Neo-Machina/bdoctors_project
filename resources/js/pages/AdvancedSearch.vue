@@ -32,6 +32,7 @@ export default {
     data() {
         return {
             users: [],
+            singleProfile: []
         }
     },
     methods: {
@@ -59,11 +60,19 @@ export default {
                 this.currentPage = response.data.results.current_page;
                 this.lastPage = response.data.results.last_page;
             });
+        },
+        // DA PASSARE IN SINGLE-PROFILE PAGE
+        getSingleProfile(pageNumber) {
+            axios.get('/api/users/' + 'destiney-johns')
+            .then((response) => {
+                this.singleProfile = response.data.results;
+            });
         }
     },
     mounted() {
         // setTimeout(function(){ this.getUsersBySpecialization(this.$route.params.specialization_slug, 1) }, 500);
         this.getUsersBySpecialization(1);
+        this.getSingleProfile();
     }
 }
 </script>

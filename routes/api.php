@@ -22,4 +22,4 @@ Route::get('/sponsored-users', 'Api\UserController@getSponsoredUsers');
 Route::get('/users-by-specialization/{specialization_slug}', 'Api\UserController@getUsersBySpecialization');
 Route::get('/users-by-specialization-and-average-vote/{specialization_slug}/{filter_avg_vote}', 'Api\UserController@getUsersBySpecAndAvgVote');
 
-Route::get('/users/{slug}', 'Api\UserController@show');
+Route::get('/users/{user_slug}', 'Api\UserController@show');

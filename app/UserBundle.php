@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class UserBundle extends Pivot
 {
-    protected $dates = [
-        'expired_date',
-    ];
+    // protected $dates = [
+    //     'expired_date',
+    // ];
 }

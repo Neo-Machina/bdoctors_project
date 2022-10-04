@@ -2006,7 +2006,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      users: []
+      users: [],
+      singleProfile: []
     };
   },
   methods: {
@@ -2036,11 +2037,20 @@ __webpack_require__.r(__webpack_exports__);
         _this2.currentPage = response.data.results.current_page;
         _this2.lastPage = response.data.results.last_page;
       });
+    },
+    // DA PASSARE IN SINGLE-PROFILE PAGE
+    getSingleProfile: function getSingleProfile(pageNumber) {
+      var _this3 = this;
+
+      axios.get('/api/users/' + 'destiney-johns').then(function (response) {
+        _this3.singleProfile = response.data.results;
+      });
     }
   },
   mounted: function mounted() {
     // setTimeout(function(){ this.getUsersBySpecialization(this.$route.params.specialization_slug, 1) }, 500);
     this.getUsersBySpecialization(1);
+    this.getSingleProfile();
   }
 });
 
