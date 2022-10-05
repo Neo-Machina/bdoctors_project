@@ -5,11 +5,24 @@
 
         <!-- CARD USER -->
         <div v-for="(user, index) in users" :key="'A' + index">
-                <div>{{user.user_name}}</div>
+            <router-link class="btn btn-primary m-2" 
+            :to="{name:'single-profile', params:{user_slug: user.slug} }">
+                <div>Nome: {{user.name}}</div>
                 <div>Fine Sponsorizzazione: {{user.expired_date}}</div>
-                <div>{{user.specialization_name}}</div>
+                <div>Specializzazione: {{user.specialization_slug}}</div>
                 <hr>
+            </router-link>
         </div>
+
+        <!-- <div v-for="(specialization, index) in specializations" :key="'B' + index">
+            <router-link class="btn btn-primary m-2" 
+            :to="{name:'single-profile', params:{user_slug: user.slug} }">
+                    <div>Nome: {{user.name}}</div>
+                    <div>Fine Sponsorizzazione: {{user.expired_date}}</div>
+                    <div>Specializzazione: {{user.specialization_slug}}</div>
+                    <hr>
+            </router-link>
+        </div> -->
 
         <!-- FILTRO MEDIA VOTO DA 1 A 5 -->
         <div v-for="(number, index) in 5" :key="'B' + index">
@@ -42,7 +55,7 @@ export default {
                 }
             })
             .then((response) => {
-                this.users = response.data.results.data;
+                this.users = response.data.results;
                 this.currentPage = response.data.results.current_page;
                 this.lastPage = response.data.results.last_page;
             });

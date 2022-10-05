@@ -22,7 +22,7 @@ const router = new VueRouter({
             component: AdvancedSearch
         },
         {
-            path: '/single-profile/:slug',
+            path: '/single-profile/:user_slug',
             name: 'single-profile',
             component: SingleProfile
         }

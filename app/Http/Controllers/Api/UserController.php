@@ -115,8 +115,8 @@ class UserController extends Controller
                 // $user['reviews'] = $reviews;
                 // $user['bundles'] = $bundles;
             }
-            dd($users[0][0]);
-            $users = $users->groupBy($this);
+            // dd($users[0][0]);
+            // $users = $users->groupBy($this);
 
         if (isset($users)) {
             $data = [
