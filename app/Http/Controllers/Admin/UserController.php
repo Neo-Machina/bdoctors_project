@@ -164,17 +164,19 @@ class UserController extends Controller
         ];
     }
 
+    // Genera uno slug univoco da una stringa
     protected function getFreeSlugFromTitle($name) {
         // Assegnare lo slag
         $slug_to_save = Str::slug($name, '-');
         $slug_base = $slug_to_save;
+
         // Verificare se lo slag esiste nel database
         $existing_slug_user = User::where('slug', '=', $slug_to_save)->first();
 
         // Finchè non si trova uno slag libero, si appende un numero allo slag base -1, -2, ecc...
         $counter = 1;
         while($existing_slug_user) {
-            // Si crea un nuovo slag con $counter
+            // Si crea un nuovo slug con $counter
             $slug_to_user = $slug_base . '-' . $counter;
 
             // Verificare se lo slag esiste nel database

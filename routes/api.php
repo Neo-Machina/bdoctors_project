@@ -21,6 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/sponsored-users', 'Api\UserController@getSponsoredUsers');
 Route::get('/users-by-specialization/{specialization_slug}', 'Api\UserController@getUsersBySpecialization');
 Route::get('/users-by-specialization-and-average-vote/{specialization_slug}/{filter_avg_vote}', 'Api\UserController@getUsersBySpecAndAvgVote');
+Route::get('/users-by-specialization-and-count-reviews/{specialization_slug}/{reviews_min}/{reviews_max}', 'Api\UserController@getUsersBySpecAndCountRev');
 
 Route::get('/users/{user_slug}', 'Api\UserController@show');
 

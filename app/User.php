@@ -15,6 +15,7 @@ class User extends Authenticatable
      *
      * @var array
      */
+
     protected $fillable = [
         'name', 
         'email', 
@@ -27,12 +28,14 @@ class User extends Authenticatable
         'photo'
     ];
 
+    protected $table = 'users';
+
     public function specializations() {
         return $this->belongsToMany('App\Specialization');
     }
 
     public function bundles() {
-        return $this->belongsToMany('App\Bundle', 'user_bundle');
+        return $this->belongsToMany('App\Bundle', 'user_bundle')->using('App\UserBundle')->withPivot(['expired_date']);
     }
 
     public function messages() {

@@ -1,7 +1,6 @@
 @extends('layouts.dashboard')
 
 @section('content')
-<!-- TODO -->
  <!-- Modale conferma eliminazione profilo user -->
  <div class=" modal" tabindex="-1" role="dialog" id="deleteModal">
     <div class="modal-dialog">
@@ -133,7 +132,7 @@
         {{-- Button Submit --}}
         <input type="submit" value="Conferma Modifiche" class="btn btn-primary" id="btn-debug">
 
-        <!-- TODO -->
+        <!-- Delete Button -->
         <button  class="btn btn-danger" type="button" data-target="#deleteModal" data-toggle="modal">Elimina Profilo</button>
     </form>
 @endsection

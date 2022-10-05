@@ -11,6 +11,12 @@
 // Commons
 @import 'commons';
 
-// Partials Admin
+// Partials Admin Users
 @import './partials/users/_show';
 @import './partials/users/_edit';
+
+// Partials Admin Reviews
+@import './partials/reviews/_index';
+
+// Partials Admin Messages
+@import './partials/messages/_index';

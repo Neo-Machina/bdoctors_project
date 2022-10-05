@@ -1969,23 +1969,38 @@ __webpack_require__.r(__webpack_exports__);
           page: pageNumber
         }
       }).then(function (response) {
-        _this.users = response.data.results.data;
-        _this.currentPage = response.data.results.current_page;
-        _this.lastPage = response.data.results.last_page;
+        _this.users = response.data.results; // this.currentPage = response.data.results.current_page;
+        // this.lastPage = response.data.results.last_page;
       });
     },
     getUsersBySpecAndAvgVote: function getUsersBySpecAndAvgVote(pageNumber, filter_avg_vote) {
       var _this2 = this;
 
       console.log(filter_avg_vote);
+      console.log(this.$route.params.specialization_slug);
       axios.get('/api/users-by-specialization-and-average-vote/' + this.$route.params.specialization_slug + '/' + filter_avg_vote, {
         params: {
           page: pageNumber
         }
       }).then(function (response) {
-        _this2.users = response.data.results.data;
-        _this2.currentPage = response.data.results.current_page;
-        _this2.lastPage = response.data.results.last_page;
+        console.log(response);
+        _this2.users = response.data.results; // this.currentPage = response.data.results.current_page;
+        // this.lastPage = response.data.results.last_page;
+      });
+    },
+    getUsersBySpecAndCountRev: function getUsersBySpecAndCountRev(pageNumber, reviews_min, reviews_max) {
+      var _this3 = this;
+
+      console.log(reviews_min, reviews_max);
+      console.log(this.$route.params.specialization_slug);
+      axios.get('/api/users-by-specialization-and-count-reviews/' + this.$route.params.specialization_slug + '/' + reviews_min + '/' + reviews_max, {
+        params: {
+          page: pageNumber
+        }
+      }).then(function (response) {
+        console.log(response);
+        _this3.users = response.data.results; // this.currentPage = response.data.results.current_page;
+        // this.lastPage = response.data.results.last_page;
       });
     },
     truncateText: function truncateText(text) {
@@ -2050,106 +2065,9 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/SingleProfile.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'SingleProfile',
-  data: function data() {
-    return {
-      user: {},
-      authorMessage: '',
-      userEmail: '',
-      contentMessage: '',
-      authorReview: '',
-      contentReview: '',
-      voteReview: 1,
-      success_message: false,
-      success_review: false,
-      errors: {},
-      sending: false
-    };
-  },
-  methods: {
-    getUserProfile: function getUserProfile() {
-      var _this = this;
-
-      axios.get('/api/users/' + this.$route.params.user_slug).then(function (response) {
-        _this.user = response.data.results;
-      });
-    },
-    sendMessage: function sendMessage() {
-      var _this2 = this;
-
-      this.sending = true;
-      axios.post('/api/messages', {
-        author: this.authorMessage,
-        email: this.userEmail,
-        content: this.contentMessage,
-        user_id: this.user.id
-      }).then(function (response) {
-        _this2.scrollTopPage();
-
-        if (response.data.success) {
-          _this2.success_message = true;
-          _this2.authorMessage = '';
-          _this2.userEmail = '';
-          _this2.contentMessage = '';
-          _this2.errors = {};
-        } else {
-          _this2.errors = response.data.errors;
-        }
-
-        _this2.sending = false;
-      });
-    },
-    sendReview: function sendReview() {
-      var _this3 = this;
-
-      this.sending = true;
-      axios.post('/api/reviews', {
-        author: this.authorReview,
-        content: this.contentReview,
-        vote: this.voteReview,
-        user_id: this.user.id
-      }).then(function (response) {
-        _this3.scrollToReview();
-
-        if (response.data.success) {
-          _this3.success_review = true;
-          _this3.authorReview = '';
-          _this3.contentReview = '';
-          _this3.voteReview = 1;
-          _this3.errors = {};
-        } else {
-          _this3.errors = response.data.errors;
-        }
-
-        _this3.sending = false;
-      });
-    },
-    scrollTopPage: function scrollTopPage() {
-      window.scrollTo(0, 0);
-    },
-    scrollToReview: function scrollToReview() {
-      window.scrollTo(0, 628);
-    } // transformVote() {
-    //     return Math.round((this.reviews.vote * 5) / 10);
-    // },
-    // getStarsStyle(starNumber) {
-    //     if(starNumber <= this.transformVote()) {
-    //         return 'fa-solid fa-star';
-    //     } else {
-    //         return 'fa-regular fa-star'
-    //     }
-    // }
-
-  },
-  mounted: function mounted() {
-    this.getUserProfile();
-  }
-});
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\Users\\Dogana\\Boolean Project\\laravel-projects\\bdoctors_project\\resources\\js\\pages\\SingleProfile.vue: Unexpected token (4:0)\n\n\u001b[0m \u001b[90m 2 |\u001b[39m \u001b[36mexport\u001b[39m \u001b[36mdefault\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m 3 |\u001b[39m     name\u001b[33m:\u001b[39m \u001b[32m'SingleProfile'\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 4 |\u001b[39m \u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m   |\u001b[39m \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 5 |\u001b[39m     data()  {\u001b[0m\n\u001b[0m \u001b[90m 6 |\u001b[39m         \u001b[36mreturn\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m 7 |\u001b[39m             user\u001b[33m:\u001b[39m {}\u001b[33m,\u001b[39m\u001b[0m\n    at instantiate (C:\\Users\\Dogana\\Boolean Project\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:72:32)\n    at constructor (C:\\Users\\Dogana\\Boolean Project\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:367:12)\n    at Parser.raise (C:\\Users\\Dogana\\Boolean Project\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:3684:19)\n    at Parser.unexpected (C:\\Users\\Dogana\\Boolean Project\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:3722:16)\n    at Parser.parsePropertyName (C:\\Users\\Dogana\\Boolean Project\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:14054:24)\n    at Parser.parsePropertyDefinition (C:\\Users\\Dogana\\Boolean Project\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:13886:22)\n    at Parser.parseObjectLike (C:\\Users\\Dogana\\Boolean Project\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:13806:21)\n    at Parser.parseExprAtom (C:\\Users\\Dogana\\Boolean Project\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:13198:23)\n    at Parser.parseExprSubscripts (C:\\Users\\Dogana\\Boolean Project\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:12848:23)\n    at Parser.parseUpdate (C:\\Users\\Dogana\\Boolean Project\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:12827:21)\n    at Parser.parseMaybeUnary (C:\\Users\\Dogana\\Boolean Project\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:12797:23)\n    at Parser.parseMaybeUnaryOrPrivate (C:\\Users\\Dogana\\Boolean Project\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:12588:61)\n    at Parser.parseExprOps (C:\\Users\\Dogana\\Boolean Project\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:12595:23)\n    at Parser.parseMaybeConditional (C:\\Users\\Dogana\\Boolean Project\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:12565:23)\n    at Parser.parseMaybeAssign (C:\\Users\\Dogana\\Boolean Project\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:12517:21)\n    at C:\\Users\\Dogana\\Boolean Project\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:12475:39\n    at Parser.allowInAnd (C:\\Users\\Dogana\\Boolean Project\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:14543:16)\n    at Parser.parseMaybeAssignAllowIn (C:\\Users\\Dogana\\Boolean Project\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:12475:17)\n    at Parser.parseExportDefaultExpression (C:\\Users\\Dogana\\Boolean Project\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:16230:22)\n    at Parser.parseExport (C:\\Users\\Dogana\\Boolean Project\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:16118:31)\n    at Parser.parseStatementContent (C:\\Users\\Dogana\\Boolean Project\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:14956:27)\n    at Parser.parseStatement (C:\\Users\\Dogana\\Boolean Project\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:14840:17)\n    at Parser.parseBlockOrModuleBlockBody (C:\\Users\\Dogana\\Boolean Project\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:15499:25)\n    at Parser.parseBlockBody (C:\\Users\\Dogana\\Boolean Project\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:15490:10)\n    at Parser.parseProgram (C:\\Users\\Dogana\\Boolean Project\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:14758:10)\n    at Parser.parseTopLevel (C:\\Users\\Dogana\\Boolean Project\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:14745:25)\n    at Parser.parse (C:\\Users\\Dogana\\Boolean Project\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:16768:10)\n    at parse (C:\\Users\\Dogana\\Boolean Project\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\parser\\lib\\index.js:16820:38)\n    at parser (C:\\Users\\Dogana\\Boolean Project\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\core\\lib\\parser\\index.js:52:34)\n    at parser.next (<anonymous>)\n    at normalizeFile (C:\\Users\\Dogana\\Boolean Project\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\core\\lib\\transformation\\normalize-file.js:87:38)\n    at normalizeFile.next (<anonymous>)\n    at run (C:\\Users\\Dogana\\Boolean Project\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\core\\lib\\transformation\\index.js:31:50)\n    at run.next (<anonymous>)\n    at transform (C:\\Users\\Dogana\\Boolean Project\\laravel-projects\\bdoctors_project\\node_modules\\@babel\\core\\lib\\transform.js:29:41)\n    at transform.next (<anonymous>)\n    at step (C:\\Users\\Dogana\\Boolean Project\\laravel-projects\\bdoctors_project\\node_modules\\gensync\\index.js:261:32)\n    at C:\\Users\\Dogana\\Boolean Project\\laravel-projects\\bdoctors_project\\node_modules\\gensync\\index.js:273:13\n    at async.call.result.err.err (C:\\Users\\Dogana\\Boolean Project\\laravel-projects\\bdoctors_project\\node_modules\\gensync\\index.js:223:11)");
 
 /***/ }),
 
@@ -2390,7 +2308,7 @@ var render = function render() {
 
   return _c("div", {
     staticClass: "container"
-  }, [_c("div", {
+  }, [_vm._v("\n\n<<<<<<< HEAD\n        "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-2"
@@ -2409,7 +2327,7 @@ var render = function render() {
           return _vm.getUsersBySpecAndAvgVote(1, index);
         }
       }
-    }, [_vm._v("\n                        Media Voto: " + _vm._s(index) + "\n                    ")]), _vm._v(" "), _vm._m(1, true)]);
+    }, [_vm._v("\n                            Media Voto: " + _vm._s(index) + "\n                        ")]), _vm._v(" "), _vm._m(1, true)]);
   })], 2)]), _vm._v(" "), _c("div", {
     staticClass: "col-10"
   }, [_c("div", {
@@ -2446,8 +2364,66 @@ var render = function render() {
           }
         }
       }
-    }, [_vm._v("\n                                Scopri di più\n                            ")])], 1)])]);
-  }), 0)])])]);
+    }, [_vm._v("\n                                    Scopri di più\n                                ")])], 1)])]);
+  }), 0)])]), _vm._v("\n       \n=======\n        "), _vm._v(" "), _vm._l(_vm.users, function (user, index) {
+    return _c("div", {
+      key: "A" + index
+    }, [_c("router-link", {
+      staticClass: "btn btn-primary m-2",
+      attrs: {
+        to: {
+          name: "single-profile",
+          params: {
+            user_slug: user.slug
+          }
+        }
+      }
+    }, [_c("div", [_vm._v("Nome: " + _vm._s(user.name))]), _vm._v(" "), _c("div", [_vm._v("Fine Sponsorizzazione: " + _vm._s(user.expired_date))]), _vm._v(" "), _c("div", [_vm._v("Specializzazione: " + _vm._s(user.specialization_slug))]), _vm._v(" "), _c("div", [_vm._v("Media Voto recensioni: " + _vm._s(user.reviews_avg_vote))]), _vm._v(" "), _c("div", [_vm._v("Numero Recensioni: " + _vm._s(user.reviews_count))]), _vm._v(" "), _c("hr")])], 1);
+  }), _vm._v(" "), _vm._l(5, function (number, index) {
+    return _c("div", {
+      key: "B" + index
+    }, [_c("div", {
+      staticStyle: {
+        cursor: "pointer"
+      },
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          return _vm.getUsersBySpecAndAvgVote(1, number);
+        }
+      }
+    }, [_vm._v("\n                Media Voto: " + _vm._s(number) + "\n            ")])]);
+  }), _vm._v(" "), _c("h5", [_vm._v("Filtro Numero Recensioni")]), _vm._v(" "), _c("div", {
+    staticStyle: {
+      cursor: "pointer"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.getUsersBySpecAndCountRev(1, 0, 5);
+      }
+    }
+  }, [_vm._v("\n            Fino a 5 RECENSIONI\n        ")]), _vm._v(" "), _c("div", {
+    staticStyle: {
+      cursor: "pointer"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.getUsersBySpecAndCountRev(1, 5, 10);
+      }
+    }
+  }, [_vm._v("\n            5 a 10 RECENSIONI\n        ")]), _vm._v(" "), _c("div", {
+    staticStyle: {
+      cursor: "pointer"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.getUsersBySpecAndCountRev(1, 10, 1000);
+      }
+    }
+  }, [_vm._v("\n            10 RECENSIONI e più\n        ")]), _vm._v("\n\n>>>>>>> queries-advanced-search\n    ")], 2);
 };
 
 var staticRenderFns = [function () {
@@ -2467,7 +2443,7 @@ var staticRenderFns = [function () {
     staticClass: "average_vote"
   }, [_c("span", {
     staticClass: "bold_text"
-  }, [_vm._v("Vote")]), _vm._v(": \n                       ")]);
+  }, [_vm._v("Vote")]), _vm._v(": \n                           ")]);
 }];
 render._withStripped = true;
 
@@ -2642,297 +2618,9 @@ render._withStripped = true;
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function render() {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "container"
-  }, [_c("h1", [_vm._v("Single Profile")]), _vm._v(" "), _c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col"
-  }, [_c("div", {
-    staticClass: "d-flex"
-  }, [_c("div", {
-    staticClass: "card mb-5",
-    staticStyle: {
-      width: "30rem"
-    }
-  }, [_c("img", {
-    staticClass: "card-img-top",
-    attrs: {
-      src: _vm.user.photo,
-      alt: "..."
-    }
-  }), _vm._v(" "), _c("div", {
-    staticClass: "card-body"
-  }, [_c("h5", {
-    staticClass: "card-title"
-  }, [_vm._v(_vm._s(_vm.user.name))]), _vm._v(" "), _vm.user.specializations.length > 0 ? _c("div", [_c("strong", [_vm._v("Specializzazione in")]), _vm._v(" "), _vm._l(_vm.user.specializations, function (specialization) {
-    return _c("span", {
-      key: specialization.id,
-      staticClass: "badge bg-info text-light mr-1 mb-3"
-    }, [_vm._v(_vm._s(specialization.name))]);
-  })], 2) : _vm._e(), _vm._v(" "), _c("div", {
-    staticClass: "mb-3"
-  }, [_c("strong", [_vm._v("Contatta il medico al seguente indirizzo:")]), _vm._v(" " + _vm._s(_vm.user.email))]), _vm._v(" "), _c("p", [_c("strong", {
-    staticClass: "d-block"
-  }, [_vm._v("Curriculum Vitae")]), _vm._v(_vm._s(_vm.user.curriculum))])])])])]), _vm._v(" "), _c("div", {
-    staticClass: "col"
-  }, [_c("div", {
-    staticClass: "my-4"
-  }, [_vm.success_message ? _c("div", {
-    staticClass: "alert alert-success",
-    attrs: {
-      role: "alert"
-    }
-  }, [_vm._v("\n                    Grazie per averci contattato!\n                ")]) : _vm._e(), _vm._v(" "), _c("form", {
-    on: {
-      submit: function submit($event) {
-        $event.preventDefault();
-        return _vm.sendMessage();
-      }
-    }
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label",
-    attrs: {
-      "for": "author-message"
-    }
-  }, [_vm._v("Nome e cognome *")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.authorMessage,
-      expression: "authorMessage"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      id: "author-message"
-    },
-    domProps: {
-      value: _vm.authorMessage
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.authorMessage = $event.target.value;
-      }
-    }
-  }), _vm._v(" "), _vm.errors.author ? _c("div", _vm._l(_vm.errors.name, function (error, index) {
-    return _c("div", {
-      key: index,
-      staticClass: "alert alert-danger",
-      attrs: {
-        role: "alert"
-      }
-    }, [_vm._v("\n                                " + _vm._s(error) + "\n                            ")]);
-  }), 0) : _vm._e()]), _vm._v(" "), _c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label",
-    attrs: {
-      "for": "user-mail"
-    }
-  }, [_vm._v("Email *")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.userEmail,
-      expression: "userEmail"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "email",
-      id: "user-mail"
-    },
-    domProps: {
-      value: _vm.userEmail
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.userEmail = $event.target.value;
-      }
-    }
-  }), _vm._v(" "), _vm.errors.email ? _c("div", _vm._l(_vm.errors.email, function (error, index) {
-    return _c("div", {
-      key: index,
-      staticClass: "alert alert-danger",
-      attrs: {
-        role: "alert"
-      }
-    }, [_vm._v("\n                                " + _vm._s(error) + "\n                            ")]);
-  }), 0) : _vm._e()]), _vm._v(" "), _c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label",
-    attrs: {
-      "for": "content-message"
-    }
-  }, [_vm._v("Messaggio *")]), _vm._v(" "), _c("textarea", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.contentMessage,
-      expression: "contentMessage"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      id: "content-message",
-      rows: "8"
-    },
-    domProps: {
-      value: _vm.contentMessage
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.contentMessage = $event.target.value;
-      }
-    }
-  }), _vm._v(" "), _vm.errors.content ? _c("div", _vm._l(_vm.errors.message, function (error, index) {
-    return _c("div", {
-      key: index,
-      staticClass: "alert alert-danger",
-      attrs: {
-        role: "alert"
-      }
-    }, [_vm._v("\n                                " + _vm._s(error) + "\n                            ")]);
-  }), 0) : _vm._e()]), _vm._v(" "), _c("input", {
-    staticClass: "btn btn-primary",
-    attrs: {
-      type: "submit",
-      value: "Invia Messaggio",
-      disabled: _vm.sending
-    }
-  })])]), _vm._v(" "), _c("div", [_vm.success_review ? _c("div", {
-    staticClass: "alert alert-success",
-    attrs: {
-      role: "alert"
-    }
-  }, [_vm._v("\n                    Grazie per averci recensito e dato un voto!\n                ")]) : _vm._e(), _vm._v(" "), _c("form", {
-    on: {
-      submit: function submit($event) {
-        $event.preventDefault();
-        return _vm.sendReview();
-      }
-    }
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label",
-    attrs: {
-      "for": "author-review"
-    }
-  }, [_vm._v("Nome e cognome *")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.authorReview,
-      expression: "authorReview"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      id: "author-review"
-    },
-    domProps: {
-      value: _vm.authorReview
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.authorReview = $event.target.value;
-      }
-    }
-  }), _vm._v(" "), _vm.errors.author ? _c("div", _vm._l(_vm.errors.name, function (error, index) {
-    return _c("div", {
-      key: index,
-      staticClass: "alert alert-danger",
-      attrs: {
-        role: "alert"
-      }
-    }, [_vm._v("\n                                " + _vm._s(error) + "\n                            ")]);
-  }), 0) : _vm._e()]), _vm._v(" "), _c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label",
-    attrs: {
-      "for": "content-review"
-    }
-  }, [_vm._v("Recensione *")]), _vm._v(" "), _c("textarea", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.contentReview,
-      expression: "contentReview"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      id: "content-review",
-      rows: "8"
-    },
-    domProps: {
-      value: _vm.contentReview
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.contentReview = $event.target.value;
-      }
-    }
-  }), _vm._v(" "), _vm.errors.review ? _c("div", _vm._l(_vm.errors.message, function (error, index) {
-    return _c("div", {
-      key: index,
-      staticClass: "alert alert-danger",
-      attrs: {
-        role: "alert"
-      }
-    }, [_vm._v("\n                                " + _vm._s(error) + "\n                            ")]);
-  }), 0) : _vm._e()]), _vm._v(" "), _c("div", {
-    staticClass: "mb-3"
-  }, [_c("div", {
-    staticClass: "average_vote"
-  }, [_c("span", {
-    staticClass: "bold_text"
-  }, [_vm._v("Vote")]), _vm._v(": \n                            "), _vm._l(5, function (star, index) {
-    return _c("span", {
-      key: index,
-      staticClass: "star_icon",
-      "class": {
-        active: star <= _vm.voteReview
-      },
-      on: {
-        click: function click($event) {
-          $event.preventDefault();
-          _vm.voteReview = star;
-        }
-      }
-    }, [_vm._v("\n                                ★\n                            ")]);
-  })], 2), _vm._v(" "), _c("div", [_vm._v("\n                            " + _vm._s(_vm.voteReview) + "\n                        ")]), _vm._v(" "), _vm.errors.vote ? _c("div", _vm._l(_vm.errors.name, function (error, index) {
-    return _c("div", {
-      key: index,
-      staticClass: "alert alert-danger",
-      attrs: {
-        role: "alert"
-      }
-    }, [_vm._v("\n                                " + _vm._s(error) + "\n                            ")]);
-  }), 0) : _vm._e()]), _vm._v(" "), _c("input", {
-    staticClass: "btn btn-primary",
-    attrs: {
-      type: "submit",
-      value: "Invia Recensione",
-      disabled: _vm.sending
-    }
-  })])])])])]);
-};
+var render = function render() {};
 
 var staticRenderFns = [];
-render._withStripped = true;
 
 
 /***/ }),
@@ -55060,8 +54748,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Medico\VSBoolean\laravel-projects\bdoctors_project\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Medico\VSBoolean\laravel-projects\bdoctors_project\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Dogana\Boolean Project\laravel-projects\bdoctors_project\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Dogana\Boolean Project\laravel-projects\bdoctors_project\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

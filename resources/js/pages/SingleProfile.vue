@@ -116,6 +116,19 @@
                     </form>
                 </div>
             </div>
+        <ul>
+            <li>Nome: {{ user.name }}</li>
+            <li>Email: {{ user.email }}</li>
+            <li>Indirizzo: {{ user.address }}</li>
+            <li>Numero di recensioni: {{ user.count_reviews }}</li>
+            <li>Media voto: {{ user.avg_reviews }}</li>
+        </ul>
+
+        <div v-for="(review, index) in user.reviews" :key="index">
+            <div>Autore: {{ review.author }}</div>
+            <div>Voto: {{ review.vote }}</div>
+            <div>Recensione: {{ review.content }}</div>
+            <hr>
         </div>
     </div>
 </template>
@@ -139,11 +152,11 @@ export default {
         };
     },
     methods: {
-        getUserProfile() {
+        getSingleProfile() {
             axios.get('/api/users/' + this.$route.params.user_slug)
             .then((response) => {
                 this.user = response.data.results;
-            })
+            });
         },
         sendMessage() {
             this.sending = true;
@@ -213,7 +226,7 @@ export default {
         // }
     },
     mounted() {
-        this.getUserProfile();
+        this.getSingleProfile();
     }
 }
 </script>
