@@ -121,20 +121,9 @@ export default {
                 this.specializations = response.data.results.specializations;
             });
         },
-        carousel() {
-            $(document).ready(function(){
- 			var carousel_interval = 5000;
-            $('.carousel').carousel();
-            
-            setInterval(function(){
-                $('.carousel').carousel('next');
-            }, carousel_interval);
-            })
-        }
     },
     mounted() {
         this.getSponsoredUsers();
-        this.carousel();
     }
 }
 </script>
@@ -147,12 +136,11 @@ export default {
 .carousel {
     overflow-x: scroll;
     position: relative;
-
     &::-webkit-scrollbar {
         display: none;
     }
-    
     .card {
+        
         margin-inline: 1rem;
     }
 }
