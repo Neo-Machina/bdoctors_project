@@ -26,7 +26,7 @@ class UserController extends Controller
                        ->join('specialization_user', 'users.id', '=', 'specialization_user.user_id')
                        ->join('specializations', 'specializations.id', '=', 'specialization_id')
                        ->join('user_bundle', 'users.id', '=', 'user_bundle.user_id')
-                       ->join('bundles', 'bundles.id', '=', 'bundle_id')->where('user_bundle.expired_date', '>=', $today ) 
+                       ->join('bundles', 'bundles.id', '=', 'bundle_id')->where('user_bundle.expired_date', '>=', $today )->groupBy('users.id')
                        ->orderByRaw('RAND()')->get();
         
         $specializations = Specialization::all();
