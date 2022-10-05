@@ -2,98 +2,120 @@
     <div class="container">
         <h1>Single Profile</h1>
 
-        <!-- FORM MESSAGGIO -->
-        <div class="my-4">
-            <div v-if='success_message' class="alert alert-success" role="alert">
-                Grazie per averci contattato!
+        <div class="row">
+            <div class="col">
+                <div class="d-flex">
+                    <div class="card mb-5" style="width: 30rem;">
+                        <img :src="user.photo" class="card-img-top" alt="..."> 
+                        <div class="card-body">
+                            <h5 class="card-title">{{user.name}}</h5>
+                            <div v-if="user.specializations.length > 0">
+                                <strong>Specializzazione in</strong>
+                                <span v-for="specialization in user.specializations" :key="specialization.id" class="badge bg-info text-light mr-1 mb-3">{{specialization.name}}</span>
+                            </div>
+                            <div class="mb-3"><strong>Contatta il medico al seguente indirizzo:</strong> {{user.email}}</div>
+                            <p><strong class="d-block">Curriculum Vitae</strong>{{user.curriculum}}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <form @submit.prevent="sendMessage()">
-                <div class="mb-3">
-                    <label for="author-message" class="form-label">Nome e cognome *</label>
-                    <input v-model="authorMessage" type="text" class="form-control" id="author-message">
-
-                    <div v-if="errors.author">
-                        <div v-for="(error, index) in errors.name" :key="index" class="alert alert-danger" role="alert">
-                            {{ error }}
-                        </div>  
+            <!-- message and reviews -->
+            <div class="col">
+                <!-- FORM MESSAGGIO -->
+                <div class="my-4">
+                    <div v-if='success_message' class="alert alert-success" role="alert">
+                        Grazie per averci contattato!
                     </div>
-                </div>
-                <div class="mb-3">
-                    <label for="user-mail" class="form-label">Email *</label>
-                    <input v-model="userEmail" type="email" class="form-control" id="user-mail">
 
-                    <div v-if="errors.email">
-                        <div v-for="(error, index) in errors.email" :key="index" class="alert alert-danger" role="alert">
-                            {{ error }}
-                        </div>  
+                    <form @submit.prevent="sendMessage()">
+                        <div class="mb-3">
+                            <label for="author-message" class="form-label">Nome e cognome *</label>
+                            <input v-model="authorMessage" type="text" class="form-control" id="author-message">
+
+                            <div v-if="errors.author">
+                                <div v-for="(error, index) in errors.name" :key="index" class="alert alert-danger" role="alert">
+                                    {{ error }}
+                                </div>  
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="user-mail" class="form-label">Email *</label>
+                            <input v-model="userEmail" type="email" class="form-control" id="user-mail">
+
+                            <div v-if="errors.email">
+                                <div v-for="(error, index) in errors.email" :key="index" class="alert alert-danger" role="alert">
+                                    {{ error }}
+                                </div>  
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="content-message" class="form-label">Messaggio *</label>
+                            <textarea v-model="contentMessage" class="form-control" id="content-message" rows="8"></textarea>
+
+                            <div v-if="errors.content">
+                                <div v-for="(error, index) in errors.message" :key="index" class="alert alert-danger" role="alert">
+                                    {{ error }}
+                                </div>  
+                            </div>
+                        </div>
+                        
+                        <input type="submit" value="Invia Messaggio" class="btn btn-primary" :disabled="sending">
+                    </form>
+                </div>
+
+                <!-- FORM RECENSIONE -->
+                <div>
+                    <div v-if='success_review' class="alert alert-success" role="alert">
+                        Grazie per averci recensito e dato un voto!
                     </div>
-                </div>
-                <div class="mb-3">
-                    <label for="content-message" class="form-label">Messaggio *</label>
-                    <textarea v-model="contentMessage" class="form-control" id="content-message" rows="8"></textarea>
 
-                    <div v-if="errors.content">
-                        <div v-for="(error, index) in errors.message" :key="index" class="alert alert-danger" role="alert">
-                            {{ error }}
-                        </div>  
-                    </div>
-                </div>
-                
-                <input type="submit" value="Invia Messaggio" class="btn btn-primary" :disabled="sending">
-            </form>
-        </div>
+                    <form @submit.prevent="sendReview()">
+                        <div class="mb-3">
+                            <label for="author-review" class="form-label">Nome e cognome *</label>
+                            <input v-model="authorReview" type="text" class="form-control" id="author-review">
 
-        <!-- FORM RECENSIONE -->
-        <div>
-            <div v-if='success_review' class="alert alert-success" role="alert">
-                Grazie per averci recensito e dato un voto!
+                            <div v-if="errors.author">
+                                <div v-for="(error, index) in errors.name" :key="index" class="alert alert-danger" role="alert">
+                                    {{ error }}
+                                </div>  
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="content-review" class="form-label">Recensione *</label>
+                            <textarea v-model="contentReview" class="form-control" id="content-review" rows="8"></textarea>
+
+                            <div v-if="errors.review">
+                                <div v-for="(error, index) in errors.message" :key="index" class="alert alert-danger" role="alert">
+                                    {{ error }}
+                                </div>  
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <!-- <label for="user-vote" class="form-label">Punteggio generale *</label>
+                            <input v-model="userVote" type="text" class="form-control" id="user-vote"> -->
+                            <div class="average_vote"> 
+                                <span class="bold_text">Vote</span>: 
+                                <span class="star_icon " :class="{ 'active': star <= voteReview }" v-for="(star,index) in 5" :key="index" @click.prevent="voteReview = star">
+                                <!-- <span v-for="(star,index) in 5" :key="index"> -->
+                                    &#9733;
+                                </span>
+                            </div>
+
+                            <div>
+                                {{ voteReview }}
+                            </div>
+
+                            <div v-if="errors.vote">
+                                <div v-for="(error, index) in errors.name" :key="index" class="alert alert-danger" role="alert">
+                                    {{ error }}
+                                </div>  
+                            </div>
+                        </div>
+                        <input type="submit" value="Invia Recensione" class="btn btn-primary" :disabled="sending">
+                    </form>
+                </div>
             </div>
-
-            <form @submit.prevent="sendReview()">
-                <div class="mb-3">
-                    <label for="author-review" class="form-label">Nome e cognome *</label>
-                    <input v-model="authorReview" type="text" class="form-control" id="author-review">
-
-                    <div v-if="errors.author">
-                        <div v-for="(error, index) in errors.name" :key="index" class="alert alert-danger" role="alert">
-                            {{ error }}
-                        </div>  
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="content-review" class="form-label">Recensione *</label>
-                    <textarea v-model="contentReview" class="form-control" id="content-review" rows="8"></textarea>
-
-                    <div v-if="errors.review">
-                        <div v-for="(error, index) in errors.message" :key="index" class="alert alert-danger" role="alert">
-                            {{ error }}
-                        </div>  
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <!-- <label for="user-vote" class="form-label">Punteggio generale *</label>
-                    <input v-model="userVote" type="text" class="form-control" id="user-vote"> -->
-                    <div class="average_vote"> 
-                        <span class="bold_text">Vote</span>: 
-                        <span class="star_icon " :class="{ 'active': star <= voteReview }" v-for="(star,index) in 5" :key="index" @click.prevent="voteReview = star">
-                        <!-- <span v-for="(star,index) in 5" :key="index"> -->
-                            &#9733;
-                        </span>
-                    </div>
-
-                    <div>
-                        {{ voteReview }}
-                    </div>
-
-                    <div v-if="errors.vote">
-                        <div v-for="(error, index) in errors.name" :key="index" class="alert alert-danger" role="alert">
-                            {{ error }}
-                        </div>  
-                    </div>
-                </div>
-                <input type="submit" value="Invia Recensione" class="btn btn-primary" :disabled="sending">
-            </form>
         </div>
     </div>
 </template>
