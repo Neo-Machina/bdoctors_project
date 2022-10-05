@@ -5,15 +5,16 @@
         <div class="row">
             <div class="col">
                 <div class="d-flex">
-                    <div class="card mb-5" style="width: 18rem;">
+                    <div class="card mb-5" style="width: 30rem;">
                         <img :src="user.photo" class="card-img-top" alt="..."> 
                         <div class="card-body">
                             <h5 class="card-title">{{user.name}}</h5>
                             <div v-if="user.specializations.length > 0">
-                                <span v-for="specialization in user.specializations" :key="specialization.id" class="badge bg-info text-dark mr-1">{{specialization.name}}</span>
+                                <strong>Specializzazione in</strong>
+                                <span v-for="specialization in user.specializations" :key="specialization.id" class="badge bg-info text-light mr-1 mb-3">{{specialization.name}}</span>
                             </div>
-                            <div class="mb-1">{{user.email}}</div>
-                            <p>{{user.curriculum}}</p>
+                            <div class="mb-3"><strong>Contatta il medico al seguente indirizzo:</strong> {{user.email}}</div>
+                            <p><strong class="d-block">Curriculum Vitae</strong>{{user.curriculum}}</p>
                         </div>
                     </div>
                 </div>
