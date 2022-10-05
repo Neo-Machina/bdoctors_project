@@ -9,7 +9,9 @@
                         <img :src="user.photo" class="card-img-top" alt="..."> 
                         <div class="card-body">
                             <h5 class="card-title">{{user.name}}</h5>
-                            <h6 class="card-text">{{user.specialization}}</h6>
+                            <div v-if="user.specializations.length > 0">
+                                <span v-for="specialization in user.specializations" :key="specialization.id" class="badge bg-info text-dark mr-1">{{specialization.name}}</span>
+                            </div>
                             <div class="mb-1">{{user.email}}</div>
                             <p>{{user.curriculum}}</p>
                         </div>
@@ -122,7 +124,7 @@ export default {
     name: 'SingleProfile',
     data()  {
         return {
-            user: [],
+            user: {},
             authorMessage: '',
             userEmail: '',
             contentMessage: '',
@@ -140,7 +142,6 @@ export default {
             axios.get('/api/users/' + this.$route.params.user_slug)
             .then((response) => {
                 this.user = response.data.results;
-                console.log(response.data.results.name)
             })
         },
         sendMessage() {
