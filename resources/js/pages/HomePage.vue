@@ -51,7 +51,7 @@
                                 <router-link class="btn btn-primary" 
                                     :to="{
                                         name: 'single-profile', 
-                                        params: {slug: user.user_slug}
+                                        params: {user_slug: user.user_slug}
                                     }">
                                     Scopri di più
                                 </router-link>
