@@ -88,7 +88,7 @@ class UserController extends Controller
         // METODO CORRETTO
         $users = User::select('users.*', 'user_bundle.expired_date', 'specializations.slug as specialization_slug')
                     ->join('user_bundle', 'users.id', '=', 'user_bundle.user_id')
-                    ->join('bundles', 'bundles.id', '=', 'user_bundle.bundle_id')//->orderBy('user_bundle.expired_date', 'desc')->groupBy('users.id')
+                    ->join('bundles', 'bundles.id', '=', 'user_bundle.bundle_id')->orderBy('user_bundle.expired_date', 'desc')->groupBy('users.id')
                     ->join('specialization_user', 'users.id', '=', 'specialization_user.user_id')
                     ->join('specializations', 'specializations.id', '=', 'specialization_user.specialization_id')->having('specializations.slug', '=', $specialization_slug)
                     ->get();
@@ -98,7 +98,7 @@ class UserController extends Controller
             $reviews = DB::table('reviews')
                         ->select('reviews.*', DB::raw('count(reviews.user_id) as reviews_count'), DB::raw('avg(reviews.vote) as reviews_avg_vote'))->where('reviews.user_id', '=', $user->id)->get();
             // ->select(array('issues.*', DB::raw('COUNT(issue_subscriptions.issue_id) as followers')))
-            $bundles = UserBundle::select('user_bundle.*')->where('user_bundle.user_id', '=', $user->id)->orderBy('user_bundle.expired_date', 'desc')->get();
+            $bundles = UserBundle::select('user_bundle.*')->where('user_bundle.user_id', '=', $user->id)->get();
             // $user['reviews_count'] = $reviews['reviews_count'];
             $user['reviews_count'] = $reviews[0]->reviews_count;
             $user['reviews_avg_vote'] = $reviews[0]->reviews_avg_vote;
