@@ -21,12 +21,12 @@
 
             <!-- ricerca avanzata per specializzazioni -->
             <section class="bg-info my-5">
-                <h5 class="text-center py-3 text-light">Ricerca qui medici per specializzazione</h5>
+                <h5 class="text-center py-3 text-light specialization-doctor">Ricerca qui medici per specializzazione</h5>
 
                 <!-- lista specializzazioni -->
                 <ul class="list-unstyled d-flex justify-content-center pb-3">
-                    <li class="mr-5" v-for="(specialization, index) in specializations" :key="'B' + index">
-                        <router-link class="text-light" 
+                    <li class="mr-5" v-for="(specialization, index) in specializations" :key="index">
+                        <router-link class="text-light specialization-name" 
                             :to="{name:'advanced-search', params:{specialization_slug: specialization.slug} }">
                                 {{specialization.name}}
                         </router-link>
@@ -35,27 +35,30 @@
             </section>
 
             <!-- utenti Sponsorizzati -->
-            <div class="carousel d-flex">
-                <div v-for="(user, index) in users" :key="'A' + index">
-                    <div class="card" style="width: 12rem;">
-                        <img :src="user.user_photo" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">{{user.user_name}}</h5>
-                            <p class="card-text">{{user.specialization_name}}</p>
-                            <div class="card-text mb-3">{{user.user_email}}</div>
-                            <div>{{user.bundle_name}}</div>
-                            <div>{{user.expired_date}}</div>
+            <div class="container-lg">
+                <h2 class="text-center mb-2 text-primary">Medici in evidenza</h2>
+                <div class="carousel d-flex">
+                    <div v-for="(user, index) in users" :key="index">    
+                        <div class="card" style="width: 12rem;">
+                            <img :src="user.user_photo" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{user.user_name}}</h5>
+                                <p class="card-text">{{user.specialization_name}}</p>
+                                <div class="card-text mb-3">{{user.user_email}}</div>
+                                <div>{{user.bundle_name}}</div>
+                                <div>{{user.expired_date}}</div>
 
-                            <router-link class="btn btn-primary" 
-                            :to="{
-                                name: 'single-post', 
-                                params: {slug: user.slug}
-                            }">
-                                Scopri di più
-                            </router-link>
+                                <router-link class="btn btn-primary" 
+                                    :to="{
+                                        name: 'single-profile', 
+                                        params: {slug: user.user_slug}
+                                    }">
+                                    Scopri di più
+                                </router-link>
+                            </div>
                         </div>
-                    </div>
-                </div>  
+                    </div>  
+                </div>
             </div>
 
             <!-- about us -->
@@ -95,52 +98,49 @@
 
 <script>
 import Footer from '../components/Footer.vue';
-import { Carousel, Slide } from 'vue-carousel';
 
 export default {
     name: 'HomePage',
     components: {
         Footer,
-        Carousel,
-        Slide
     },
     data() {
         return {
             pageTitle: 'Risultato ricerca',
             users: [],
             specializations: [],
-            varTest: 'Hello',
-            currentPage: null,
-            lastPage: null,
         }
     },
     methods: {
         getSponsoredUsers() {
             axios.get('/api/sponsored-users', {
-                // params: {
-                //     page: pageNumber
-                // }
+                
             })
             .then((response) => {
                 this.users = response.data.results.users;
                 this.specializations = response.data.results.specializations;
-                // this.currentPage = response.data.results.current_page;
-                // this.lastPage = response.data.results.last_page;
             });
-        }
+        },
     },
     mounted() {
         this.getSponsoredUsers();
-        console.log(this.users);
     }
 }
 </script>
 
 <style lang="scss" scoped>
+.specialization-name {
+    font-size: 1rem;
+}
+
 .carousel {
-    overflow-y: auto;
-    
+    overflow-x: scroll;
+    position: relative;
+    &::-webkit-scrollbar {
+        display: none;
+    }
     .card {
+        
         margin-inline: 1rem;
     }
 }
