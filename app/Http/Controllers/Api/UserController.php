@@ -126,20 +126,20 @@ class UserController extends Controller
         return response()->json($data);
     }
 
-    public function show($slug) {
-        $user = User::where('slug', '=', $slug)->with(['specializations'])->first();
+    public function show($user_slug) {
+        $user = User::where('slug', '=', $user_slug)->with('reviews', 'messages', 'specializations', 'bundles')->first();
 
-        if ($user) {
+        if (isset($user)) {
             $data = [
                 'success' => true,
                 'results' => $user
             ];
-       } else {
+        } else {
             $data = [
                 'success' => false
             ];
-       }
-
+        }
+        
         return response()->json($data);
     }
 }
