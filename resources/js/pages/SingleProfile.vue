@@ -6,12 +6,12 @@
             <div class="col">
                 <div class="d-flex">
                     <div class="card mb-5" style="width: 18rem;">
-                        <!-- <img :src="user.user_photo" class="card-img-top" alt="..."> -->
+                        <img :src="user.photo" class="card-img-top" alt="..."> 
                         <div class="card-body">
-                            <h5 class="card-title">{{user.user_name}}</h5>
-                            <h6 class="card-text">{{user.specialization_name}}</h6>
-                            <div class="mb-1">{{user.user_email}}</div>
-                            <p>{{user.user_curriculum}}</p>
+                            <h5 class="card-title">{{user.name}}</h5>
+                            <h6 class="card-text">{{user.specialization}}</h6>
+                            <div class="mb-1">{{user.email}}</div>
+                            <p>{{user.curriculum}}</p>
                         </div>
                     </div>
                 </div>
@@ -140,7 +140,7 @@ export default {
             axios.get('/api/users/' + this.$route.params.user_slug)
             .then((response) => {
                 this.user = response.data.results;
-                console.log(response.data.results)
+                console.log(response.data.results.name)
             })
         },
         sendMessage() {
