@@ -3,6 +3,7 @@
         <h1>Single Profile</h1>
 
         <div class="row">
+
             <div class="col">
                 <div class="d-flex">
                     <div class="card mb-5" style="width: 30rem;">
@@ -39,6 +40,7 @@
                                 </div>  
                             </div>
                         </div>
+
                         <div class="mb-3">
                             <label for="user-mail" class="form-label">Email *</label>
                             <input v-model="userEmail" type="email" class="form-control" id="user-mail">
@@ -49,6 +51,7 @@
                                 </div>  
                             </div>
                         </div>
+                        
                         <div class="mb-3">
                             <label for="content-message" class="form-label">Messaggio *</label>
                             <textarea v-model="contentMessage" class="form-control" id="content-message" rows="8"></textarea>
@@ -81,6 +84,7 @@
                                 </div>  
                             </div>
                         </div>
+
                         <div class="mb-3">
                             <label for="content-review" class="form-label">Recensione *</label>
                             <textarea v-model="contentReview" class="form-control" id="content-review" rows="8"></textarea>
@@ -91,6 +95,7 @@
                                 </div>  
                             </div>
                         </div>
+
                         <div class="mb-3">
                             <!-- <label for="user-vote" class="form-label">Punteggio generale *</label>
                             <input v-model="userVote" type="text" class="form-control" id="user-vote"> -->
@@ -116,19 +121,20 @@
                     </form>
                 </div>
             </div>
-        <ul>
-            <li>Nome: {{ user.name }}</li>
-            <li>Email: {{ user.email }}</li>
-            <li>Indirizzo: {{ user.address }}</li>
-            <li>Numero di recensioni: {{ user.count_reviews }}</li>
-            <li>Media voto: {{ user.avg_reviews }}</li>
-        </ul>
+            <ul>
+                <li>Nome: {{ user.name }}</li>
+                <li>Email: {{ user.email }}</li>
+                <li>Indirizzo: {{ user.address }}</li>
+                <li>Numero di recensioni: {{ user.count_reviews }}</li>
+                <li>Media voto: {{ user.avg_reviews }}</li>
+            </ul>
 
-        <div v-for="(review, index) in user.reviews" :key="index">
-            <div>Autore: {{ review.author }}</div>
-            <div>Voto: {{ review.vote }}</div>
-            <div>Recensione: {{ review.content }}</div>
-            <hr>
+            <div v-for="(review, index) in user.reviews" :key="index">
+                <div>Autore: {{ review.author }}</div>
+                <div>Voto: {{ review.vote }}</div>
+                <div>Recensione: {{ review.content }}</div>
+                <hr>
+            </div>
         </div>
     </div>
 </template>
