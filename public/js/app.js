@@ -2018,23 +2018,38 @@ __webpack_require__.r(__webpack_exports__);
           page: pageNumber
         }
       }).then(function (response) {
-        _this.users = response.data.results;
-        _this.currentPage = response.data.results.current_page;
-        _this.lastPage = response.data.results.last_page;
+        _this.users = response.data.results; // this.currentPage = response.data.results.current_page;
+        // this.lastPage = response.data.results.last_page;
       });
     },
     getUsersBySpecAndAvgVote: function getUsersBySpecAndAvgVote(pageNumber, filter_avg_vote) {
       var _this2 = this;
 
       console.log(filter_avg_vote);
+      console.log(this.$route.params.specialization_slug);
       axios.get('/api/users-by-specialization-and-average-vote/' + this.$route.params.specialization_slug + '/' + filter_avg_vote, {
         params: {
           page: pageNumber
         }
       }).then(function (response) {
-        _this2.users = response.data.results.data;
-        _this2.currentPage = response.data.results.current_page;
-        _this2.lastPage = response.data.results.last_page;
+        console.log(response);
+        _this2.users = response.data.results; // this.currentPage = response.data.results.current_page;
+        // this.lastPage = response.data.results.last_page;
+      });
+    },
+    getUsersBySpecAndCountRev: function getUsersBySpecAndCountRev(pageNumber, reviews_min, reviews_max) {
+      var _this3 = this;
+
+      console.log(reviews_min, reviews_max);
+      console.log(this.$route.params.specialization_slug);
+      axios.get('/api/users-by-specialization-and-count-reviews/' + this.$route.params.specialization_slug + '/' + reviews_min + '/' + reviews_max, {
+        params: {
+          page: pageNumber
+        }
+      }).then(function (response) {
+        console.log(response);
+        _this3.users = response.data.results; // this.currentPage = response.data.results.current_page;
+        // this.lastPage = response.data.results.last_page;
       });
     }
   },
@@ -2445,7 +2460,7 @@ var render = function render() {
           }
         }
       }
-    }, [_c("div", [_vm._v("Nome: " + _vm._s(user.name))]), _vm._v(" "), _c("div", [_vm._v("Fine Sponsorizzazione: " + _vm._s(user.expired_date))]), _vm._v(" "), _c("div", [_vm._v("Specializzazione: " + _vm._s(user.specialization_slug))]), _vm._v(" "), _c("hr")])], 1);
+    }, [_c("div", [_vm._v("Nome: " + _vm._s(user.name))]), _vm._v(" "), _c("div", [_vm._v("Fine Sponsorizzazione: " + _vm._s(user.expired_date))]), _vm._v(" "), _c("div", [_vm._v("Specializzazione: " + _vm._s(user.specialization_slug))]), _vm._v(" "), _c("div", [_vm._v("Media Voto recensioni: " + _vm._s(user.reviews_avg_vote))]), _vm._v(" "), _c("div", [_vm._v("Numero Recensioni: " + _vm._s(user.reviews_count))]), _vm._v(" "), _c("hr")])], 1);
   }), _vm._v(" "), _vm._l(5, function (number, index) {
     return _c("div", {
       key: "B" + index
@@ -2456,11 +2471,41 @@ var render = function render() {
       on: {
         click: function click($event) {
           $event.preventDefault();
-          return _vm.getUsersBySpecAndAvgVote(1, index);
+          return _vm.getUsersBySpecAndAvgVote(1, number);
         }
       }
     }, [_vm._v("\n            Media Voto: " + _vm._s(number) + "\n        ")])]);
-  })], 2);
+  }), _vm._v(" "), _c("h5", [_vm._v("Filtro Numero Recensioni")]), _vm._v(" "), _c("div", {
+    staticStyle: {
+      cursor: "pointer"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.getUsersBySpecAndCountRev(1, 0, 5);
+      }
+    }
+  }, [_vm._v("\n        Fino a 5 RECENSIONI\n    ")]), _vm._v(" "), _c("div", {
+    staticStyle: {
+      cursor: "pointer"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.getUsersBySpecAndCountRev(1, 5, 10);
+      }
+    }
+  }, [_vm._v("\n        5 a 10 RECENSIONI\n    ")]), _vm._v(" "), _c("div", {
+    staticStyle: {
+      cursor: "pointer"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.getUsersBySpecAndCountRev(1, 10, 1000);
+      }
+    }
+  }, [_vm._v("\n        10 RECENSIONI e più\n    ")])], 2);
 };
 
 var staticRenderFns = [];
