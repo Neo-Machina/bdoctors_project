@@ -15,6 +15,7 @@ class User extends Authenticatable
      *
      * @var array
      */
+
     protected $fillable = [
         'name', 
         'email', 
@@ -26,6 +27,8 @@ class User extends Authenticatable
         'curriculum',
         'photo'
     ];
+
+    protected $table = 'users';
 
     public function specializations() {
         return $this->belongsToMany('App\Specialization');
