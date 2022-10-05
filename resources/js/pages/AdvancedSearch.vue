@@ -18,7 +18,7 @@
                         <router-link class="btn btn-primary" 
                             :to="{
                                 name: 'single-profile', 
-                                params: {slug: user.user_slug}
+                                params: {user_slug: user.user_slug}
                             }">
                             Scopri di più
                         </router-link>
@@ -34,14 +34,7 @@
                 Media Voto: {{ index }}
             </div>
         </div>
-
-        <!-- Link User -->
-        <div v-for="(user, index) in users" :key="'C' + index">
-            <router-link class="btn btn-primary m-2" 
-                :to="{name:'single-profile', params:{user_slug: user.user_slug} }">
-                    {{user.user_name}}
-            </router-link>
-        </div>
+       
     </div>
 </template>
 
