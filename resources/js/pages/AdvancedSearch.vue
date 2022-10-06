@@ -6,6 +6,20 @@
         <div class="row">
             <div class="col-2">
                 <div class="average">
+                    <!-- cambio specializzazione in advanced search -->
+                    <div class="dropdown mb-2">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Specializzazioni
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li class="mr-5" v-for="(specialization, index) in specializations" :key="index">
+                                <router-link class="text-dark specialization-name" value="Reload Page" onClick="document.location.reload(true)"
+                                    :to="{name:'advanced-search', params:{specialization_slug: specialization.slug} }">
+                                        {{specialization.name}}
+                                </router-link>
+                            </li>
+                        </ul>
+                    </div>
+
                     <div class="mb-2 px-1">
                         <strong class="bg-info">Scegli un medico in base <br> a i voti che ha ricevuto</strong> 
                     </div>
@@ -36,7 +50,7 @@
                         <div class="hover-effect" @click.prevent="getUsersBySpecAndCountRev(1, 10, 1000)" style="cursor: pointer;">
                             10 recensioni e più
                         </div>
-                    </div>
+                    </div> 
                 </div>
             </div>
 
@@ -82,6 +96,7 @@ export default {
     data() {
         return {
             users: [],
+            specializations: [],
         }
     },
     methods: {
@@ -127,6 +142,15 @@ export default {
                 // this.lastPage = response.data.results.last_page;
             });
         },
+        getSponsoredUsers() {
+            axios.get('/api/sponsored-users', {
+                
+            })
+            .then((response) => {
+                this.users = response.data.results.users;
+                this.specializations = response.data.results.specializations;
+            });
+        },
         truncateText(text) {
             if(text.length > 100) {
                 return text.slice(0, 100) + '...'
@@ -141,6 +165,7 @@ export default {
     mounted() {
         // setTimeout(function(){ this.getUsersBySpecialization(this.$route.params.specialization_slug, 1) }, 500);
         this.getUsersBySpecialization(1);
+        this.getSponsoredUsers();
     }
 }
 </script>

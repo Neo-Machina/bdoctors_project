@@ -25,19 +25,19 @@
 
                 <!-- lista specializzazioni -->
                 <ul class="list-unstyled d-flex justify-content-center pb-3">
-                    <li class="mr-5" v-for="(specialization, index) in specializations" :key="index">
+                    <!-- <li class="mr-5" v-for="(specialization, index) in specializations" :key="index">
                         <router-link class="text-light specialization-name" 
                             :to="{name:'advanced-search', params:{specialization_slug: specialization.slug} }">
                                 {{specialization.name}}
                         </router-link>
-                    </li>
+                    </li> -->
 
                     <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Specializzazioni
                         <span class="caret"></span></button>
                         <ul class="dropdown-menu">
                             <li class="mr-5" v-for="(specialization, index) in specializations" :key="index">
-                                <router-link class="text-light specialization-name" 
+                                <router-link class="text-dark specialization-name" 
                                     :to="{name:'advanced-search', params:{specialization_slug: specialization.slug} }">
                                         {{specialization.name}}
                                 </router-link>
