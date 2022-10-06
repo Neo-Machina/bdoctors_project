@@ -21,7 +21,7 @@ class ReviewController extends Controller
         $id = $request->user()->id;
         
         $user = User::findOrFail($id)->with('specializations', 'reviews', 'reviews', 'bundles')->first();
-        $reviews = $user->reviews()->paginate(2);
+        $reviews = $user->reviews()->orderBy('created_at','DESC')->paginate(2);
         
         // dd($user->reviews()->paginate(2));
         // dd($user);
