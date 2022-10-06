@@ -34,6 +34,8 @@
                         <div class="card-header">Recensione</div>
                         <div class="card-body">
                             <h5 class="card-title">{{ review.author }}</h5>
+                            <div><strong>Voto</strong>: <i v-for="n in stars(review.vote)" :key="n" class="fas fa-star active"></i></div>
+                            
                             <p class="card-text">{{ review.content }}</p>
                         </div>
                     </div>
@@ -139,7 +141,7 @@
                     <div class="mb-3">
                         <!-- <label for="user-vote" class="form-label">Punteggio generale *</label>
                         <input v-model="userVote" type="text" class="form-control" id="user-vote"> -->
-                        <div class="average_vote"> 
+                        <div class="average_vote" style="cursor:pointer"> 
                             <span class="bold_text">Vote</span>: 
                             <span class="star_icon " :class="{ 'active': star <= voteReview }" v-for="(star,index) in 5" :key="index" @click.prevent="voteReview = star">
                             <!-- <span v-for="(star,index) in 5" :key="index"> -->
@@ -239,12 +241,15 @@ export default {
                 this.sending = false;
             })
         },
-        // scrollTopPage() {
-        //     window.scrollTo(0, 0);
-        // },
-        // scrollToReview() {
-        //     window.scrollTo(0, 628);
-        // },
+        stars(original_vote) {
+            return Math.round(original_vote);
+        },
+        scrollTopPage() {
+            window.scrollTo(0, 0);
+        },
+        scrollToReview() {
+            window.scrollTo(0, 628);
+        },
         // transformVote() {
         //     return Math.round((this.reviews.vote * 5) / 10);
         // },
@@ -275,9 +280,9 @@ export default {
 //     cursor: pointer;
 // }
 
-// .active {
-//     color: gold;
-// }
+.active {
+    color: gold;
+}
 
 
 </style>

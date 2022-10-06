@@ -6,14 +6,18 @@
         <div class="row">
             <div class="col-2">
                 <div class="average">
-                    <div class="mb-2">
+                    <div class="mb-2 px-1">
                         <strong class="bg-info">Scegli un medico in base <br> a i voti che ha ricevuto</strong> 
                     </div>
 
                    <!-- FILTRO MEDIA VOTO DA 1 A 5 -->
-                    <div v-for="(number, index) in 5" :key="'B' + index">
+                    <div v-for="(number, index) in 4" :key="index">
                         <div class="hover-effect" @click.prevent="getUsersBySpecAndAvgVote(1, number)" style="cursor: pointer;">
-                            Media Voto: {{ number }} e più
+                            <!-- Media Voto: {{ number }} e più -->
+                            <!-- <i class="fas fa-star active"></i> -->
+
+                            <i v-for="n in stars(number)" :key="n" class="fas fa-star active"></i>
+                            <i v-for="m in 5 - stars(number)" :key="m" class="far fa-star star_icon"></i>
                         </div>
                     </div>
                     
@@ -47,10 +51,8 @@
                                 <h5 class="card-title">{{user.name}}</h5>
                                 <h6 class="card-text badge bg-info text-dark mr-1">{{user.specialization_slug}}</h6>
                                 <div class="mb-1"><strong>{{user.email}}</strong></div>
-
-                                <!-- TODO da cancellare  o da migliorare -->
-                                <div>Voto: {{user.reviews_avg_vote}}</div>
-                                <div>Numero di recensioni: {{user.reviews_count}}</div>
+                                <div><strong>Voto</strong>: <i v-for="n in stars(user.reviews_avg_vote)" :key="n" class="fas fa-star active"></i></div>
+                                <div><strong>Numero di recensioni</strong>: {{user.reviews_count}}</div>
                                 <p>{{truncateText(user.curriculum)}}</p>
 
                                 <router-link class="btn btn-primary" 
@@ -132,6 +134,9 @@ export default {
 
             return text;
         },
+        stars(original_vote) {
+            return Math.round(original_vote);
+        }
     },
     mounted() {
         // setTimeout(function(){ this.getUsersBySpecialization(this.$route.params.specialization_slug, 1) }, 500);
