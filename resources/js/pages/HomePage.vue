@@ -33,23 +33,15 @@
                     </li>
 
                     <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            Scegli la specializzazione interessata
-                        </button>
-
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-
-                            <!-- <li class="dropdown-item mr-5" v-for="(specialization, index) in specializations" :key="index">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li class="mr-5" v-for="(specialization, index) in specializations" :key="index">
                                 <router-link class="text-light specialization-name" 
                                     :to="{name:'advanced-search', params:{specialization_slug: specialization.slug} }">
                                         {{specialization.name}}
-                                </router-link> 
-                            </li>-->
-
-                            
+                                </router-link>
+                            </li>
                         </ul>
                     </div>
                 </ul>
