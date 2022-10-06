@@ -7,27 +7,31 @@
             <div class="col-2">
                 <div class="average">
                     <div class="mb-2">
-                        <strong class="bg-warning">Scegli un medico in base <br> alle recensioni ricevute</strong> 
+                        <strong class="bg-info">Scegli un medico in base <br> a i voti che ha ricevuto</strong> 
                     </div>
 
                    <!-- FILTRO MEDIA VOTO DA 1 A 5 -->
                     <div v-for="(number, index) in 5" :key="'B' + index">
-                        <div @click.prevent="getUsersBySpecAndAvgVote(1, number)" style="cursor: pointer;">
+                        <div class="hover-effect" @click.prevent="getUsersBySpecAndAvgVote(1, number)" style="cursor: pointer;">
                             Media Voto: {{ number }} e più
                         </div>
                     </div>
                     
-                    
                     <!-- FILTRO NUMERO RECENSIONI -->
-                    <h5>Filtro Numero Recensioni</h5>
-                    <div @click.prevent="getUsersBySpecAndCountRev(1, 0, 5)" style="cursor: pointer;">
-                        Fino a 5 RECENSIONI
-                    </div>
-                    <div @click.prevent="getUsersBySpecAndCountRev(1, 5, 10)" style="cursor: pointer;">
-                        5 a 10 RECENSIONI
-                    </div>
-                    <div @click.prevent="getUsersBySpecAndCountRev(1, 10, 1000)" style="cursor: pointer;">
-                        10 RECENSIONI e più
+                    <div class="mt-3">
+                        <div class="mb-2">
+                            <strong class="bg-info">Filtra per numero <br> di recensioni</strong>
+                        </div>
+
+                        <div class="hover-effect" @click.prevent="getUsersBySpecAndCountRev(1, 0, 5)" style="cursor: pointer;">
+                            Fino a 5 recensioni
+                        </div>
+                        <div class="hover-effect" @click.prevent="getUsersBySpecAndCountRev(1, 5, 10)" style="cursor: pointer;">
+                            da 5 a 10 recensioni
+                        </div>
+                        <div class="hover-effect" @click.prevent="getUsersBySpecAndCountRev(1, 10, 1000)" style="cursor: pointer;">
+                            10 recensioni e più
+                        </div>
                     </div>
                 </div>
             </div>
@@ -41,10 +45,12 @@
                             <img :src="user.photo" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">{{user.name}}</h5>
-                                <h6 class="card-text">{{user.specialization_slug}}</h6>
-                                <div class="mb-1">{{user.email}}</div>
-                                <div>Media Voto recensioni: {{user.reviews_avg_vote}}</div>
-                                <div>Numero Recensioni: {{user.reviews_count}}</div>
+                                <h6 class="card-text badge bg-info text-dark mr-1">{{user.specialization_slug}}</h6>
+                                <div class="mb-1"><strong>{{user.email}}</strong></div>
+
+                                <!-- TODO da cancellare  o da migliorare -->
+                                <div>Voto: {{user.reviews_avg_vote}}</div>
+                                <div>Numero di recensioni: {{user.reviews_count}}</div>
                                 <p>{{truncateText(user.curriculum)}}</p>
 
                                 <router-link class="btn btn-primary" 
@@ -146,5 +152,9 @@ export default {
 
 .active {
     color: gold;
+}
+
+.hover-effect:hover {
+    font-weight: bold;
 }
 </style>

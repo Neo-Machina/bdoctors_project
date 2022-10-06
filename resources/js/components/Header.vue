@@ -42,10 +42,10 @@ export default {
                     name: 'homepage',
                     label: 'Homepage'
                 },
-                {
-                    name: 'advanced-search',
-                    label: 'Cerca'
-                },
+                // {
+                //     name: 'advanced-search',
+                //     label: 'Cerca'
+                // },
 
             ]
         }

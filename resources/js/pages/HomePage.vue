@@ -45,8 +45,8 @@
                                 <h5 class="card-title">{{user.user_name}}</h5>
                                 <p class="card-text">{{user.specialization_slug}}</p>
                                 <div class="card-text mb-3">{{user.user_email}}</div>
-                                <div>{{user.bundle_name}}</div>
-                                <div>{{user.expired_date}}</div>
+                                <!-- <div>{{user.bundle_name}}</div>
+                                <div>{{user.expired_date}}</div> -->
 
                                 <router-link class="btn btn-primary" 
                                     :to="{
