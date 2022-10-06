@@ -38,7 +38,7 @@
 
             <!-- CARD USER -->
             <div class="col-10">
-                <div class="d-flex flex-wrap justify-content-between">
+                <div class="user-card d-flex flex-wrap">
                     <div v-for="(user, index) in users" :key="'A' + index">
 
                         <div class="card mb-5" style="width: 18rem;">
@@ -156,5 +156,35 @@ export default {
 
 .hover-effect:hover {
     font-weight: bold;
+}
+
+.col-10 {
+    .user-card {
+        justify-content: space-between;
+    }
+}
+
+@media screen and (min-width:568px) {
+    .col-10 {
+        .user-card {
+            justify-content: flex-end;
+        }
+    }
+}
+
+@media screen and (min-width:768px) {
+    .col-10 {
+        .user-card {
+            justify-content: center;
+        }
+    }
+}
+
+@media screen and (min-width:992px) {
+    .col-10 {
+        .user-card {
+            justify-content: space-evenly;
+        }
+    }
 }
 </style>

@@ -253,12 +253,12 @@ export default {
                 this.sending = false;
             })
         },
-        scrollTopPage() {
-            window.scrollTo(0, 0);
-        },
-        scrollToReview() {
-            window.scrollTo(0, 628);
-        },
+        // scrollTopPage() {
+        //     window.scrollTo(0, 0);
+        // },
+        // scrollToReview() {
+        //     window.scrollTo(0, 628);
+        // },
         // transformVote() {
         //     return Math.round((this.reviews.vote * 5) / 10);
         // },
