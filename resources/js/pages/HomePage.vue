@@ -43,10 +43,10 @@
                             <img :src="user.user_photo" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">{{user.user_name}}</h5>
-                                <p class="card-text">{{user.specialization_name}}</p>
+                                <p class="card-text">{{user.specialization_slug}}</p>
                                 <div class="card-text mb-3">{{user.user_email}}</div>
-                                <div>{{user.bundle_name}}</div>
-                                <div>{{user.expired_date}}</div>
+                                <!-- <div>{{user.bundle_name}}</div>
+                                <div>{{user.expired_date}}</div> -->
 
                                 <router-link class="btn btn-primary" 
                                     :to="{
