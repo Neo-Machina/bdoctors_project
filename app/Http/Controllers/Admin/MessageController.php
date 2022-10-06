@@ -19,19 +19,12 @@ class MessageController extends Controller
         // User Id
         $id = $request->user()->id;
         
-        $user = User::findOrFail($id)->with('specializations', 'reviews', 'messages', 'bundles')->first();
-        $messages = $user->messages()->paginate(2);
-        
-        // dd($user->messages()->paginate(2));
-        // dd($user);
+        $user = User::with('specializations', 'reviews', 'messages', 'bundles')->get()->find($id);
+        $messages = $user->messages()->orderBy('created_at','DESC')->paginate(2);
 
         if (isset($user)) {
             $data = [
                 'messages' => $messages,
-                // 'results' => [
-                //     'user' => $user,
-                //     'messages' => $messages
-                // ],
                 'user' => $user
             ];
         } else {

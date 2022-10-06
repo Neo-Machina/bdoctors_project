@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -29,9 +30,12 @@ class HomeController extends Controller
 
     public function debug()
     {   
-        $response = Http::get('https://randomuser.me/api/');
-            $apiResponse = $response->json();
-            dd($apiResponse);
+        // $response = Http::get('https://randomuser.me/api/');
+        //     $apiResponse = $response->json();
+        //     dd($apiResponse);
+
+        $user = User::with('specializations', 'reviews', 'messages', 'bundles')->get()->find(140);
+dd($user);
         // return view('show');
     }
 }

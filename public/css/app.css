@@ -9246,6 +9246,10 @@ h3 {
   margin: 0;
 }
 
+li {
+  list-style-type: none;
+}
+
 .user-content {
   font-size: 1.3rem;
 }

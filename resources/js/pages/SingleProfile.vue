@@ -11,7 +11,7 @@
                         <img :src="user.photo" class="card-img-top" alt="..."> 
                         <div class="card-body">
                             <h5 class="card-title">{{user.name}}</h5>
-                            <div v-if="user.specializations.length > 0">
+                            <div v-if="user.specializations">
                                 <strong>Specializzazione in</strong>
                                 <span v-for="specialization in user.specializations" :key="specialization.id" class="badge bg-info text-light mr-1 mb-3">{{specialization.name}}</span>
                             </div>
@@ -60,6 +60,7 @@
 
         <!-- message and revies forms -->
         <div class="row">
+
             <!-- FORM MESSAGGIO -->
             <div class="col">
                 
@@ -74,8 +75,9 @@
                         <label for="author-message" class="form-label">Nome e cognome *</label>
                         <input v-model="authorMessage" type="text" class="form-control" id="author-message">
 
+                        <!-- Messaggio d'errore -->
                         <div v-if="errors.author">
-                            <div v-for="(error, index) in errors.name" :key="index" class="alert alert-danger" role="alert">
+                            <div v-for="(error, index) in errors.author" :key="index" class="alert alert-danger" role="alert">
                                 {{ error }}
                             </div>  
                         </div>
@@ -97,12 +99,13 @@
                         <textarea v-model="contentMessage" class="form-control" id="content-message" rows="8"></textarea>
 
                         <div v-if="errors.content">
-                            <div v-for="(error, index) in errors.message" :key="index" class="alert alert-danger" role="alert">
+                            <div v-for="(error, index) in errors.content" :key="index" class="alert alert-danger" role="alert">
                                 {{ error }}
                             </div>  
                         </div>
                     </div>
                     
+                    <!-- Submit -->
                     <input type="submit" value="Invia Messaggio" class="btn btn-primary" :disabled="sending">
                 </form>
             </div>
@@ -121,7 +124,7 @@
                         <input v-model="authorReview" type="text" class="form-control" id="author-review">
 
                         <div v-if="errors.author">
-                            <div v-for="(error, index) in errors.name" :key="index" class="alert alert-danger" role="alert">
+                            <div v-for="(error, index) in errors.author" :key="index" class="alert alert-danger" role="alert">
                                 {{ error }}
                             </div>  
                         </div>
@@ -131,8 +134,8 @@
                         <label for="content-review" class="form-label">Recensione *</label>
                         <textarea v-model="contentReview" class="form-control" id="content-review" rows="8"></textarea>
 
-                        <div v-if="errors.review">
-                            <div v-for="(error, index) in errors.message" :key="index" class="alert alert-danger" role="alert">
+                        <div v-if="errors.content">
+                            <div v-for="(error, index) in errors.content" :key="index" class="alert alert-danger" role="alert">
                                 {{ error }}
                             </div>  
                         </div>
@@ -144,7 +147,6 @@
                         <div class="average_vote" style="cursor:pointer"> 
                             <span class="bold_text">Vote</span>: 
                             <span class="star_icon " :class="{ 'active': star <= voteReview }" v-for="(star,index) in 5" :key="index" @click.prevent="voteReview = star">
-                            <!-- <span v-for="(star,index) in 5" :key="index"> -->
                                 &#9733;
                             </span>
                         </div>
@@ -154,11 +156,13 @@
                         </div>
 
                         <div v-if="errors.vote">
-                            <div v-for="(error, index) in errors.name" :key="index" class="alert alert-danger" role="alert">
+                            <div v-for="(error, index) in errors.vote" :key="index" class="alert alert-danger" role="alert">
                                 {{ error }}
                             </div>  
                         </div>
                     </div>
+
+                    <!-- Submit -->
                     <input type="submit" value="Invia Recensione" class="btn btn-primary" :disabled="sending">
                 </form>
             </div>
@@ -192,7 +196,14 @@ export default {
             });
         },
         sendMessage() {
+            console.log('sono in sendMessage()')
+            console.log(this.authorMessage);
+            console.log(this.userEmail);
+            console.log(this.contentMessage);
+            console.log(this.user.id);
+
             this.sending = true;
+            this.success = false;
 
             axios.post('/api/messages', {
                 author: this.authorMessage,
@@ -201,7 +212,8 @@ export default {
                 user_id: this.user.id
             })
             .then((response) => {
-                this.scrollTopPage();
+                console.log('then di sendMessage()');
+                // this.scrollTopPage();
 
                 if(response.data.success) {
                     this.success_message = true;
@@ -217,6 +229,9 @@ export default {
             })
         },
         sendReview() {
+            console.log('sono in sendReview()')
+
+
             this.sending = true;
 
             axios.post('/api/reviews', {
@@ -226,7 +241,8 @@ export default {
                 user_id: this.user.id
             })
             .then((response) => {
-                this.scrollToReview();
+                console.log('then di sendReview()');
+                // this.scrollToReview();
 
                 if(response.data.success) {
                     this.success_review = true;
@@ -275,14 +291,13 @@ export default {
         margin-inline: 0.9rem;
     }
 }
-// .star_icon {
-//     color: grey;
-//     cursor: pointer;
-// }
+.star_icon {
+    color: grey;
+    cursor: pointer;
+    font-size: 1.3rem;
+}
 
 .active {
     color: gold;
 }
-
-
 </style>

@@ -29,6 +29,7 @@ Route::middleware('auth')
 // DEBUG
 Route::get('/debug', 'HomeController@debug')->name('debug');
 
+// Rotte gestite da Vue
 Route::get('{any?}', function () {
     return view('guest.home');
 })->where('any', '.*')->name('guest');

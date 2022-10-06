@@ -6,16 +6,14 @@
     {{-- Stampa tutte le recensioni --}}
     @foreach ($reviews as $review)
         <ul>
-            <li>Review ID: {{ $review->id }}</li>
-            <li>Autore: {{ $review->author }}</li>
-            <li>Data pubblicazione: {{ $review->created_at }}</li>
-            <li>Voto: {{ $review->vote }}</li>
-            <li>Recensione: {{ $review->content }}</li>
+            <li><strong>Review ID:</strong> {{ $review->id }}</li>
+            <li><strong>Autore:</strong> {{ $review->author }}</li>
+            <li><strong>Data pubblicazione:</strong> {{ $review->created_at }}</li>
+            <li><strong>Voto:</strong> {{ $review->vote }}</li>
+            <li><strong>Recensione:</strong> {{ $review->content }}</li>
             <!-- Delete Button -->
             <button  class="btn btn-danger my-3" type="button" data-target="#deleteModal" data-toggle="modal">Elimina</button>
         </ul>
-        
-        <h5>ID della Review da eliminare: {{ $review->id }}</h5>
 
         <hr>
 
@@ -35,7 +33,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary" type="button" data-dismiss="modal">NO</button>
-                    <form class="form-btn-elimina" action="{{ route('admin.reviews.destroy', ['review' => $review->id + 1]) }}" method="post">
+                    <form class="form-btn-elimina" action="{{ route('admin.reviews.destroy', ['review' => $review->id]) }}" method="post">
                     {{-- <form class="form-btn-elimina" action="{{ route('admin.reviews.destroy', ['review' => 4]) }}" method="post"> --}}
                         @csrf
                         @method('DELETE')
