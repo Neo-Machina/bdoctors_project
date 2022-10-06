@@ -73,7 +73,7 @@
                 <form @submit.prevent="sendMessage()">
                     <div class="mb-3">
                         <label for="author-message" class="form-label">Nome e cognome *</label>
-                        <input v-model="authorMessage" type="text" class="form-control" id="author-message">
+                        <input v-model="authorMessage" type="text" class="form-control" id="author-message" required>
 
                         <!-- Messaggio d'errore -->
                         <div v-if="errors.author">
@@ -85,7 +85,7 @@
 
                     <div class="mb-3">
                         <label for="user-mail" class="form-label">Email *</label>
-                        <input v-model="userEmail" type="email" class="form-control" id="user-mail">
+                        <input v-model="userEmail" type="email" class="form-control" id="user-mail" required>
 
                         <div v-if="errors.email">
                             <div v-for="(error, index) in errors.email" :key="index" class="alert alert-danger" role="alert">
@@ -96,7 +96,7 @@
 
                     <div class="mb-3">
                         <label for="content-message" class="form-label">Messaggio *</label>
-                        <textarea v-model="contentMessage" class="form-control" id="content-message" rows="8"></textarea>
+                        <textarea v-model="contentMessage" class="form-control" id="content-message" rows="8" required></textarea>
 
                         <div v-if="errors.content">
                             <div v-for="(error, index) in errors.content" :key="index" class="alert alert-danger" role="alert">
@@ -121,7 +121,7 @@
                 <form @submit.prevent="sendReview()">
                     <div class="mb-3">
                         <label for="author-review" class="form-label">Nome e cognome *</label>
-                        <input v-model="authorReview" type="text" class="form-control" id="author-review">
+                        <input v-model="authorReview" type="text" class="form-control" id="author-review" required>
 
                         <div v-if="errors.author">
                             <div v-for="(error, index) in errors.author" :key="index" class="alert alert-danger" role="alert">
@@ -132,7 +132,7 @@
 
                     <div class="mb-3">
                         <label for="content-review" class="form-label">Recensione *</label>
-                        <textarea v-model="contentReview" class="form-control" id="content-review" rows="8"></textarea>
+                        <textarea v-model="contentReview" class="form-control" id="content-review" rows="8" required></textarea>
 
                         <div v-if="errors.content">
                             <div v-for="(error, index) in errors.content" :key="index" class="alert alert-danger" role="alert">
