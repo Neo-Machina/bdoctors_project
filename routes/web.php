@@ -29,6 +29,9 @@ Route::middleware('auth')
 // DEBUG
 Route::get('/debug', 'HomeController@debug')->name('debug');
 
+// STATISTICS ROUTE
+Route::get('/statistics', 'Admin\StatisticController@getStatisticsUser')->name('statistics');
+
 Route::get('{any?}', function () {
     return view('guest.home');
 })->where('any', '.*')->name('guest');
