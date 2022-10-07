@@ -1,31 +1,21 @@
 <template>
     <!-- ricerca avanzata per specializzazioni -->
-            <section class="bg-info my-5">
-                <h5 class="text-center py-3 text-light specialization-doctor">Ricerca qui medici per specializzazione</h5>
+    
 
-                <!-- lista specializzazioni -->
-                <ul class="list-unstyled d-flex justify-content-center pb-3">
-                    <!-- <li class="mr-5" v-for="(specialization, index) in specializations" :key="index">
-                        <router-link class="text-light specialization-name" 
-                            :to="{name:'advanced-search', params:{specialization_slug: specialization.slug} }">
-                                {{specialization.name}}
-                        </router-link>
-                    </li>  -->
-
-                    <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Specializzazioni
-                        <span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                            <li class="mr-5" v-for="(specialization, index) in specializations" :key="index">
-                                <router-link class="text-dark specialization-name" 
-                                    :to="{name:'advanced-search', params:{specialization_slug: specialization.slug} }">
-                                        {{specialization.name}}
-                                </router-link>
-                            </li>
-                        </ul>
-                    </div>
-                </ul>
-            </section> 
+        <!-- lista specializzazioni -->
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle mb-4" type="button" data-toggle="dropdown">Specializzazioni
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <li class="mr-5" v-for="(specialization, index) in specializations" :key="index">
+                    <router-link class="text-dark specialization-name" value="Reload Page" onClick="document.location.reload(true)"
+                        :to="{name:'advanced-search', params:{specialization_slug: specialization.slug} }">
+                            {{specialization.name}}
+                    </router-link>
+                </li>
+            </ul>
+        </div>
+    
 </template>
 
 <script>
@@ -52,3 +42,10 @@ export default {
     }
 }
 </script>
+
+<!-- <li class="mr-5" v-for="(specialization, index) in specializations" :key="index">
+    <router-link class="text-light specialization-name" 
+        :to="{name:'advanced-search', params:{specialization_slug: specialization.slug} }">
+            {{specialization.name}}
+    </router-link>
+</li>  -->
