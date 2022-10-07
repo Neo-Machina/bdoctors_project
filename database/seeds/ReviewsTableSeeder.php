@@ -17,14 +17,14 @@ class ReviewsTableSeeder extends Seeder
         $users = User::all();
 
         foreach($users as $user) {
-            for ($i=0; $i < rand(4, 15); $i++) {
+            for ($i=0; $i < rand(4, 30); $i++) {
                 $new_reviews = new Review();
 
                 $new_reviews->author = $faker->name($gender = 'male'|'female');
                 $new_reviews->content = $faker->text(300);
                 $new_reviews->vote = $faker->numberBetween(1, 5);
                 $new_reviews->user_id = $user->id;
-                $new_reviews->created_at = $faker->dateTimeThisYear();
+                $new_reviews->created_at = $faker->dateTimeBetween('-3 years', '-1 day');
                 $new_reviews->save();
             }
         }
