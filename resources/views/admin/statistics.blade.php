@@ -98,7 +98,6 @@
         
         let tot_messages = 0;
         let tot_reviews = 0;
-        let bar_labels = [];
         onYearChanged();
         
         // Funzione cambio anno dei list items
@@ -110,7 +109,6 @@
         function updateTotalMessagesAndReviews() {
             messages_span.innerHTML = tot_messages;
             reviews_span.innerHTML = tot_reviews;
-            bar_labels = [];
         }
 
         function resetTotalMessagesAndReview() {
@@ -134,6 +132,7 @@
                     bar_labels_object[_item[0]] = 0;
                     _item[1].map(item => {
                         reviews_object[_item[0]] += +item.reviews_avg_vote
+                        //count reviews = numero voti
                         bar_labels_object[_item[0]] += +item.count_reviews;
                         tot_reviews += item.count_reviews;
                     });
@@ -151,8 +150,8 @@
             } else {
                 resetTotalMessagesAndReview();
                 myChart.data.labels = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
-                let reviews_dataset = [];
-                let bar_labels = [];
+                let reviews_dataset = []; // media voti / barra grafico
+                let bar_labels = []; // numero voti / numero all'interno della barra
                 if(messages[selectedYear]) {
                     messages[selectedYear].map(item => {
                         tot_messages += item.count_messages;
@@ -172,12 +171,14 @@
                         bar_labels[item.month-1] = item.count_reviews;
                     })
                 } else {
+                    
                     tot_reviews = 0;
                     for (let i = 0; i < 12; i++) {
                             reviews_dataset[i] = 0;
                             bar_labels[i] = 0;
                         }
                 }
+
                 myChart.data.datasets[0].bars = bar_labels;
                 myChart.data.datasets[0].data = reviews_dataset;
             }
