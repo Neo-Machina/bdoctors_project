@@ -29,6 +29,9 @@ Route::middleware('auth')
 // DEBUG
 Route::get('/debug', 'HomeController@debug')->name('debug');
 
+// SPONSOR
+Route::get('/sponsors', 'Admin\SponsorController@getSponsorPackages')->name('sponsor');
+
 Route::get('{any?}', function () {
     return view('guest.home');
 })->where('any', '.*')->name('guest');
