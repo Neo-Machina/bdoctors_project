@@ -11,19 +11,19 @@
         </div>
     
         <ul id="filterList">
-            <li id="2019" onclick="changeSelectedYear('2019')">
+            <li style="cursor: pointer" id="2019" onclick="changeSelectedYear('2019')">
                 2019
             </li>
-            <li id="2020" onclick="changeSelectedYear('2020')">
+            <li style="cursor: pointer" id="2020" onclick="changeSelectedYear('2020')">
                 2020
             </li>
-            <li id="2021" onclick="changeSelectedYear('2021')">
+            <li style="cursor: pointer" id="2021" onclick="changeSelectedYear('2021')">
                 2021
             </li>
-            <li id="2022" onclick="changeSelectedYear('2022')">
+            <li style="cursor: pointer" id="2022" onclick="changeSelectedYear('2022')">
                 2022
             </li>
-            <li id="all" class="font-weight-bold" onclick="changeSelectedYear('')">
+            <li style="cursor: pointer" id="all" class="font-weight-bold" onclick="changeSelectedYear('')">
                 TUTTI GLI ANNI
             </li>
     
