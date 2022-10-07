@@ -11,12 +11,12 @@
             </div>
 
             <!-- image -->
-            <section class="progress" style="height: 200px;">
-                <img  src="https://images.theconversation.com/files/59470/original/bmc3zndq-1411073854.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop" alt="">
-                <img  src="https://dr-olivier-clinic.com/wp-content/uploads/2014/10/different-doctors.jpg" alt="">
-                <img  src="https://img.freepik.com/free-photo/doctor-nurses-special-equipment_23-2148980721.jpg?w=2000" alt="">
-                <img  src="https://welpmagazine.com/wp-content/uploads/2020/09/becoming-doctor.jpg" alt="">
-                <img  src="https://www.optimahealth.com/_assets/images/group-of-doctors-card.jpg" alt="">   
+            <section class="progress" style="height: 350px;">
+                <img src="https://images.theconversation.com/files/59470/original/bmc3zndq-1411073854.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop" alt="">
+                <img src="https://dr-olivier-clinic.com/wp-content/uploads/2014/10/different-doctors.jpg" alt="">
+                <img src="https://img.freepik.com/free-photo/doctor-nurses-special-equipment_23-2148980721.jpg?w=2000" alt="">
+                <img src="https://welpmagazine.com/wp-content/uploads/2020/09/becoming-doctor.jpg" alt="">
+                <img src="https://www.optimahealth.com/_assets/images/group-of-doctors-card.jpg" alt="">   
             </section>
 
             <!-- ricerca avanzata per specializzazioni -->
@@ -24,13 +24,13 @@
                 <h5 class="text-center py-3 text-light specialization-doctor">Ricerca qui medici per specializzazione</h5>
 
                 <!-- lista specializzazioni -->
-                <ul class="list-unstyled d-flex justify-content-center pb-3">
-                    <!-- <li class="mr-5" v-for="(specialization, index) in specializations" :key="index">
+                <!-- <ul class="list-unstyled d-flex justify-content-center pb-3">
+                    /// <li class="mr-5" v-for="(specialization, index) in specializations" :key="index">
                         <router-link class="text-light specialization-name" 
                             :to="{name:'advanced-search', params:{specialization_slug: specialization.slug} }">
                                 {{specialization.name}}
                         </router-link>
-                    </li> -->
+                    </li> ///
 
                     <div class="dropdown">
                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Specializzazioni
@@ -45,7 +45,9 @@
                         </ul>
                     </div>
                 </ul>
-            </section>
+            </section> -->
+
+            <DropdownMenuSpecialization/>
 
             <!-- utenti Sponsorizzati -->
             <div class="container-lg">
@@ -58,8 +60,6 @@
                                 <h5 class="card-title">{{user.user_name}}</h5>
                                 <p class="card-text">{{user.specialization_slug}}</p>
                                 <div class="card-text mb-3">{{user.user_email}}</div>
-                                <!-- <div>{{user.bundle_name}}</div>
-                                <div>{{user.expired_date}}</div> -->
 
                                 <router-link class="btn btn-primary" 
                                     :to="{
@@ -77,14 +77,14 @@
             <!-- about us -->
             <section class="about-us my-5">
                 <div class="container">
-                    <div class="row">
+                    <div class="row justify-content-between">
                         <!-- left col with image  -->
-                        <div class="col col-sm-12 col-md-6 mr-3">
+                        <div class="col col-sm-12 col-md-6 col-lg-6">
                             <img style="height: 200px;" src="https://www.ges-tt.com/wp-content/uploads/2020/11/recensioni-positive-google-perche-sono-importanti-come-gestirle.jpg" alt="reviews">
                         </div>
         
                         <!-- right col with text -->
-                        <div class="col col-sm-12 col-md-5">
+                        <div class="col col-sm-12 col-md-5 col-lg-6">
                             <h3 class="text-primary">
                                 Dicono di noi 
                             </h3>
@@ -111,33 +111,35 @@
 
 <script>
 import Footer from '../components/Footer.vue';
+import DropdownMenuSpecialization from '../components/DropdownMenuSpecialization.vue';
+
 
 export default {
     name: 'HomePage',
     components: {
         Footer,
+        DropdownMenuSpecialization
     },
     data() {
         return {
-            pageTitle: 'Risultato ricerca',
             users: [],
-            specializations: [],
+            // specializations: [],
         }
     },
-    methods: {
-        getSponsoredUsers() {
-            axios.get('/api/sponsored-users', {
+    // methods: {
+    //     getSponsoredUsers() {
+    //         axios.get('/api/sponsored-users', {
                 
-            })
-            .then((response) => {
-                this.users = response.data.results.users;
-                this.specializations = response.data.results.specializations;
-            });
-        },
-    },
-    mounted() {
-        this.getSponsoredUsers();
-    }
+    //         })
+    //         .then((response) => {
+    //             this.users = response.data.results.users;
+    //             this.specializations = response.data.results.specializations;
+    //         });
+    //     },
+    // },
+    // mounted() {
+    //     this.getSponsoredUsers();
+    // }
 }
 </script>
 

@@ -7,7 +7,7 @@
             <div class="col-2">
                 <div class="average">
                     <!-- cambio specializzazione in advanced search -->
-                    <div class="dropdown mb-2">
+                    <!-- <div class="dropdown mb-2">
                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Specializzazioni
                         <span class="caret"></span></button>
                         <ul class="dropdown-menu">
@@ -18,7 +18,7 @@
                                 </router-link>
                             </li>
                         </ul>
-                    </div>
+                    </div> -->
 
                     <div class="mb-2 px-1">
                         <strong class="bg-info">Scegli un medico in base <br> a i voti che ha ricevuto</strong> 
@@ -86,17 +86,12 @@
 </template>
 
 <script>
-// import Profiles from '../components/Profiles.vue';
-
 export default {
     name: 'AdvancedSearch',
-    // components: {
-    //     Profiles
-    // },
     data() {
         return {
             users: [],
-            specializations: [],
+            // specializations: [], TODO
         }
     },
     methods: {
@@ -108,8 +103,6 @@ export default {
             })
             .then((response) => {
                 this.users = response.data.results;
-                // this.currentPage = response.data.results.current_page;
-                // this.lastPage = response.data.results.last_page;
             });
         },
         getUsersBySpecAndAvgVote(pageNumber, filter_avg_vote) {
@@ -123,8 +116,6 @@ export default {
             .then((response) => {
                 console.log(response);
                 this.users = response.data.results;
-                // this.currentPage = response.data.results.current_page;
-                // this.lastPage = response.data.results.last_page;
             });
         },
         getUsersBySpecAndCountRev(pageNumber, reviews_min, reviews_max) {
@@ -138,19 +129,18 @@ export default {
             .then((response) => {
                 console.log(response);
                 this.users = response.data.results;
-                // this.currentPage = response.data.results.current_page;
-                // this.lastPage = response.data.results.last_page;
             });
         },
-        getSponsoredUsers() {
-            axios.get('/api/sponsored-users', {
+        //TODO 
+        // getSponsoredUsers() {
+        //     axios.get('/api/sponsored-users', {
                 
-            })
-            .then((response) => {
-                this.users = response.data.results.users;
-                this.specializations = response.data.results.specializations;
-            });
-        },
+        //     })
+        //     .then((response) => {
+        //         this.users = response.data.results.users;
+        //         this.specializations = response.data.results.specializations;
+        //     });
+        // },
         truncateText(text) {
             if(text.length > 100) {
                 return text.slice(0, 100) + '...'
@@ -163,9 +153,8 @@ export default {
         }
     },
     mounted() {
-        // setTimeout(function(){ this.getUsersBySpecialization(this.$route.params.specialization_slug, 1) }, 500);
         this.getUsersBySpecialization(1);
-        this.getSponsoredUsers();
+        // this.getSponsoredUsers(); TODO
     }
 }
 </script>
