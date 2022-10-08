@@ -12,14 +12,14 @@
             <li><strong>Voto:</strong> {{ $review->vote }}</li>
             <li><strong>Recensione:</strong> {{ $review->content }}</li>
             <!-- Delete Button -->
-            <button  class="btn btn-danger my-3" type="button" data-target="#deleteModal" data-toggle="modal">Elimina</button>
+            <button  class="btn btn-danger my-3" type="button" data-target="#deleteModal{{$review->id}}" data-toggle="modal">Elimina</button>
         </ul>
 
         <hr>
 
 
         <!-- Modale conferma eliminazione profilo user -->
-        <div class=" modal" tabindex="-1" role="dialog" id="deleteModal">
+        <div class=" modal" tabindex="-1" role="dialog" id="deleteModal{{$review->id}}">
             <div class="modal-dialog">
                 <div class="modal-content">
                 <div class="modal-header">

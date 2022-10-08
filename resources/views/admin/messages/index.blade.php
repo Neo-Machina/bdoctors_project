@@ -12,13 +12,13 @@
             <li><strong>Email:</strong> {{ $message->email }}</li>
             <li><strong>Messaggio:</strong> {{ $message->content }}</li>
             <!-- Delete Button -->
-            <button  class="btn btn-danger my-3" type="button" data-target="#deleteModal" data-toggle="modal">Elimina</button>
+            <button  class="btn btn-danger my-3" type="button" data-target="#deleteModal{{ $message->id }}" data-toggle="modal">Elimina</button>
         </ul>
 
         <hr>
 
         <!-- Modale conferma eliminazione profilo user -->
-        <div class=" modal" tabindex="-1" role="dialog" id="deleteModal">
+        <div class="modal" tabindex="-1" role="dialog" id="deleteModal{{ $message->id }}">
             <div class="modal-dialog">
                 <div class="modal-content">
                 <div class="modal-header">
