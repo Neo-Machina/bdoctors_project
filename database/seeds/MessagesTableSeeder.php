@@ -3,7 +3,6 @@
 use Illuminate\Database\Seeder;
 use App\Message;
 use App\User;
-//aggiunta Carbon
 use Carbon\Carbon;
 use Faker\Generator as Faker;
 
@@ -19,12 +18,13 @@ class MessagesTableSeeder extends Seeder
         $users = User::all();
 
         foreach ($users as $user) {
-            for($i = 0; $i < rand(3, 20); $i++){
+            for($i = 0; $i < rand(200, 300); $i++){
                 $new_message = new Message();
                 $new_message->author = $faker->name($gender = 'male'|'female');
                 $new_message->email = $faker->email();
                 $new_message->content = $faker->text(300);
-                $new_message->created_at = $faker->dateTimeBetween('-3 years', '-1 day');
+                $new_message->created_at = new Carbon($faker->dateTimeBetween('-3 years', '-1 day'));
+                $new_message->updated_at = new Carbon($faker->dateTimeBetween('-3 years', '-1 day'));
                 $new_message->user_id = $user->id;
                 $new_message->save();
             }

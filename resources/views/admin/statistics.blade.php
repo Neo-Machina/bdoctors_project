@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('content')
-    <div class="d-flex justify-content-around">
+    <div class="d-flex justify-content-between mb-5">
         <div>
             Numero totale messaggi: <span id="tot_messages"></span>
         </div>
@@ -10,25 +10,27 @@
             Numero totale recensioni: <span id="tot_reviews"></span>
         </div>
     
-        <ul id="filterList">
+        <ul id="filterList" class="d-flex">
             <li style="cursor: pointer" id="2019" onclick="changeSelectedYear('2019')">
-                2019
+                2019 
             </li>
             <li style="cursor: pointer" id="2020" onclick="changeSelectedYear('2020')">
-                2020
+                2020 
             </li>
             <li style="cursor: pointer" id="2021" onclick="changeSelectedYear('2021')">
-                2021
+                2021 
             </li>
             <li style="cursor: pointer" id="2022" onclick="changeSelectedYear('2022')">
-                2022
+                2022 
             </li>
-            <li style="cursor: pointer" id="all" class="font-weight-bold" onclick="changeSelectedYear('')">
+            <li style="cursor: pointer" id="all" class="font-weight-bold my_font_color" onclick="changeSelectedYear('')">
                 TUTTI GLI ANNI
             </li>
     
         </ul>
     </div>
+
+    <div>Media Voti</div>
 
     <div style="width: 1000px; height: 500px">
         <canvas id="myChart"></canvas>
@@ -44,7 +46,7 @@
             }
             document.getElementById('all').className = '';
             previousClick = e.target;
-            e.target.className = 'font-weight-bold'
+            e.target.className = 'font-weight-bold my_font_color'
         })
         const ctx = document.getElementById('myChart').getContext('2d');
         const myChart = new Chart(ctx, {
@@ -52,7 +54,6 @@
         data: {
             labels: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
             datasets: [{
-                label: 'Media Voto',
                 data: [],
                 bars: [],
                 backgroundColor: [  
@@ -69,18 +70,23 @@
             scales: {
                 y: {
                     beginAtZero: true
+                },
+            },
+            plugins: {
+                legend: {
+                    display: false
                 }
             },
             animation: {
                 onComplete: function() {
                     var _ctx = ctx;
-                    _ctx.font = "12, 'normal, 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
+                    _ctx.font = "normal 13px sans-serif"
                     _ctx.textAlign = 'center';
                     _ctx.textBaseline = 'bottom';
                     this.config.data.datasets.forEach(function (dataset) {
                         if(dataset.data._chartjs.listeners[0]._cachedMeta) {
                             dataset.data._chartjs.listeners[0]._cachedMeta.data.forEach(function (bar, index) {
-                                _ctx.fillText(myChart.data.datasets[0].bars[index], bar.x, myChart.data.datasets[0].bars[index] === 0 ? bar.y - 10 : bar.y + 30);
+                                _ctx.fillText('N. voti: ' + myChart.data.datasets[0].bars[index], bar.x, myChart.data.datasets[0].bars[index] === 0 ? bar.y - 10 : bar.y + 30);
                             });
                         }
                     })
