@@ -2010,6 +2010,9 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return text;
+    },
+    stars: function stars(original_vote) {
+      return Math.round(original_vote);
     }
   },
   mounted: function mounted() {
@@ -2151,12 +2154,15 @@ __webpack_require__.r(__webpack_exports__);
         _this3.sending = false;
       });
     },
-    scrollTopPage: function scrollTopPage() {
-      window.scrollTo(0, 0);
-    },
-    scrollToReview: function scrollToReview() {
-      window.scrollTo(0, 628);
-    } // transformVote() {
+    stars: function stars(original_vote) {
+      return Math.round(original_vote);
+    } // scrollTopPage() {
+    //     window.scrollTo(0, 0);
+    // },
+    // scrollToReview() {
+    //     window.scrollTo(0, 628);
+    // },
+    // transformVote() {
     //     return Math.round((this.reviews.vote * 5) / 10);
     // },
     // getStarsStyle(starNumber) {
@@ -2168,8 +2174,17 @@ __webpack_require__.r(__webpack_exports__);
     // }
 
   },
-  mounted: function mounted() {
+  created: function created() {
     this.getSingleProfile();
+  },
+  mounted: function mounted() {
+    var resize_ob = new ResizeObserver(function (entries) {
+      var rect = entries[0].contentRect;
+      var height = rect.height;
+      document.getElementById('reviews-col').style.height = height + 'px';
+      document.getElementById('reviews-col').style.maxHeight = height + 'px';
+    });
+    resize_ob.observe(document.getElementById('profile-col'));
   }
 });
 
@@ -2418,9 +2433,9 @@ var render = function render() {
     staticClass: "col-2"
   }, [_c("div", {
     staticClass: "average"
-  }, [_vm._m(0), _vm._v(" "), _vm._l(5, function (number, index) {
+  }, [_vm._m(0), _vm._v(" "), _vm._l(4, function (number, index) {
     return _c("div", {
-      key: "B" + index
+      key: index
     }, [_c("div", {
       staticClass: "hover-effect",
       staticStyle: {
@@ -2432,7 +2447,17 @@ var render = function render() {
           return _vm.getUsersBySpecAndAvgVote(1, number);
         }
       }
-    }, [_vm._v("\n                        Media Voto: " + _vm._s(number) + " e più\n                    ")])]);
+    }, [_vm._l(_vm.stars(number), function (n) {
+      return _c("i", {
+        key: n,
+        staticClass: "fas fa-star active"
+      });
+    }), _vm._v(" "), _vm._l(5 - _vm.stars(number), function (m) {
+      return _c("i", {
+        key: m,
+        staticClass: "far fa-star star_icon"
+      });
+    })], 2)]);
   }), _vm._v(" "), _c("div", {
     staticClass: "mt-3"
   }, [_vm._m(1), _vm._v(" "), _c("div", {
@@ -2443,10 +2468,10 @@ var render = function render() {
     on: {
       click: function click($event) {
         $event.preventDefault();
-        return _vm.getUsersBySpecAndCountRev(1, 0, 5);
+        return _vm.getUsersBySpecAndCountRev(1, 0, 100);
       }
     }
-  }, [_vm._v("\n                        Fino a 5 recensioni\n                    ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                        Fino a 100 recensioni\n                    ")]), _vm._v(" "), _c("div", {
     staticClass: "hover-effect",
     staticStyle: {
       cursor: "pointer"
@@ -2454,10 +2479,10 @@ var render = function render() {
     on: {
       click: function click($event) {
         $event.preventDefault();
-        return _vm.getUsersBySpecAndCountRev(1, 5, 10);
+        return _vm.getUsersBySpecAndCountRev(1, 100, 200);
       }
     }
-  }, [_vm._v("\n                        da 5 a 10 recensioni\n                    ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                        da 100 a 200 recensioni\n                    ")]), _vm._v(" "), _c("div", {
     staticClass: "hover-effect",
     staticStyle: {
       cursor: "pointer"
@@ -2465,13 +2490,13 @@ var render = function render() {
     on: {
       click: function click($event) {
         $event.preventDefault();
-        return _vm.getUsersBySpecAndCountRev(1, 10, 1000);
+        return _vm.getUsersBySpecAndCountRev(1, 200, 1000);
       }
     }
-  }, [_vm._v("\n                        10 recensioni e più\n                    ")])])], 2)]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                        200 recensioni e più\n                    ")])])], 2)]), _vm._v(" "), _c("div", {
     staticClass: "col-10"
   }, [_c("div", {
-    staticClass: "d-flex flex-wrap justify-content-between"
+    staticClass: "user-card d-flex flex-wrap"
   }, _vm._l(_vm.users, function (user, index) {
     return _c("div", {
       key: "A" + index
@@ -2494,7 +2519,12 @@ var render = function render() {
       staticClass: "card-text badge bg-info text-dark mr-1"
     }, [_vm._v(_vm._s(user.specialization_slug))]), _vm._v(" "), _c("div", {
       staticClass: "mb-1"
-    }, [_c("strong", [_vm._v(_vm._s(user.email))])]), _vm._v(" "), _c("div", [_vm._v("Voto: " + _vm._s(user.reviews_avg_vote))]), _vm._v(" "), _c("div", [_vm._v("Numero di recensioni: " + _vm._s(user.reviews_count))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.truncateText(user.curriculum)))]), _vm._v(" "), _c("router-link", {
+    }, [_c("strong", [_vm._v(_vm._s(user.email))])]), _vm._v(" "), _c("div", [_c("strong", [_vm._v("Voto")]), _vm._v(": "), _vm._l(_vm.stars(user.reviews_avg_vote), function (n) {
+      return _c("i", {
+        key: n,
+        staticClass: "fas fa-star active"
+      });
+    })], 2), _vm._v(" "), _c("div", [_c("strong", [_vm._v("Numero di recensioni")]), _vm._v(": " + _vm._s(user.reviews_count))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.truncateText(user.curriculum)))]), _vm._v(" "), _c("router-link", {
       staticClass: "btn btn-primary",
       attrs: {
         to: {
@@ -2513,7 +2543,7 @@ var staticRenderFns = [function () {
       _c = _vm._self._c;
 
   return _c("div", {
-    staticClass: "mb-2"
+    staticClass: "mb-2 px-1"
   }, [_c("strong", {
     staticClass: "bg-info"
   }, [_vm._v("Scegli un medico in base "), _c("br"), _vm._v(" a i voti che ha ricevuto")])]);
@@ -2700,320 +2730,9 @@ render._withStripped = true;
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function render() {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "container"
-  }, [_c("h2", {
-    staticClass: "mb-4"
-  }, [_vm._v(_vm._s(_vm.user.name))]), _vm._v(" "), _c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-5"
-  }, [_c("div", {
-    staticClass: "d-flex"
-  }, [_c("div", {
-    staticClass: "card mb-5",
-    staticStyle: {
-      width: "30rem"
-    }
-  }, [_c("img", {
-    staticClass: "card-img-top",
-    attrs: {
-      src: _vm.user.photo,
-      alt: "..."
-    }
-  }), _vm._v(" "), _c("div", {
-    staticClass: "card-body"
-  }, [_c("h5", {
-    staticClass: "card-title"
-  }, [_vm._v(_vm._s(_vm.user.name))]), _vm._v(" "), _vm.user.specializations ? _c("div", [_c("strong", [_vm._v("Specializzazione in")]), _vm._v(" "), _vm._l(_vm.user.specializations, function (specialization) {
-    return _c("span", {
-      key: specialization.id,
-      staticClass: "badge bg-info text-light mr-1 mb-3"
-    }, [_vm._v(_vm._s(specialization.name))]);
-  })], 2) : _vm._e(), _vm._v(" "), _c("div", {
-    staticClass: "mb-3"
-  }, [_c("strong", [_vm._v("Contatta il medico al seguente indirizzo:")]), _vm._v(" " + _vm._s(_vm.user.email))]), _vm._v(" "), _c("p", [_c("strong", {
-    staticClass: "d-block"
-  }, [_vm._v("Curriculum Vitae")]), _vm._v(_vm._s(_vm.user.curriculum))])])])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-7 d-flex"
-  }, _vm._l(_vm.user.reviews, function (review, index) {
-    return _c("div", {
-      key: index
-    }, [_c("div", {
-      staticClass: "review-card card text-dark bg-light mb-3",
-      staticStyle: {
-        "max-width": "18rem"
-      }
-    }, [_c("div", {
-      staticClass: "card-header"
-    }, [_vm._v("Recensione")]), _vm._v(" "), _c("div", {
-      staticClass: "card-body"
-    }, [_c("h5", {
-      staticClass: "card-title"
-    }, [_vm._v(_vm._s(review.author))]), _vm._v(" "), _c("p", {
-      staticClass: "card-text"
-    }, [_vm._v(_vm._s(review.content))])])])]);
-  }), 0)]), _vm._v(" "), _c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col"
-  }, [_vm.success_message ? _c("div", {
-    staticClass: "alert alert-success",
-    attrs: {
-      role: "alert"
-    }
-  }, [_vm._v("\n                Grazie per averci contattato!\n            ")]) : _vm._e(), _vm._v(" "), _c("h4", [_vm._v("Scrivi un messaggio al medico")]), _vm._v(" "), _c("form", {
-    on: {
-      submit: function submit($event) {
-        $event.preventDefault();
-        return _vm.sendMessage();
-      }
-    }
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label",
-    attrs: {
-      "for": "author-message"
-    }
-  }, [_vm._v("Nome e cognome *")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.authorMessage,
-      expression: "authorMessage"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      id: "author-message"
-    },
-    domProps: {
-      value: _vm.authorMessage
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.authorMessage = $event.target.value;
-      }
-    }
-  }), _vm._v(" "), _vm.errors.author ? _c("div", _vm._l(_vm.errors.author, function (error, index) {
-    return _c("div", {
-      key: index,
-      staticClass: "alert alert-danger",
-      attrs: {
-        role: "alert"
-      }
-    }, [_vm._v("\n                            " + _vm._s(error) + "\n                        ")]);
-  }), 0) : _vm._e()]), _vm._v(" "), _c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label",
-    attrs: {
-      "for": "user-mail"
-    }
-  }, [_vm._v("Email *")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.userEmail,
-      expression: "userEmail"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "email",
-      id: "user-mail"
-    },
-    domProps: {
-      value: _vm.userEmail
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.userEmail = $event.target.value;
-      }
-    }
-  }), _vm._v(" "), _vm.errors.email ? _c("div", _vm._l(_vm.errors.email, function (error, index) {
-    return _c("div", {
-      key: index,
-      staticClass: "alert alert-danger",
-      attrs: {
-        role: "alert"
-      }
-    }, [_vm._v("\n                            " + _vm._s(error) + "\n                        ")]);
-  }), 0) : _vm._e()]), _vm._v(" "), _c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label",
-    attrs: {
-      "for": "content-message"
-    }
-  }, [_vm._v("Messaggio *")]), _vm._v(" "), _c("textarea", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.contentMessage,
-      expression: "contentMessage"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      id: "content-message",
-      rows: "8"
-    },
-    domProps: {
-      value: _vm.contentMessage
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.contentMessage = $event.target.value;
-      }
-    }
-  }), _vm._v(" "), _vm.errors.content ? _c("div", _vm._l(_vm.errors.content, function (error, index) {
-    return _c("div", {
-      key: index,
-      staticClass: "alert alert-danger",
-      attrs: {
-        role: "alert"
-      }
-    }, [_vm._v("\n                            " + _vm._s(error) + "\n                        ")]);
-  }), 0) : _vm._e()]), _vm._v(" "), _c("input", {
-    staticClass: "btn btn-primary",
-    attrs: {
-      type: "submit",
-      value: "Invia Messaggio",
-      disabled: _vm.sending
-    }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "col"
-  }, [_vm.success_review ? _c("div", {
-    staticClass: "alert alert-success",
-    attrs: {
-      role: "alert"
-    }
-  }, [_vm._v("\n                Grazie per averci recensito e dato un voto!\n            ")]) : _vm._e(), _vm._v(" "), _c("h4", [_vm._v("Scrivi una recensione")]), _vm._v(" "), _c("form", {
-    on: {
-      submit: function submit($event) {
-        $event.preventDefault();
-        return _vm.sendReview();
-      }
-    }
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label",
-    attrs: {
-      "for": "author-review"
-    }
-  }, [_vm._v("Nome e cognome *")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.authorReview,
-      expression: "authorReview"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      id: "author-review"
-    },
-    domProps: {
-      value: _vm.authorReview
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.authorReview = $event.target.value;
-      }
-    }
-  }), _vm._v(" "), _vm.errors.author ? _c("div", _vm._l(_vm.errors.author, function (error, index) {
-    return _c("div", {
-      key: index,
-      staticClass: "alert alert-danger",
-      attrs: {
-        role: "alert"
-      }
-    }, [_vm._v("\n                            " + _vm._s(error) + "\n                        ")]);
-  }), 0) : _vm._e()]), _vm._v(" "), _c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label",
-    attrs: {
-      "for": "content-review"
-    }
-  }, [_vm._v("Recensione *")]), _vm._v(" "), _c("textarea", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.contentReview,
-      expression: "contentReview"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      id: "content-review",
-      rows: "8"
-    },
-    domProps: {
-      value: _vm.contentReview
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.contentReview = $event.target.value;
-      }
-    }
-  }), _vm._v(" "), _vm.errors.content ? _c("div", _vm._l(_vm.errors.content, function (error, index) {
-    return _c("div", {
-      key: index,
-      staticClass: "alert alert-danger",
-      attrs: {
-        role: "alert"
-      }
-    }, [_vm._v("\n                            " + _vm._s(error) + "\n                        ")]);
-  }), 0) : _vm._e()]), _vm._v(" "), _c("div", {
-    staticClass: "mb-3"
-  }, [_c("div", {
-    staticClass: "average_vote"
-  }, [_c("span", {
-    staticClass: "bold_text"
-  }, [_vm._v("Vote")]), _vm._v(": \n                        "), _vm._l(5, function (star, index) {
-    return _c("span", {
-      key: index,
-      staticClass: "star_icon",
-      "class": {
-        active: star <= _vm.voteReview
-      },
-      on: {
-        click: function click($event) {
-          $event.preventDefault();
-          _vm.voteReview = star;
-        }
-      }
-    }, [_vm._v("\n                            ★\n                        ")]);
-  })], 2), _vm._v(" "), _c("div", [_vm._v("\n                        " + _vm._s(_vm.voteReview) + "\n                    ")]), _vm._v(" "), _vm.errors.vote ? _c("div", _vm._l(_vm.errors.vote, function (error, index) {
-    return _c("div", {
-      key: index,
-      staticClass: "alert alert-danger",
-      attrs: {
-        role: "alert"
-      }
-    }, [_vm._v("\n                            " + _vm._s(error) + "\n                        ")]);
-  }), 0) : _vm._e()]), _vm._v(" "), _c("input", {
-    staticClass: "btn btn-primary",
-    attrs: {
-      type: "submit",
-      value: "Invia Recensione",
-      disabled: _vm.sending
-    }
-  })])])])]);
-};
+var render = function render() {};
 
 var staticRenderFns = [];
-render._withStripped = true;
 
 
 /***/ }),
@@ -7420,7 +7139,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".average[data-v-0312e533] {\n  position: fixed;\n}\n.star_icon[data-v-0312e533] {\n  color: grey;\n  cursor: pointer;\n}\n.active[data-v-0312e533] {\n  color: gold;\n}\n.hover-effect[data-v-0312e533]:hover {\n  font-weight: bold;\n}", ""]);
+exports.push([module.i, ".average[data-v-0312e533] {\n  position: fixed;\n}\n.star_icon[data-v-0312e533] {\n  color: grey;\n  cursor: pointer;\n}\n.active[data-v-0312e533] {\n  color: gold;\n}\n.hover-effect[data-v-0312e533]:hover {\n  font-weight: bold;\n}\n.col-10 .user-card[data-v-0312e533] {\n  justify-content: space-between;\n}\n@media screen and (min-width: 568px) {\n.col-10 .user-card[data-v-0312e533] {\n    justify-content: flex-end;\n}\n}\n@media screen and (min-width: 768px) {\n.col-10 .user-card[data-v-0312e533] {\n    justify-content: center;\n}\n}\n@media screen and (min-width: 992px) {\n.col-10 .user-card[data-v-0312e533] {\n    justify-content: space-evenly;\n}\n}", ""]);
 
 // exports
 
@@ -7458,7 +7177,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".col-7[data-v-d06745f0] {\n  flex-wrap: wrap;\n}\n.col-7 .review-card[data-v-d06745f0] {\n  margin-inline: 0.9rem;\n}\n.star_icon[data-v-d06745f0] {\n  color: grey;\n  cursor: pointer;\n  font-size: 1.3rem;\n}\n.active[data-v-d06745f0] {\n  color: gold;\n}", ""]);
+exports.push([module.i, ".col-7[data-v-d06745f0] {\n  flex-wrap: wrap;\n}\n.col-7 .review-card[data-v-d06745f0] {\n  margin-inline: 0.9rem;\n}\n.star_icon[data-v-d06745f0] {\n  color: grey;\n  cursor: pointer;\n  font-size: 1.3rem;\n}\n.active[data-v-d06745f0] {\n  color: gold;\n}\n.forms_row[data-v-d06745f0] {\n  margin-top: 7rem;\n}", ""]);
 
 // exports
 
@@ -55141,8 +54860,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Dogana\Boolean Project\laravel-projects\bdoctors_project\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Dogana\Boolean Project\laravel-projects\bdoctors_project\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Andrei\boolean_projects_class_66\laravel-projects\bdoctors_project\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Andrei\boolean_projects_class_66\laravel-projects\bdoctors_project\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

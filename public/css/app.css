@@ -9265,3 +9265,22 @@ h5 span {
 .profile-picture {
   width: 10rem;
 }
+
+#filterList {
+  list-style-type: none;
+  padding-right: 11rem;
+}
+#filterList li {
+  padding-right: 10px;
+}
+#filterList li::after {
+  content: " | ";
+  color: black !important;
+  font-weight: 400 !important;
+}
+#filterList li:last-child::after {
+  content: "";
+}
+#filterList .my_font_color {
+  color: #3490dc;
+}

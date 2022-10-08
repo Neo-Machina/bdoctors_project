@@ -76,3 +76,8 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## DB Seed, invalid timestamp format error for march dates do to daylight saving change
+
+Run on DB:
+    SET GLOBAL time_zone="+0:00"

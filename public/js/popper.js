@@ -2722,7 +2722,11 @@ Popper.Defaults = Defaults;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 module.exports = __webpack_require__(/*! C:\Users\Dogana\Boolean Project\laravel-projects\bdoctors_project\resources\js\popper.js */"./resources/js/popper.js");
+=======
+module.exports = __webpack_require__(/*! C:\Users\Andrei\boolean_projects_class_66\laravel-projects\bdoctors_project\resources\js\popper.js */"./resources/js/popper.js");
+>>>>>>> statistics-user
 
 
 /***/ })

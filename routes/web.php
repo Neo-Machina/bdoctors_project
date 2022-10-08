@@ -29,6 +29,10 @@ Route::middleware('auth')
 // DEBUG
 Route::get('/debug', 'HomeController@debug')->name('debug');
 
+
+// STATISTICS ROUTE
+Route::get('/statistics', 'Admin\StatisticController@getStatisticsUser')->name('statistics');
+
 // Rotte gestite da Vue
 Route::get('{any?}', function () {
     return view('guest.home');
