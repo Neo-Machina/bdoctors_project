@@ -20,19 +20,12 @@ class ReviewController extends Controller
         // User Id
         $id = $request->user()->id;
         
-        $user = User::findOrFail($id)->with('specializations', 'reviews', 'reviews', 'bundles');
+        $user = User::findOrFail($id)->with('specializations', 'reviews', 'reviews', 'bundles')->get()->find($id);
         $reviews = $user->reviews()->orderBy('created_at','DESC')->paginate(2);
         
-        // dd($user->reviews()->paginate(2));
-        // dd($user);
-
         if (isset($user)) {
             $data = [
                 'reviews' => $reviews,
-                // 'results' => [
-                //     'user' => $user,
-                //     'reviews' => $reviews
-                // ],
                 'user' => $user
             ];
         } else {
