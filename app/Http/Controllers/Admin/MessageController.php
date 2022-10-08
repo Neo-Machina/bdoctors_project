@@ -19,7 +19,7 @@ class MessageController extends Controller
         // User Id
         $id = $request->user()->id;
         
-        $user = User::findOrFail($id)->with('specializations', 'reviews', 'messages', 'bundles')->first();
+        $user = User::findOrFail($id)->with('specializations', 'reviews', 'messages', 'bundles');
         $messages = $user->messages()->paginate(2);
         
         // dd($user->messages()->paginate(2));

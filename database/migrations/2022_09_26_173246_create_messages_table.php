@@ -16,7 +16,7 @@ class CreateMessagesTable extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
             $table->string('author', 255);
-            $table->string('email', 50)->unique();
+            $table->string('email', 50);
             $table->text('content');
 
             $table->unsignedBigInteger('user_id');

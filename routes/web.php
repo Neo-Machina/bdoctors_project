@@ -32,6 +32,9 @@ Route::get('/debug', 'HomeController@debug')->name('debug');
 // SPONSOR
 Route::get('/sponsors', 'Admin\SponsorController@getSponsorPackages')->name('sponsor');
 
+// PAYMENT PROCESS
+Route::post('/payment/process', 'Admin\PaymentsController@process')->name('payment.process');
+
 Route::get('{any?}', function () {
     return view('guest.home');
 })->where('any', '.*')->name('guest');
