@@ -3,15 +3,15 @@
         <h2 class="mb-4">{{user.name}}</h2>
 
         <!-- user profile and reviews -->
-        <div class="row">
+        <div class="row mb-5">
 
-            <div class="col-5">
+            <div class="col-5" id="profile-col">
                 <div class="d-flex">
-                    <div class="card mb-5" style="width: 30rem;">
+                    <div class="card" style="width: 30rem;">
                         <img :src="user.photo" class="card-img-top" alt="..."> 
                         <div class="card-body">
                             <h5 class="card-title">{{user.name}}</h5>
-                            <div v-if="user.specializations.length > 0">
+                            <div v-if="user && user.specializations && user.specializations.length > 0">
                                 <strong>Specializzazione in</strong>
                                 <span v-for="specialization in user.specializations" :key="specialization.id" class="badge bg-info text-light mr-1 mb-3">{{specialization.name}}</span>
                             </div>
@@ -23,18 +23,20 @@
             </div>
 
             <!-- message and reviews -->
-            <div class="col-7 d-flex">
-                <div v-for="(review, index) in user.reviews" :key="index">
-                    <!-- <div><strong>Autore</strong>: {{ review.author }}</div>
-                    <div><strong>Voto</strong>: {{ review.vote }}</div>
-                    <div><strong>Recensione</strong>: {{ review.content }}</div>
-                    <hr> -->
+            <div class="col-7 d-flex" style="max-height: 700px; height: 700px; padding: 0" id="reviews-col">
+                <div class="col d-flex h-100" style="flex-wrap: wrap; padding: 0; overflow: auto">
+                    <div v-for="(review, index) in user.reviews" :key="index">
+                        <!-- <div><strong>Autore</strong>: {{ review.author }}</div>
+                        <div><strong>Voto</strong>: {{ review.vote }}</div>
+                        <div><strong>Recensione</strong>: {{ review.content }}</div>
+                        <hr> -->
 
-                    <div class="review-card card text-dark bg-light mb-3" style="max-width: 18rem;">
-                        <div class="card-header">Recensione</div>
-                        <div class="card-body">
-                            <h5 class="card-title">{{ review.author }}</h5>
-                            <p class="card-text">{{ review.content }}</p>
+                        <div class="review-card card text-dark bg-light mb-3" style="max-width: 18rem;">
+                            <div class="card-header">Recensione</div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ review.author }}</h5>
+                                <p class="card-text">{{ review.content }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -57,7 +59,7 @@
         </div>
 
         <!-- message and revies forms -->
-        <div class="row">
+        <div class="row forms_row">
             <!-- FORM MESSAGGIO -->
             <div class="col">
                 
@@ -70,7 +72,7 @@
                 <form @submit.prevent="sendMessage()">
                     <div class="mb-3">
                         <label for="author-message" class="form-label">Nome e cognome *</label>
-                        <input v-model="authorMessage" type="text" class="form-control" id="author-message">
+                        <input v-model="authorMessage" type="text" class="form-control" id="author-message" required>
 
                         <div v-if="errors.author">
                             <div v-for="(error, index) in errors.name" :key="index" class="alert alert-danger" role="alert">
@@ -81,7 +83,7 @@
 
                     <div class="mb-3">
                         <label for="user-mail" class="form-label">Email *</label>
-                        <input v-model="userEmail" type="email" class="form-control" id="user-mail">
+                        <input v-model="userEmail" type="email" class="form-control" id="user-mail" required>
 
                         <div v-if="errors.email">
                             <div v-for="(error, index) in errors.email" :key="index" class="alert alert-danger" role="alert">
@@ -92,7 +94,7 @@
 
                     <div class="mb-3">
                         <label for="content-message" class="form-label">Messaggio *</label>
-                        <textarea v-model="contentMessage" class="form-control" id="content-message" rows="8"></textarea>
+                        <textarea v-model="contentMessage" class="form-control" id="content-message" rows="8" required></textarea>
 
                         <div v-if="errors.content">
                             <div v-for="(error, index) in errors.message" :key="index" class="alert alert-danger" role="alert">
@@ -116,7 +118,7 @@
                 <form @submit.prevent="sendReview()">
                     <div class="mb-3">
                         <label for="author-review" class="form-label">Nome e cognome *</label>
-                        <input v-model="authorReview" type="text" class="form-control" id="author-review">
+                        <input v-model="authorReview" type="text" class="form-control" id="author-review" required>
 
                         <div v-if="errors.author">
                             <div v-for="(error, index) in errors.name" :key="index" class="alert alert-danger" role="alert">
@@ -127,7 +129,7 @@
 
                     <div class="mb-3">
                         <label for="content-review" class="form-label">Recensione *</label>
-                        <textarea v-model="contentReview" class="form-control" id="content-review" rows="8"></textarea>
+                        <textarea v-model="contentReview" class="form-control" id="content-review" rows="8" required></textarea>
 
                         <div v-if="errors.review">
                             <div v-for="(error, index) in errors.message" :key="index" class="alert alert-danger" role="alert">
@@ -199,7 +201,7 @@ export default {
                 user_id: this.user.id
             })
             .then((response) => {
-                this.scrollTopPage();
+                // this.scrollTopPage();
 
                 if(response.data.success) {
                     this.success_message = true;
@@ -224,7 +226,7 @@ export default {
                 user_id: this.user.id
             })
             .then((response) => {
-                this.scrollToReview();
+                // this.scrollToReview();
 
                 if(response.data.success) {
                     this.success_review = true;
@@ -239,12 +241,12 @@ export default {
                 this.sending = false;
             })
         },
-        scrollTopPage() {
-            window.scrollTo(0, 0);
-        },
-        scrollToReview() {
-            window.scrollTo(0, 628);
-        },
+        // scrollTopPage() {
+        //     window.scrollTo(0, 0);
+        // },
+        // scrollToReview() {
+        //     window.scrollTo(0, 628);
+        // },
         // transformVote() {
         //     return Math.round((this.reviews.vote * 5) / 10);
         // },
@@ -256,8 +258,18 @@ export default {
         //     }
         // }
     },
-    mounted() {
+    created() {
         this.getSingleProfile();
+    },
+    mounted() {
+        const resize_ob = new ResizeObserver(function(entries) {
+            let rect = entries[0].contentRect;
+            let height = rect.height;
+
+            document.getElementById('reviews-col').style.height = height + 'px';
+            document.getElementById('reviews-col').style.maxHeight = height + 'px';
+        });
+        resize_ob.observe(document.getElementById('profile-col'));
     }
 }
 </script>
@@ -269,6 +281,9 @@ export default {
     .review-card {
         margin-inline: 0.9rem;
     }
+}
+.forms_row {
+    margin-top: 7rem;
 }
 // .star_icon {
 //     color: grey;

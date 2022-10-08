@@ -23,14 +23,14 @@
                             <strong class="bg-info">Filtra per numero <br> di recensioni</strong>
                         </div>
 
-                        <div class="hover-effect" @click.prevent="getUsersBySpecAndCountRev(1, 0, 5)" style="cursor: pointer;">
-                            Fino a 5 recensioni
+                        <div class="hover-effect" @click.prevent="getUsersBySpecAndCountRev(1, 0, 100)" style="cursor: pointer;">
+                            Fino a 100 recensioni
                         </div>
-                        <div class="hover-effect" @click.prevent="getUsersBySpecAndCountRev(1, 5, 10)" style="cursor: pointer;">
-                            da 5 a 10 recensioni
+                        <div class="hover-effect" @click.prevent="getUsersBySpecAndCountRev(1, 100, 200)" style="cursor: pointer;">
+                            da 100 a 200 recensioni
                         </div>
-                        <div class="hover-effect" @click.prevent="getUsersBySpecAndCountRev(1, 10, 1000)" style="cursor: pointer;">
-                            10 recensioni e più
+                        <div class="hover-effect" @click.prevent="getUsersBySpecAndCountRev(1, 200, 1000)" style="cursor: pointer;">
+                            200 recensioni e più
                         </div>
                     </div>
                 </div>

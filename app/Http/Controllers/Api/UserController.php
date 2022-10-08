@@ -112,7 +112,7 @@ class UserController extends Controller
         // Li filtra per media voto recensioni->
         // Li ordina in modo che quelli con data di scadenza bundle (expired_date) compaiano per primi nella lista
         $users = $users->unique()->whereBetween('reviews_avg_vote', [$this->filter_avg_vote, 5])->whereBetween('reviews_count', [$this->reviews_min, $this->reviews_max])->sortByDesc('expired_date');
-
+        
         if (isset($users)) {
             $data = [
                 'success' => true,

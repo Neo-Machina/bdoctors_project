@@ -2104,8 +2104,7 @@ __webpack_require__.r(__webpack_exports__);
         content: this.contentMessage,
         user_id: this.user.id
       }).then(function (response) {
-        _this2.scrollTopPage();
-
+        // this.scrollTopPage();
         if (response.data.success) {
           _this2.success_message = true;
           _this2.authorMessage = '';
@@ -2129,8 +2128,7 @@ __webpack_require__.r(__webpack_exports__);
         vote: this.voteReview,
         user_id: this.user.id
       }).then(function (response) {
-        _this3.scrollToReview();
-
+        // this.scrollToReview();
         if (response.data.success) {
           _this3.success_review = true;
           _this3.authorReview = '';
@@ -2143,13 +2141,13 @@ __webpack_require__.r(__webpack_exports__);
 
         _this3.sending = false;
       });
-    },
-    scrollTopPage: function scrollTopPage() {
-      window.scrollTo(0, 0);
-    },
-    scrollToReview: function scrollToReview() {
-      window.scrollTo(0, 628);
-    } // transformVote() {
+    } // scrollTopPage() {
+    //     window.scrollTo(0, 0);
+    // },
+    // scrollToReview() {
+    //     window.scrollTo(0, 628);
+    // },
+    // transformVote() {
     //     return Math.round((this.reviews.vote * 5) / 10);
     // },
     // getStarsStyle(starNumber) {
@@ -2161,8 +2159,17 @@ __webpack_require__.r(__webpack_exports__);
     // }
 
   },
-  mounted: function mounted() {
+  created: function created() {
     this.getSingleProfile();
+  },
+  mounted: function mounted() {
+    var resize_ob = new ResizeObserver(function (entries) {
+      var rect = entries[0].contentRect;
+      var height = rect.height;
+      document.getElementById('reviews-col').style.height = height + 'px';
+      document.getElementById('reviews-col').style.maxHeight = height + 'px';
+    });
+    resize_ob.observe(document.getElementById('profile-col'));
   }
 });
 
@@ -2436,10 +2443,10 @@ var render = function render() {
     on: {
       click: function click($event) {
         $event.preventDefault();
-        return _vm.getUsersBySpecAndCountRev(1, 0, 5);
+        return _vm.getUsersBySpecAndCountRev(1, 0, 100);
       }
     }
-  }, [_vm._v("\n                        Fino a 5 recensioni\n                    ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                        Fino a 100 recensioni\n                    ")]), _vm._v(" "), _c("div", {
     staticClass: "hover-effect",
     staticStyle: {
       cursor: "pointer"
@@ -2447,10 +2454,10 @@ var render = function render() {
     on: {
       click: function click($event) {
         $event.preventDefault();
-        return _vm.getUsersBySpecAndCountRev(1, 5, 10);
+        return _vm.getUsersBySpecAndCountRev(1, 100, 200);
       }
     }
-  }, [_vm._v("\n                        da 5 a 10 recensioni\n                    ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                        da 100 a 200 recensioni\n                    ")]), _vm._v(" "), _c("div", {
     staticClass: "hover-effect",
     staticStyle: {
       cursor: "pointer"
@@ -2458,10 +2465,10 @@ var render = function render() {
     on: {
       click: function click($event) {
         $event.preventDefault();
-        return _vm.getUsersBySpecAndCountRev(1, 10, 1000);
+        return _vm.getUsersBySpecAndCountRev(1, 200, 1000);
       }
     }
-  }, [_vm._v("\n                        10 recensioni e più\n                    ")])])], 2)]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                        200 recensioni e più\n                    ")])])], 2)]), _vm._v(" "), _c("div", {
     staticClass: "col-10"
   }, [_c("div", {
     staticClass: "d-flex flex-wrap justify-content-between"
@@ -2702,13 +2709,16 @@ var render = function render() {
   }, [_c("h2", {
     staticClass: "mb-4"
   }, [_vm._v(_vm._s(_vm.user.name))]), _vm._v(" "), _c("div", {
-    staticClass: "row"
+    staticClass: "row mb-5"
   }, [_c("div", {
-    staticClass: "col-5"
+    staticClass: "col-5",
+    attrs: {
+      id: "profile-col"
+    }
   }, [_c("div", {
     staticClass: "d-flex"
   }, [_c("div", {
-    staticClass: "card mb-5",
+    staticClass: "card",
     staticStyle: {
       width: "30rem"
     }
@@ -2722,7 +2732,7 @@ var render = function render() {
     staticClass: "card-body"
   }, [_c("h5", {
     staticClass: "card-title"
-  }, [_vm._v(_vm._s(_vm.user.name))]), _vm._v(" "), _vm.user.specializations.length > 0 ? _c("div", [_c("strong", [_vm._v("Specializzazione in")]), _vm._v(" "), _vm._l(_vm.user.specializations, function (specialization) {
+  }, [_vm._v(_vm._s(_vm.user.name))]), _vm._v(" "), _vm.user && _vm.user.specializations && _vm.user.specializations.length > 0 ? _c("div", [_c("strong", [_vm._v("Specializzazione in")]), _vm._v(" "), _vm._l(_vm.user.specializations, function (specialization) {
     return _c("span", {
       key: specialization.id,
       staticClass: "badge bg-info text-light mr-1 mb-3"
@@ -2732,7 +2742,22 @@ var render = function render() {
   }, [_c("strong", [_vm._v("Contatta il medico al seguente indirizzo:")]), _vm._v(" " + _vm._s(_vm.user.email))]), _vm._v(" "), _c("p", [_c("strong", {
     staticClass: "d-block"
   }, [_vm._v("Curriculum Vitae")]), _vm._v(_vm._s(_vm.user.curriculum))])])])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-7 d-flex"
+    staticClass: "col-7 d-flex",
+    staticStyle: {
+      "max-height": "700px",
+      height: "700px",
+      padding: "0"
+    },
+    attrs: {
+      id: "reviews-col"
+    }
+  }, [_c("div", {
+    staticClass: "col d-flex h-100",
+    staticStyle: {
+      "flex-wrap": "wrap",
+      padding: "0",
+      overflow: "auto"
+    }
   }, _vm._l(_vm.user.reviews, function (review, index) {
     return _c("div", {
       key: index
@@ -2750,8 +2775,8 @@ var render = function render() {
     }, [_vm._v(_vm._s(review.author))]), _vm._v(" "), _c("p", {
       staticClass: "card-text"
     }, [_vm._v(_vm._s(review.content))])])])]);
-  }), 0)]), _vm._v(" "), _c("div", {
-    staticClass: "row"
+  }), 0)])]), _vm._v(" "), _c("div", {
+    staticClass: "row forms_row"
   }, [_c("div", {
     staticClass: "col"
   }, [_vm.success_message ? _c("div", {
@@ -2783,7 +2808,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      id: "author-message"
+      id: "author-message",
+      required: ""
     },
     domProps: {
       value: _vm.authorMessage
@@ -2819,7 +2845,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "email",
-      id: "user-mail"
+      id: "user-mail",
+      required: ""
     },
     domProps: {
       value: _vm.userEmail
@@ -2855,7 +2882,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       id: "content-message",
-      rows: "8"
+      rows: "8",
+      required: ""
     },
     domProps: {
       value: _vm.contentMessage
@@ -2912,7 +2940,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      id: "author-review"
+      id: "author-review",
+      required: ""
     },
     domProps: {
       value: _vm.authorReview
@@ -2948,7 +2977,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       id: "content-review",
-      rows: "8"
+      rows: "8",
+      required: ""
     },
     domProps: {
       value: _vm.contentReview
@@ -7451,7 +7481,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".col-7[data-v-d06745f0] {\n  flex-wrap: wrap;\n}\n.col-7 .review-card[data-v-d06745f0] {\n  margin-inline: 0.9rem;\n}", ""]);
+exports.push([module.i, ".col-7[data-v-d06745f0] {\n  flex-wrap: wrap;\n}\n.col-7 .review-card[data-v-d06745f0] {\n  margin-inline: 0.9rem;\n}\n.forms_row[data-v-d06745f0] {\n  margin-top: 7rem;\n}", ""]);
 
 // exports
 

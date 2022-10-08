@@ -18,7 +18,7 @@ class MessagesTableSeeder extends Seeder
         $users = User::all();
 
         foreach ($users as $user) {
-            for($i = 0; $i < rand(200, 300); $i++){
+            for($i = 0; $i < rand(50, 300); $i++){
                 $new_message = new Message();
                 $new_message->author = $faker->name($gender = 'male'|'female');
                 $new_message->email = $faker->email();

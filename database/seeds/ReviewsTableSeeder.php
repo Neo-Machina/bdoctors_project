@@ -18,7 +18,8 @@ class ReviewsTableSeeder extends Seeder
         $users = User::all();
 
         foreach($users as $user) {
-            for ($i=0; $i < rand(200, 300); $i++) {
+            $max_reviews_number = rand(50, 300);
+            for ($i=0; $i < $max_reviews_number; $i++) {
                 $new_reviews = new Review();
 
                 $new_reviews->author = $faker->name($gender = 'male'|'female');
