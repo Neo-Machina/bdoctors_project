@@ -6,19 +6,16 @@
     {{-- Stampa tutte le recensioni --}}
     @foreach ($messages as $message)
         <ul>
-            <li>message ID: {{ $message->id }}</li>
-            <li>Autore: {{ $message->author }}</li>
-            <li>Data invio {{ $message->created_at }}</li>
-            <li>Email: {{ $message->email }}</li>
-            <li>Messaggio: {{ $message->content }}</li>
+            <li><strong>Message ID:</strong> {{ $message->id }}</li>
+            <li><strong>Autore:</strong> {{ $message->author }}</li>
+            <li><strong>Data invio:</strong> {{ $message->created_at }}</li>
+            <li><strong>Email:</strong> {{ $message->email }}</li>
+            <li><strong>Messaggio:</strong> {{ $message->content }}</li>
             <!-- Delete Button -->
             <button  class="btn btn-danger my-3" type="button" data-target="#deleteModal" data-toggle="modal">Elimina</button>
         </ul>
-        
-        <h5>ID della message da eliminare: {{ $message->id }}</h5>
 
         <hr>
-
 
         <!-- Modale conferma eliminazione profilo user -->
         <div class=" modal" tabindex="-1" role="dialog" id="deleteModal">
@@ -34,8 +31,11 @@
                     <p>Confermi di voler eliminare il messaggio?</p>
                 </div>
                 <div class="modal-footer">
+                    {{-- Button NO --}}
                     <button class="btn btn-primary" type="button" data-dismiss="modal">NO</button>
-                    <form class="form-btn-elimina" action="{{ route('admin.messages.destroy', ['message' => $message->id + 1]) }}" method="post">
+
+                    {{-- Button SI --}}
+                    <form class="form-btn-elimina" action="{{ route('admin.messages.destroy', ['message' => $message->id]) }}" method="post">
                     {{-- <form class="form-btn-elimina" action="{{ route('admin.messages.destroy', ['message' => 4]) }}" method="post"> --}}
                         @csrf
                         @method('DELETE')
