@@ -16,8 +16,8 @@
                             <!-- Media Voto: {{ number }} e più -->
                             <!-- <i class="fas fa-star active"></i> -->
 
-                            <i v-for="n in stars(number)" :key="n" class="fas fa-star active"></i>
-                            <i v-for="m in 5 - stars(number)" :key="m" class="far fa-star star_icon"></i>
+                            <i v-for="stars_n in stars(number)" :key="'stars_n_' + stars_n" class="fas fa-star active"></i>
+                            <i v-for="stars_m in 5 - stars(number)" :key="'stars_m_' + stars_m" class="far fa-star star_icon"></i>
                         </div>
                     </div>
                     
@@ -51,7 +51,7 @@
                                 <h5 class="card-title">{{user.name}}</h5>
                                 <h6 class="card-text badge bg-info text-dark mr-1">{{user.specialization_slug}}</h6>
                                 <div class="mb-1"><strong>{{user.email}}</strong></div>
-                                <div><strong>Voto</strong>: <i v-for="n in stars(user.reviews_avg_vote)" :key="n" class="fas fa-star active"></i></div>
+                                <div><strong>Voto</strong>: <i v-for="stars in stars(user.reviews_avg_vote)" :key="stars" class="fas fa-star active"></i></div>
                                 <div><strong>Numero di recensioni</strong>: {{user.reviews_count}}</div>
                                 <p>{{truncateText(user.curriculum)}}</p>
 

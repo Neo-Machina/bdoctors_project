@@ -30,14 +30,14 @@
                         <div><strong>Voto</strong>: {{ review.vote }}</div>
                         <div><strong>Recensione</strong>: {{ review.content }}</div>
                         <hr> -->
-
-                    <div class="review-card card text-dark bg-light mb-3" style="max-width: 18rem;">
-                        <div class="card-header">Recensione</div>
-                        <div class="card-body">
-                            <h5 class="card-title">{{ review.author }}</h5>
-                            <div><strong>Voto</strong>: <i v-for="n in stars(review.vote)" :key="n" class="fas fa-star active"></i></div>
-                            
-                            <p class="card-text">{{ review.content }}</p>
+                        <div class="review-card card text-dark bg-light mb-3" style="max-width: 18rem;">
+                            <div class="card-header">Recensione</div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ review.author }}</h5>
+                                <div><strong>Voto</strong>: <i v-for="n in stars(review.vote)" :key="n" class="fas fa-star active"></i></div>
+                                
+                                <p class="card-text">{{ review.content }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
         </div>
 
         <!-- message and revies forms -->
-        <div class="row forms_row">
+        <div class="row forms_row mb-3">
             <!-- FORM MESSAGGIO -->
             <div class="col">
                 

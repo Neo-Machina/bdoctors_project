@@ -2447,14 +2447,14 @@ var render = function render() {
           return _vm.getUsersBySpecAndAvgVote(1, number);
         }
       }
-    }, [_vm._l(_vm.stars(number), function (n) {
+    }, [_vm._l(_vm.stars(number), function (stars_n) {
       return _c("i", {
-        key: n,
+        key: "stars_n_" + stars_n,
         staticClass: "fas fa-star active"
       });
-    }), _vm._v(" "), _vm._l(5 - _vm.stars(number), function (m) {
+    }), _vm._v(" "), _vm._l(5 - _vm.stars(number), function (stars_m) {
       return _c("i", {
-        key: m,
+        key: "stars_m_" + stars_m,
         staticClass: "far fa-star star_icon"
       });
     })], 2)]);
@@ -2519,9 +2519,9 @@ var render = function render() {
       staticClass: "card-text badge bg-info text-dark mr-1"
     }, [_vm._v(_vm._s(user.specialization_slug))]), _vm._v(" "), _c("div", {
       staticClass: "mb-1"
-    }, [_c("strong", [_vm._v(_vm._s(user.email))])]), _vm._v(" "), _c("div", [_c("strong", [_vm._v("Voto")]), _vm._v(": "), _vm._l(_vm.stars(user.reviews_avg_vote), function (n) {
+    }, [_c("strong", [_vm._v(_vm._s(user.email))])]), _vm._v(" "), _c("div", [_c("strong", [_vm._v("Voto")]), _vm._v(": "), _vm._l(_vm.stars(user.reviews_avg_vote), function (stars) {
       return _c("i", {
-        key: n,
+        key: stars,
         staticClass: "fas fa-star active"
       });
     })], 2), _vm._v(" "), _c("div", [_c("strong", [_vm._v("Numero di recensioni")]), _vm._v(": " + _vm._s(user.reviews_count))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.truncateText(user.curriculum)))]), _vm._v(" "), _c("router-link", {
@@ -2730,9 +2730,351 @@ render._withStripped = true;
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function render() {};
+var render = function render() {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "container"
+  }, [_c("h2", {
+    staticClass: "mb-4"
+  }, [_vm._v(_vm._s(_vm.user.name))]), _vm._v(" "), _c("div", {
+    staticClass: "row mb-5"
+  }, [_c("div", {
+    staticClass: "col-5",
+    attrs: {
+      id: "profile-col"
+    }
+  }, [_c("div", {
+    staticClass: "d-flex"
+  }, [_c("div", {
+    staticClass: "card",
+    staticStyle: {
+      width: "30rem"
+    }
+  }, [_c("img", {
+    staticClass: "card-img-top",
+    attrs: {
+      src: _vm.user.photo,
+      alt: "..."
+    }
+  }), _vm._v(" "), _c("div", {
+    staticClass: "card-body"
+  }, [_c("h5", {
+    staticClass: "card-title"
+  }, [_vm._v(_vm._s(_vm.user.name))]), _vm._v(" "), _vm.user && _vm.user.specializations && _vm.user.specializations.length > 0 ? _c("div", [_c("strong", [_vm._v("Specializzazione in")]), _vm._v(" "), _vm._l(_vm.user.specializations, function (specialization) {
+    return _c("span", {
+      key: specialization.id,
+      staticClass: "badge bg-info text-light mr-1 mb-3"
+    }, [_vm._v(_vm._s(specialization.name))]);
+  })], 2) : _vm._e(), _vm._v(" "), _c("div", {
+    staticClass: "mb-3"
+  }, [_c("strong", [_vm._v("Contatta il medico al seguente indirizzo:")]), _vm._v(" " + _vm._s(_vm.user.email))]), _vm._v(" "), _c("p", [_c("strong", {
+    staticClass: "d-block"
+  }, [_vm._v("Curriculum Vitae")]), _vm._v(_vm._s(_vm.user.curriculum))])])])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-7 d-flex",
+    staticStyle: {
+      "max-height": "700px",
+      height: "700px",
+      padding: "0"
+    },
+    attrs: {
+      id: "reviews-col"
+    }
+  }, [_c("div", {
+    staticClass: "col d-flex h-100",
+    staticStyle: {
+      "flex-wrap": "wrap",
+      padding: "0",
+      overflow: "auto"
+    }
+  }, _vm._l(_vm.user.reviews, function (review, index) {
+    return _c("div", {
+      key: index
+    }, [_c("div", {
+      staticClass: "review-card card text-dark bg-light mb-3",
+      staticStyle: {
+        "max-width": "18rem"
+      }
+    }, [_c("div", {
+      staticClass: "card-header"
+    }, [_vm._v("Recensione")]), _vm._v(" "), _c("div", {
+      staticClass: "card-body"
+    }, [_c("h5", {
+      staticClass: "card-title"
+    }, [_vm._v(_vm._s(review.author))]), _vm._v(" "), _c("div", [_c("strong", [_vm._v("Voto")]), _vm._v(": "), _vm._l(_vm.stars(review.vote), function (n) {
+      return _c("i", {
+        key: n,
+        staticClass: "fas fa-star active"
+      });
+    })], 2), _vm._v(" "), _c("p", {
+      staticClass: "card-text"
+    }, [_vm._v(_vm._s(review.content))])])])]);
+  }), 0)])]), _vm._v(" "), _c("div", {
+    staticClass: "row forms_row mb-3"
+  }, [_c("div", {
+    staticClass: "col"
+  }, [_vm.success_message ? _c("div", {
+    staticClass: "alert alert-success",
+    attrs: {
+      role: "alert"
+    }
+  }, [_vm._v("\n                Grazie per averci contattato!\n            ")]) : _vm._e(), _vm._v(" "), _c("h4", [_vm._v("Scrivi un messaggio al medico")]), _vm._v(" "), _c("form", {
+    on: {
+      submit: function submit($event) {
+        $event.preventDefault();
+        return _vm.sendMessage();
+      }
+    }
+  }, [_c("div", {
+    staticClass: "mb-3"
+  }, [_c("label", {
+    staticClass: "form-label",
+    attrs: {
+      "for": "author-message"
+    }
+  }, [_vm._v("Nome e cognome *")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.authorMessage,
+      expression: "authorMessage"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      id: "author-message",
+      required: ""
+    },
+    domProps: {
+      value: _vm.authorMessage
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.authorMessage = $event.target.value;
+      }
+    }
+  }), _vm._v(" "), _vm.errors.author ? _c("div", _vm._l(_vm.errors.author, function (error, index) {
+    return _c("div", {
+      key: index,
+      staticClass: "alert alert-danger",
+      attrs: {
+        role: "alert"
+      }
+    }, [_vm._v("\n                            " + _vm._s(error) + "\n                        ")]);
+  }), 0) : _vm._e()]), _vm._v(" "), _c("div", {
+    staticClass: "mb-3"
+  }, [_c("label", {
+    staticClass: "form-label",
+    attrs: {
+      "for": "user-mail"
+    }
+  }, [_vm._v("Email *")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.userEmail,
+      expression: "userEmail"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "email",
+      id: "user-mail",
+      required: ""
+    },
+    domProps: {
+      value: _vm.userEmail
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.userEmail = $event.target.value;
+      }
+    }
+  }), _vm._v(" "), _vm.errors.email ? _c("div", _vm._l(_vm.errors.email, function (error, index) {
+    return _c("div", {
+      key: index,
+      staticClass: "alert alert-danger",
+      attrs: {
+        role: "alert"
+      }
+    }, [_vm._v("\n                            " + _vm._s(error) + "\n                        ")]);
+  }), 0) : _vm._e()]), _vm._v(" "), _c("div", {
+    staticClass: "mb-3"
+  }, [_c("label", {
+    staticClass: "form-label",
+    attrs: {
+      "for": "content-message"
+    }
+  }, [_vm._v("Messaggio *")]), _vm._v(" "), _c("textarea", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.contentMessage,
+      expression: "contentMessage"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      id: "content-message",
+      rows: "8",
+      required: ""
+    },
+    domProps: {
+      value: _vm.contentMessage
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.contentMessage = $event.target.value;
+      }
+    }
+  }), _vm._v(" "), _vm.errors.content ? _c("div", _vm._l(_vm.errors.content, function (error, index) {
+    return _c("div", {
+      key: index,
+      staticClass: "alert alert-danger",
+      attrs: {
+        role: "alert"
+      }
+    }, [_vm._v("\n                            " + _vm._s(error) + "\n                        ")]);
+  }), 0) : _vm._e()]), _vm._v(" "), _c("input", {
+    staticClass: "btn btn-primary",
+    attrs: {
+      type: "submit",
+      value: "Invia Messaggio",
+      disabled: _vm.sending
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col"
+  }, [_vm.success_review ? _c("div", {
+    staticClass: "alert alert-success",
+    attrs: {
+      role: "alert"
+    }
+  }, [_vm._v("\n                Grazie per averci recensito e dato un voto!\n            ")]) : _vm._e(), _vm._v(" "), _c("h4", [_vm._v("Scrivi una recensione")]), _vm._v(" "), _c("form", {
+    on: {
+      submit: function submit($event) {
+        $event.preventDefault();
+        return _vm.sendReview();
+      }
+    }
+  }, [_c("div", {
+    staticClass: "mb-3"
+  }, [_c("label", {
+    staticClass: "form-label",
+    attrs: {
+      "for": "author-review"
+    }
+  }, [_vm._v("Nome e cognome *")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.authorReview,
+      expression: "authorReview"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      id: "author-review",
+      required: ""
+    },
+    domProps: {
+      value: _vm.authorReview
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.authorReview = $event.target.value;
+      }
+    }
+  }), _vm._v(" "), _vm.errors.author ? _c("div", _vm._l(_vm.errors.author, function (error, index) {
+    return _c("div", {
+      key: index,
+      staticClass: "alert alert-danger",
+      attrs: {
+        role: "alert"
+      }
+    }, [_vm._v("\n                            " + _vm._s(error) + "\n                        ")]);
+  }), 0) : _vm._e()]), _vm._v(" "), _c("div", {
+    staticClass: "mb-3"
+  }, [_c("label", {
+    staticClass: "form-label",
+    attrs: {
+      "for": "content-review"
+    }
+  }, [_vm._v("Recensione *")]), _vm._v(" "), _c("textarea", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.contentReview,
+      expression: "contentReview"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      id: "content-review",
+      rows: "8",
+      required: ""
+    },
+    domProps: {
+      value: _vm.contentReview
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.contentReview = $event.target.value;
+      }
+    }
+  }), _vm._v(" "), _vm.errors.content ? _c("div", _vm._l(_vm.errors.content, function (error, index) {
+    return _c("div", {
+      key: index,
+      staticClass: "alert alert-danger",
+      attrs: {
+        role: "alert"
+      }
+    }, [_vm._v("\n                            " + _vm._s(error) + "\n                        ")]);
+  }), 0) : _vm._e()]), _vm._v(" "), _c("div", {
+    staticClass: "mb-3"
+  }, [_c("div", {
+    staticClass: "average_vote",
+    staticStyle: {
+      cursor: "pointer"
+    }
+  }, [_c("span", {
+    staticClass: "bold_text"
+  }, [_vm._v("Vote")]), _vm._v(": \n                        "), _vm._l(5, function (star, index) {
+    return _c("span", {
+      key: index,
+      staticClass: "star_icon",
+      "class": {
+        active: star <= _vm.voteReview
+      },
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          _vm.voteReview = star;
+        }
+      }
+    }, [_vm._v("\n                            ★\n                        ")]);
+  })], 2), _vm._v(" "), _c("div", [_vm._v("\n                        " + _vm._s(_vm.voteReview) + "\n                    ")]), _vm._v(" "), _vm.errors.vote ? _c("div", _vm._l(_vm.errors.vote, function (error, index) {
+    return _c("div", {
+      key: index,
+      staticClass: "alert alert-danger",
+      attrs: {
+        role: "alert"
+      }
+    }, [_vm._v("\n                            " + _vm._s(error) + "\n                        ")]);
+  }), 0) : _vm._e()]), _vm._v(" "), _c("input", {
+    staticClass: "btn btn-primary",
+    attrs: {
+      type: "submit",
+      value: "Invia Recensione",
+      disabled: _vm.sending
+    }
+  })])])])]);
+};
 
 var staticRenderFns = [];
+render._withStripped = true;
 
 
 /***/ }),

@@ -86,11 +86,11 @@ class UserController extends Controller
         //                     ->paginate(3000);
         
         // METODO CORRETTO
-        $users = User::select('users.*', 'user_bundle.expired_date', 'specializations.slug as specialization_slug')
+        $users = User::select('users.*', 'user_bundle.expired_date', 'specializations.slug as specialization_slug', 'specializations.id as specialization_id')
                     ->join('user_bundle', 'users.id', '=', 'user_bundle.user_id')
-                    ->join('bundles', 'bundles.id', '=', 'user_bundle.bundle_id')->orderBy('user_bundle.expired_date', 'desc')->groupBy('users.id')
+                    ->join('bundles', 'bundles.id', '=', 'user_bundle.bundle_id')->orderBy('user_bundle.expired_date', 'desc')
                     ->join('specialization_user', 'users.id', '=', 'specialization_user.user_id')
-                    ->join('specializations', 'specializations.id', '=', 'specialization_user.specialization_id')->having('specializations.slug', '=', $specialization_slug)
+                    ->join('specializations', 'specializations.id', '=', 'specialization_user.specialization_id')->where('specializations.slug', '=', $specialization_slug)->groupBy('specialization_user.user_id')
                     ->get();
 
         foreach($users as $user) {
