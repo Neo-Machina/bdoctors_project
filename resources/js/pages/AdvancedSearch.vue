@@ -46,6 +46,7 @@
             <!-- CARD USER -->
             <div class="col-10">
                 <div class="user-card d-flex flex-wrap">
+                    <div v-if="users.length == 0">Non ci sono utenti corrispondenti al momemto.. </div>
                     <div v-for="(user, index) in users" :key="'A' + index">
 
                         <div class="card mb-5" style="width: 18rem;">
