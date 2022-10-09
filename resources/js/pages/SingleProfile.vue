@@ -185,7 +185,8 @@ export default {
             success_message: false, 
             success_review: false, 
             errors: {},
-            sending: false
+            sending: false,
+            resize_ob: ''
         };
     },
     methods: {
@@ -282,14 +283,17 @@ export default {
         this.getSingleProfile();
     },
     mounted() {
-        const resize_ob = new ResizeObserver(function(entries) {
+        this.resize_ob = new ResizeObserver(function(entries) {
             let rect = entries[0].contentRect;
             let height = rect.height;
 
             document.getElementById('reviews-col').style.height = height + 'px';
             document.getElementById('reviews-col').style.maxHeight = height + 'px';
         });
-        resize_ob.observe(document.getElementById('profile-col'));
+        this.resize_ob.observe(document.getElementById('profile-col'));
+    },
+    beforeDestroy() {
+        this.resize_ob.disconnect();
     }
 }
 </script>
