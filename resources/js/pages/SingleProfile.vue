@@ -250,6 +250,7 @@ export default {
                     this.contentReview = '';
                     this.voteReview = 1;
                     this.errors = {};
+                    this.getSingleProfile();
                 } else {
                     this.errors = response.data.errors;
                 }
