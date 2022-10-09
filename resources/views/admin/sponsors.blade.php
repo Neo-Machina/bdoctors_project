@@ -88,15 +88,11 @@
     {{-- Script Braintree --}}
     <script type="text/javascript">
         let divTest = document.getElementById('device-data');
-        let client_token = document.getElementById("client-token").innerHTML;
         var button = document.querySelector('#submit-button');
 
 // viene creato il deviceData che serve per la transazione finale con braintree, viene assegnato all'input nascosto che poi verrà
 // passato come parametro nella POST del form, si poteva generare anche direttamente nella view del form di pagamento
-        braintree.client.create({
-            authorization: client_token
-        }, function (err, clientInstance) {
-            braintree.dataCollector.create({
+        braintree.dataCollector.create({
             client: clientInstance
             }, function (err, dataCollectorInstance) {
             if (err) {
@@ -104,7 +100,6 @@
             }
             var deviceData = dataCollectorInstance.deviceData;
             divTest.value = deviceData;
-            });
         });
     </script>
 @endsection

@@ -76,7 +76,7 @@ class PaymentsController extends Controller
       if ($result->success) {
         // prendo l'id del bundle selezionato dall'utente
             $id_bundle = $bundle->id;
-                  // creo la data di questo momento per la colonna created_at      
+            // creo la data di questo momento per la colonna created_at      
             $created_date = Carbon::now();
             // imposto la data di scadenza del bundle appena creato come data attuale + giorni dela durata del bundle
             $expired_date = Carbon::parse($created_date)->addDays($bundle->duration);
@@ -85,7 +85,7 @@ class PaymentsController extends Controller
             // creo la riga nel DB
             $user->bundles()->sync($new_user_bundle);
       }
-      // rimando al FE la risposta di braintree
+      // rimando al Front-End la risposta di braintree
         return response()->json($result);
     }
 }

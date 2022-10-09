@@ -70,7 +70,7 @@
         // richiedo il payment method nonce a braintree usando il client token generato precedentemente nel controller 
         // e poi passato alla view
         braintree.dropin.create({
-            // il token e container servono per dire braintree dove inserire il form della carta di pagamento
+            // il token e container servono per dire a braintree dove inserire il form della carta di pagamento
             authorization: client_token,
             container: '#dropin-container'
             }, function (err, instance) {
@@ -79,7 +79,7 @@
                     // finalmente richiedo il metodo di pagamento
                     instance.requestPaymentMethod(function (err, payload) {
                     // nel payload sarà presente il nostro methodPaymentNonce necessario a concludere la transazione
-                    // passo il tutto tramite una chiamata POST in ajax al nostro BE
+                    // passo il tutto tramite una chiamata POST in ajax al nostro Back-End
                     $.ajax({
                         url: '{{ route('payment.process') }}',
                         type: 'post',
@@ -91,7 +91,7 @@
                             // payments number per simulare un pagamento fallito seguito da un pagamento avvenuto con successo
                             payments_number: paymentsNumber
                         },
-                        // trucco per fare una chiamata al BE laravel senza il form e quindi senza un CSFR token, necessario per laravel per accettare
+                        // trucco per fare una chiamata al Back-End laravel senza il form e quindi senza un CSFR token, necessario per laravel per accettare
                         // la chiamata in POST
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -99,7 +99,6 @@
                         dataType: 'json',
                         success: function (data) {
                             paymentsNumber++;
-                            console.log(paymentsNumber);
                             // in base a cosa risposta braintree e quindi il nostro BE, mostro la modale di success o fail
                             if(data.success) {
                                 $('#modale').modal('show')
