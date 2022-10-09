@@ -28,14 +28,15 @@ class HomeController extends Controller
         return view('show');
     }
 
-    public function debug()
+    public function debug(Faker $faker)
     {   
         // $response = Http::get('https://randomuser.me/api/');
         //     $apiResponse = $response->json();
         //     dd($apiResponse);
 
         $user = User::with('specializations', 'reviews', 'messages', 'bundles')->get()->find(140);
-dd($user);
+
+
         // return view('show');
     }
 }

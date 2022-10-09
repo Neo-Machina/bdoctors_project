@@ -23,8 +23,8 @@ class UsersTableSeeder extends Seeder
 
         for($i = 0; $i < 150; $i++) {
             // Chiamata api RANDOM USER GENERATOR per picture profile
-            $response = Http::withoutVerifying()->get('https://randomuser.me/api/');
-            $apiResponse = $response->json();
+            // $response = Http::withoutVerifying()->get('https://randomuser.me/api/');
+            // $apiResponse = $response->json();
 
             // Creazione nuovo utente
             $new_user = new User();
@@ -33,8 +33,8 @@ class UsersTableSeeder extends Seeder
             $new_user->phone_number = $faker->e164PhoneNumber();
             $new_user->email = $faker->email();
             $new_user->curriculum = $faker->text(3000);
-            // $new_user->photo = 'https://s3-eu-west-1.amazonaws.com/miodottore.it/doctor/b26aee/b26aee7167aa5d475a7761d55f2e6bbd_large.jpg';
-            $new_user->photo = $apiResponse['results'][0]['picture']['large'];
+            $new_user->photo = 'https://s3-eu-west-1.amazonaws.com/miodottore.it/doctor/b26aee/b26aee7167aa5d475a7761d55f2e6bbd_large.jpg';
+            // $new_user->photo = $apiResponse['results'][0]['picture']['large'];
             $new_user->slug = $this->getFreeSlugFromTitle($new_user->name);
             $new_user->password = Hash::make('password123');
             $new_user->service = implode(', ', $faker->words(rand(5,15)));
