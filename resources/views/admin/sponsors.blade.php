@@ -1,7 +1,6 @@
 @extends('layouts.dashboard')
 
 @section('content')
-
     {{-- BRAINTREE --}}
     {{-- <script src="https://js.braintreegateway.com/web/dropin/1.33.4/js/dropin.js"></script>
 
@@ -61,7 +60,7 @@
     <div><strong>Acquista un piano di sponsorizzazione</strong></div>
     
     {{-- FORM BUNDLES RADIOS --}}
-    <form action="{{ route('payment.process', ['client_token' => $client_token]) }}" method="post">
+    <form action="{{ route('payment.form') }}" method="post">
         @csrf
         {{-- Radio-check-inputs --}}
         @foreach ($bundles as $bundle)
@@ -80,14 +79,11 @@
         <input type="hidden" name="device_data" id="device-data" value="">
 
         {{-- Submit --}}
-        <button  type="submit" class="btn btn-primary mt-4" data-toggle="modal">
+        <button  type="submit" class="btn btn-primary mt-4">
             Acquista
         </button>
 
     </form>
-
-    {{-- Client-Token passed from sponsors view --}}
-    <div id="client-token" class="invisible">{{ $client_token }}</div>
 
     {{-- Script Braintree --}}
     <script type="text/javascript">
@@ -95,24 +91,18 @@
         let client_token = document.getElementById("client-token").innerHTML;
         var button = document.querySelector('#submit-button');
 
-
+// viene creato il deviceData che serve per la transazione finale con braintree, viene assegnato all'input nascosto che poi verrà
+// passato come parametro nella POST del form, si poteva generare anche direttamente nella view del form di pagamento
         braintree.client.create({
-            // authorization: client_token
+            authorization: client_token
         }, function (err, clientInstance) {
-            // Creation of any other components...
-        
             braintree.dataCollector.create({
             client: clientInstance
             }, function (err, dataCollectorInstance) {
             if (err) {
-                // Handle error in creation of data collector
                 return;
             }
-            // At this point, you should access the dataCollectorInstance.deviceData value and provide it
-            // to your server, e.g. by injecting it into your form as a hidden input.
             var deviceData = dataCollectorInstance.deviceData;
-
-            // Passo il deviData all'input invisibile del form per inviarlo al controller
             divTest.value = deviceData;
             });
         });
