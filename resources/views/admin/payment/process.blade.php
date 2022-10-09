@@ -42,7 +42,7 @@
                   
                 </div>
                 <div class="modal-body">
-                  <p>Ricontrolla e campi e riprova!</p>
+                  <p>Ricontrolla i campi e riprova!</p>
                 </div>
                 <div class="modal-footer">
                   <button data-dismiss="modal" type="button" class="btn btn-primary">Conferma</button>
