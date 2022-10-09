@@ -6,6 +6,9 @@
         <div class="row">
             <div class="col-2">
                 <div class="average">
+                    <!-- cambio specializzazione in advanced search -->
+                    <DropdownMenuSpecialization/>
+
                     <div class="mb-2 px-1">
                         <strong class="bg-info">Scegli un medico in base <br> a i voti che ha ricevuto</strong> 
                     </div>
@@ -36,13 +39,14 @@
                         <div class="hover-effect" @click.prevent="getUsersBySpecAndCountRev(1, 200, 1000)" style="cursor: pointer;">
                             200 recensioni e più
                         </div>
-                    </div>
+                    </div> 
                 </div>
             </div>
 
             <!-- CARD USER -->
             <div class="col-10">
                 <div class="user-card d-flex flex-wrap">
+                    <div v-if="users.length == 0">Non ci sono utenti corrispondenti al momemto.. </div>
                     <div v-for="(user, index) in users" :key="'A' + index">
 
                         <div class="card mb-5" style="width: 18rem;">
@@ -72,13 +76,13 @@
 </template>
 
 <script>
-// import Profiles from '../components/Profiles.vue';
+import DropdownMenuSpecialization from '../components/DropdownMenuSpecialization.vue';
 
 export default {
     name: 'AdvancedSearch',
-    // components: {
-    //     Profiles
-    // },
+    components: {
+        DropdownMenuSpecialization
+    },
     data() {
         return {
             users: [],
@@ -93,8 +97,6 @@ export default {
             })
             .then((response) => {
                 this.users = response.data.results;
-                // this.currentPage = response.data.results.current_page;
-                // this.lastPage = response.data.results.last_page;
             });
         },
         getUsersBySpecAndAvgVote(pageNumber, filter_avg_vote) {
@@ -108,8 +110,6 @@ export default {
             .then((response) => {
                 console.log(response);
                 this.users = response.data.results;
-                // this.currentPage = response.data.results.current_page;
-                // this.lastPage = response.data.results.last_page;
             });
         },
         getUsersBySpecAndCountRev(pageNumber, reviews_min, reviews_max) {
@@ -123,8 +123,6 @@ export default {
             .then((response) => {
                 console.log(response);
                 this.users = response.data.results;
-                // this.currentPage = response.data.results.current_page;
-                // this.lastPage = response.data.results.last_page;
             });
         },
         truncateText(text) {
@@ -139,7 +137,6 @@ export default {
         }
     },
     mounted() {
-        // setTimeout(function(){ this.getUsersBySpecialization(this.$route.params.specialization_slug, 1) }, 500);
         this.getUsersBySpecialization(1);
     }
 }

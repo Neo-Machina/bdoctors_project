@@ -2,7 +2,7 @@
     <footer class="bg-info text-light py-3">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-3">
+                <div class="col col-sm-12 col-md-3 mb-4">
                     <div>
                         via giulio cesare
                     </div>
@@ -16,10 +16,10 @@
                     </div>
                 </div>
 
-                <div class="col-9">
+                <div class="col col-sm-12 col-md-9">
                     <div class="row">
-                        <div class="col">
-                            <ul class="list-unstyled">
+                        <div class="col col-sm-12 col-md-4">
+                            <ul class="list-unstyled mb-4">
                                 <li>
                                     <a href="#" class="link-light text-light border-bottom-0">specializzazioni</a>
                                 </li>
@@ -38,8 +38,8 @@
                             </ul>
                         </div>
     
-                        <div class="col">
-                            <ul class="list-unstyled">
+                        <div class="col col-sm-12 col-md-4">
+                            <ul class="list-unstyled mb-4">
                                 <li>
                                     <a href="#" class="link-light text-light border-bottom-0">specializzazioni</a>
                                 </li>
@@ -58,8 +58,8 @@
                             </ul>
                         </div>
             
-                        <div class="col">
-                            <ul class="list-unstyled">
+                        <div class="col col-sm-12 col-md-4">
+                            <ul class="list-unstyled mb-4">
                                 <li>
                                     <a href="#" class="link-light text-light border-bottom-0">specializzazioni</a>
                                 </li>
@@ -91,5 +91,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@media screen and (min-width:576px) {
+    .container {
+        text-align: center;
+    }
+
+    
+}
 
 </style>
