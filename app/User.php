@@ -35,7 +35,7 @@ class User extends Authenticatable
     }
 
     public function bundles() {
-        return $this->belongsToMany('App\Bundle', 'user_bundle')->using('App\UserBundle')->withPivot(['expired_date']);
+        return $this->belongsToMany('App\Bundle', 'user_bundle')->using('App\UserBundle')->withPivot(['expired_date'])->orderBy('created_date', 'desc');
     }
 
     public function messages() {
