@@ -12,7 +12,7 @@
 
             {{-- container dove braintree andrà ad inserire il suo form --}}
             <div id="dropin-container"></div>
-            <button id="submit-button" class="button button--small button--green">Purchase</button>
+            <button id="submit-button" class="button button--small button--green">Acquista</button>
 
         </div>
     </div>
@@ -25,7 +25,7 @@
                   
                 </div>
                 <div class="modal-body">
-                  <p>Compltimenti! Il pagamento è avvenuto con successo.</p>
+                  <p>Complimenti! Il pagamento è avvenuto con successo.</p>
                 </div>
                 <div class="modal-footer">
                   <button onclick="redirectToHome()" type="button" class="btn btn-primary">Conferma</button>
@@ -74,7 +74,7 @@
             authorization: client_token,
             container: '#dropin-container'
             }, function (err, instance) {
-                // aggiungo un event listner per fare il catch del click del pulsante "purchase"
+                // aggiungo un event listener per fare il catch del click del pulsante "purchase"
                 button.addEventListener('click', function () {
                     // finalmente richiedo il metodo di pagamento
                     instance.requestPaymentMethod(function (err, payload) {
