@@ -23,6 +23,9 @@
             <li style="cursor: pointer" id="2022" onclick="changeSelectedYear('2022')">
                 2022 
             </li>
+            <li style="cursor: pointer" id="last_12_months" onclick="changeSelectedYear('last_12_months')">
+                ULTIMI 12 MESI 
+            </li>
             <li style="cursor: pointer" id="all" class="font-weight-bold my_font_color" onclick="changeSelectedYear('')">
                 TUTTI GLI ANNI
             </li>
@@ -124,7 +127,50 @@
         
         // Funzione condizioni sul cambio anno
         function onYearChanged() {
-            if(selectedYear == '') {
+            if (selectedYear == 'last_12_months') {
+                resetTotalMessagesAndReview();
+                let monthsArray = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
+                let currentMonth = new Date().getMonth();
+                let date = new Date();
+                date.setDate(1);
+                let chartLabels = [];
+                for (let i = 0; i <= 11; i++) {
+                    chartLabels.push(monthsArray[date.getMonth()] + ' - ' + date.getFullYear());
+                    date.setMonth(date.getMonth() - 1);
+                }
+                chartLabels.reverse();
+                myChart.data.labels = chartLabels;
+                let reviews_dataset = []; // media voti / barra grafico
+                let bar_labels = []; // numero voti / numero all'interno della barra
+                for(let i = 0; i < 12; i++) {
+                        reviews_dataset[i] = 0;
+                        bar_labels[i] = 0;
+                }
+                chartLabels.forEach((item, index) => {
+                    let item_split = item.split(' - ');
+                    let month_index = monthsArray.indexOf(item_split[0]);
+                    if(messages[item_split[1]]) {
+                        messages[item_split[1]].forEach(month => {
+                            if(month.month == month_index + 1) {
+                                tot_messages += month.count_messages;
+                            }
+                        })
+                    }
+
+                    if(reviews[item_split[1]]) {
+                        reviews[item_split[1]].forEach(month => {
+                            if(month.month == month_index + 1) {
+                                tot_reviews += month.count_reviews;
+                                reviews_dataset[index] = month.reviews_avg_vote;
+                                bar_labels[index] = month.count_reviews;
+                            }
+                        })
+                    }
+                });
+
+                myChart.data.datasets[0].bars = bar_labels;
+                myChart.data.datasets[0].data = reviews_dataset;
+            } else if(selectedYear == '') {
                 let reviews_object = {};
                 resetTotalMessagesAndReview();
                 Object.entries(messages).map(_item => {
