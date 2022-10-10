@@ -40,7 +40,7 @@ class UserController extends Controller
                        ->join('specializations', 'specializations.id', '=', 'specialization_id')
                        ->join('user_bundle', 'users.id', '=', 'user_bundle.user_id')
                        ->join('bundles', 'bundles.id', '=', 'bundle_id')->where('user_bundle.expired_date', '>=', $today )->groupBy('users.id')
-                       ->orderByRaw('RAND()')->get();
+                       ->orderBy('user_bundle.created_date', 'desc')->get();
         
         $specializations = Specialization::all();
 
