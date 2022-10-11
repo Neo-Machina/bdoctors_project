@@ -2071,7 +2071,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     truncateText: function truncateText(text) {
-      if (text.length > 100) {
+      if (text && text.length > 100) {
         return text.slice(0, 100) + '...';
       }
 
