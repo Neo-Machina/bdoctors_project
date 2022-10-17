@@ -2540,6 +2540,11 @@ var render = function render() {
       }
     }, [_c("img", {
       staticClass: "card-img-top",
+      staticStyle: {
+        width: "190px",
+        height: "190px",
+        "object-fit": "cover"
+      },
       attrs: {
         src: user.user_photo,
         alt: "..."
@@ -2669,6 +2674,11 @@ var render = function render() {
       }
     }, [_c("img", {
       staticClass: "card-img-top",
+      staticStyle: {
+        width: "286px",
+        height: "286px",
+        "object-fit": "cover"
+      },
       attrs: {
         src: user.photo,
         alt: "..."

@@ -50,7 +50,7 @@
                     <div v-for="(user, index) in users" :key="'A' + index">
 
                         <div class="card mb-5" style="width: 18rem;">
-                            <img :src="user.photo" class="card-img-top" alt="...">
+                            <img :src="user.photo" class="card-img-top" alt="..." style="width:286px; height:286px; object-fit:cover;">
                             <div class="card-body">
                                 <h5 class="card-title">{{user.name}}</h5>
                                 <h6 class="card-text badge bg-info text-dark mr-1">{{user.specialization_slug}}</h6>

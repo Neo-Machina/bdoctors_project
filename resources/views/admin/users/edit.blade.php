@@ -97,7 +97,7 @@
         {{-- FOTOGRAFIA --}}
         <div class="mb-3">
             <label for="image" class="form-label"><strong>Fotografia</strong></label>
-            <input class="form-control" type="file" id="image" name="image">
+            <input class="form-control" type="file" id="image" name="image" style="height: 43.035px">
 
             @if ($user->photo)
                 <div class="mt-2">Immagine corrente:</div>

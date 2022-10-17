@@ -2,7 +2,7 @@
     <div class="carousel d-flex">
         <div v-for="(user, index) in users" :key="index">    
             <div class="card" style="width: 12rem;">
-                <img :src="user.user_photo" class="card-img-top" alt="...">
+                <img :src="user.user_photo" class="card-img-top" alt="..." style="width:190px; height:190px; object-fit:cover;">
                 <div class="card-body">
                     <h5 class="card-title">{{user.user_name}}</h5>
                     <p class="card-text">{{user.specialization_slug}}</p>
