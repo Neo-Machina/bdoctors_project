@@ -5,7 +5,7 @@
         <!-- user profile and reviews -->
         <div class="row mb-5">
 
-            <div class="col-5" id="profile-col">
+            <div class="col-12 col-lg-5" id="profile-col">
                 <div class="d-flex">
                     <div class="card" style="width: 30rem;">
                         <img :src="user.photo" class="card-img-top" alt="..."> 
@@ -22,41 +22,30 @@
                 </div>
             </div>
 
-            <!-- message and reviews -->
-            <div class="col-7 d-flex" style="max-height: 700px; height: 700px; padding: 0" id="reviews-col">
-                <div class="col d-flex h-100" style="flex-wrap: wrap; padding: 0; overflow: auto">
-                    <div v-for="(review, index) in user.reviews" :key="index">
-                        <!-- <div><strong>Autore</strong>: {{ review.author }}</div>
-                        <div><strong>Voto</strong>: {{ review.vote }}</div>
-                        <div><strong>Recensione</strong>: {{ review.content }}</div>
-                        <hr> -->
-                        <div class="review-card card text-dark bg-light mb-3" style="max-width: 18rem;">
-                            <div class="card-header">Recensione</div>
-                            <div class="card-body">
-                                <h5 class="card-title">{{ review.author }}</h5>
-                                <div><strong>Voto</strong>: <i v-for="n in stars(review.vote)" :key="n" class="fas fa-star active"></i></div>
-                                
-                                <p class="card-text">{{ review.content }}</p>
+            <!-- reviews -->
+            <div class="col-12 col-lg-7">
+                <div class="row" id="reviews-col">
+                    <div class="review-col d-flex h-100" >
+                        <div v-for="(review, index) in user.reviews" :key="index">
+                            <div class="review-card card text-dark bg-light mb-3">
+                                <!-- card header -->
+                                <div class="card-header">Recensione</div>
+
+                                <!-- card body -->
+                                <div class="card-body">
+                                    <!-- autore della recensione -->
+                                    <h5 class="card-title">{{ review.author }}</h5>
+                                    <!-- voto -->
+                                    <div><strong>Voto</strong>: <i v-for="n in stars(review.vote)" :key="n" class="fas fa-star active"></i></div>
+                                    
+                                    <!-- recensione -->
+                                    <p class="card-text">{{ review.content }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <!-- <ul>
-                <li>Nome: {{ user.name }}</li>
-                <li>Email: {{ user.email }}</li>
-                <li>Indirizzo: {{ user.address }}</li>
-                <li>Numero di recensioni: {{ user.count_reviews }}</li>
-                <li>Media voto: {{ user.avg_reviews }}</li>
-            </ul>
-
-            <div v-for="(review, index) in user.reviews" :key="index">
-                <div>Autore: {{ review.author }}</div>
-                <div>Voto: {{ review.vote }}</div>
-                <div>Recensione: {{ review.content }}</div>
-                <hr>
-            </div> -->
         </div>
 
         <!-- message and revies forms -->
@@ -142,8 +131,6 @@
                     </div>
 
                     <div class="mb-3">
-                        <!-- <label for="user-vote" class="form-label">Punteggio generale *</label>
-                        <input v-model="userVote" type="text" class="form-control" id="user-vote"> -->
                         <div class="average_vote" style="cursor:pointer"> 
                             <span class="bold_text">Vote</span>: 
                             <span class="star_icon " :class="{ 'active': star <= voteReview }" v-for="(star,index) in 5" :key="index" @click.prevent="voteReview = star">
@@ -261,23 +248,7 @@ export default {
         },
         stars(original_vote) {
             return Math.round(original_vote);
-        },
-        // scrollTopPage() {
-        //     window.scrollTo(0, 0);
-        // },
-        // scrollToReview() {
-        //     window.scrollTo(0, 628);
-        // },
-        // transformVote() {
-        //     return Math.round((this.reviews.vote * 5) / 10);
-        // },
-        // getStarsStyle(starNumber) {
-        //     if(starNumber <= this.transformVote()) {
-        //         return 'fa-solid fa-star';
-        //     } else {
-        //         return 'fa-regular fa-star'
-        //     }
-        // }
+        }
     },
     created() {
         this.getSingleProfile();
@@ -299,13 +270,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.col-7 {
-    flex-wrap: wrap;
-
-    .review-card {
-        margin-inline: 0.9rem;
-    }
+.review-card {
+    margin-inline: 0.9rem;
+    width: 18rem;
 }
+
 .star_icon {
     color: grey;
     cursor: pointer;
@@ -318,5 +287,25 @@ export default {
 
 .forms_row {
     margin-top: 7rem;
+}
+
+#profile-col{
+    display: flex;
+    justify-content: center;
+}
+
+.review-col {
+    justify-content: space-evenly;
+    flex-wrap: wrap; 
+    padding: 0; 
+    overflow: auto;
+}
+
+@media screen and (min-width:568px) {
+    #reviews-col {
+        display: flex;
+        justify-content: center;
+        padding-top: 2rem;
+    }
 }
 </style>
