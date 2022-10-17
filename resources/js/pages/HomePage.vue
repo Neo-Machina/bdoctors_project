@@ -35,18 +35,18 @@
             <!-- about us -->
             <section class="about-us my-5">
                 <div class="container">
+                    <h3 class="text-primary text-center">
+                        Dicono di noi 
+                    </h3>
+
                     <div class="row justify-content-between">
                         <!-- left col with image  -->
-                        <div class="col col-sm-12 col-md-6 col-lg-6">
+                        <div class="col-image col col-sm-12 col-md-6 col-lg-6">
                             <img style="height: 200px;" src="https://www.ges-tt.com/wp-content/uploads/2020/11/recensioni-positive-google-perche-sono-importanti-come-gestirle.jpg" alt="reviews">
                         </div>
         
                         <!-- right col with text -->
                         <div class="col col-sm-12 col-md-5 col-lg-6">
-                            <h3 class="text-primary">
-                                Dicono di noi 
-                            </h3>
-
                             <h5>
                                 Oltre il 90% di pazienti soddisfatti.
                             </h5>
@@ -88,5 +88,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@media screen and (min-width:568px) {
+    .about-us {
+        .row {
+            justify-content: center;
 
+            .col-image {
+                display: flex;
+                justify-content: center;
+            }
+        }
+    }
+}
 </style>
